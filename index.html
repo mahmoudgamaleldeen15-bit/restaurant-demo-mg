@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
+<title>Demo — نظام إدارة المطاعم</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --olive:#4a7c1f;--olive-dark:#2d5016;--olive-light:#6aab2e;
+  --olive-pale:#e8f5d0;--cream:#faf7f0;--gold:#c8973a;
+  --dark:#1a1a1a;--text:#2c2c2c;--text-muted:#6b6b6b;
+  --border:#e0ddd5;--white:#ffffff;--red:#e03030;--bg:#f7f4ed;
+  --blue:#1a5fc8;--blue-pale:#e3f0ff;
+  --demo:#7c3aed;--demo-pale:#ede9fe;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{font-size:15px}
+body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;direction:rtl}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+input,select,textarea{font-family:inherit}
+.screen{display:none;min-height:100vh;flex-direction:column}
+.screen.active{display:flex}
+
+/* SPLASH */
+#splash{background:linear-gradient(160deg,var(--olive-dark),var(--olive),var(--olive-light));align-items:center;justify-content:center;gap:20px;text-align:center}
+.splash-ring{width:100px;height:100px;border-radius:50%;border:3px solid rgba(255,255,255,.2);border-top-color:#fff;animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.splash-brand{font-size:42px;font-weight:900;color:#fff}
+.splash-sub{font-size:12px;color:rgba(255,255,255,.7);letter-spacing:2px}
+.splash-dots{display:flex;gap:8px;margin-top:12px;justify-content:center}
+.splash-dots span{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.4);animation:pulse 1.2s ease infinite}
+.splash-dots span:nth-child(2){animation-delay:.2s}
+.splash-dots span:nth-child(3){animation-delay:.4s}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+/* AUTH */
+#auth{background:var(--cream);overflow:hidden}
+.auth-hero{background:linear-gradient(160deg,var(--olive-dark),var(--olive));padding:44px 24px 56px;text-align:center;clip-path:ellipse(110% 100% at 50% 0%)}
+.auth-hero .brand{font-size:34px;font-weight:900;color:#fff}
+.auth-hero .sub{color:rgba(255,255,255,.7);font-size:11px;letter-spacing:2px;margin-top:4px}
+.auth-body{padding:28px 20px;flex:1;overflow-y:auto}
+.demo-info-card{background:var(--demo-pale);border:2px solid var(--demo);border-radius:16px;padding:16px;margin-bottom:18px;text-align:center}
+.demo-info-card h3{font-size:15px;font-weight:900;color:var(--demo);margin-bottom:6px}
+.demo-info-card p{font-size:12px;color:#5b21b6;line-height:1.6}
+.locked-badge{display:inline-flex;align-items:center;gap:3px;background:#fee2e2;border:1px solid #fca5a5;border-radius:100px;padding:2px 8px;font-size:10px;font-weight:800;color:#b91c1c;margin:2px}
+.field{margin-bottom:14px}
+.field label{font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px;display:block}
+.field input{width:100%;padding:12px 14px;background:var(--white);border:1.5px solid var(--border);border-radius:12px;font-size:15px;color:var(--text);outline:none;transition:.2s}
+.field input:focus{border-color:var(--olive);box-shadow:0 0 0 3px var(--olive-pale)}
+.btn-primary{width:100%;padding:14px;background:linear-gradient(135deg,var(--olive-dark),var(--olive-light));color:#fff;border-radius:14px;font-size:16px;font-weight:900;border:none;cursor:pointer;transition:.2s}
+.btn-primary:active{opacity:.9;transform:scale(.98)}
+.err-box{display:none;background:#fee2e2;border:1.5px solid #fca5a5;border-radius:10px;padding:10px 14px;margin-bottom:12px;font-size:13px;font-weight:700;color:#b91c1c;text-align:center}
+
+/* EXPIRED */
+#expired{background:linear-gradient(160deg,#1a1a2e,#16213e,#0f3460);align-items:center;justify-content:center;text-align:center;padding:30px}
+.exp-card{background:rgba(255,255,255,.05);border:1.5px solid rgba(255,255,255,.15);border-radius:24px;padding:30px 24px;max-width:360px;width:100%}
+.exp-icon{font-size:60px;margin-bottom:14px}
+.exp-title{font-size:20px;font-weight:900;color:#fff;margin-bottom:8px}
+.exp-sub{font-size:13px;color:rgba(255,255,255,.7);line-height:1.7;margin-bottom:20px}
+.exp-wa{background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;border-radius:14px;padding:13px 24px;font-size:14px;font-weight:900;border:none;cursor:pointer;width:100%;margin-bottom:10px;display:flex;align-items:center;justify-content:center;gap:8px}
+.exp-call{background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.2);color:#fff;border-radius:14px;padding:11px;font-size:13px;font-weight:800;border:none;cursor:pointer;width:100%}
+
+/* ADMIN LOGIN */
+#adminLogin{background:linear-gradient(160deg,#0f172a,#1e293b,#0f172a);align-items:center;justify-content:center;padding:30px}
+.admin-login-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:24px;padding:28px 22px;max-width:360px;width:100%}
+.admin-login-icon{font-size:44px;text-align:center;margin-bottom:12px}
+.admin-login-title{font-size:16px;font-weight:900;color:#fff;text-align:center;margin-bottom:4px}
+.admin-login-sub{font-size:11px;color:rgba(255,255,255,.5);text-align:center;margin-bottom:20px}
+.admin-field label{font-size:11px;font-weight:700;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px;display:block}
+.admin-field input{width:100%;padding:12px 14px;background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.12);border-radius:12px;font-size:15px;color:#fff;outline:none;margin-bottom:12px;transition:.2s}
+.admin-field input:focus{border-color:#7c3aed;box-shadow:0 0 0 3px rgba(124,58,237,.2)}
+.admin-login-btn{width:100%;padding:13px;background:linear-gradient(135deg,#7c3aed,#5b21b6);color:#fff;border-radius:12px;font-size:14px;font-weight:900;border:none;cursor:pointer;margin-top:4px}
+.admin-err{display:none;background:rgba(239,68,68,.15);border:1px solid rgba(239,68,68,.3);border-radius:8px;padding:8px 12px;font-size:12px;font-weight:700;color:#f87171;text-align:center;margin-bottom:10px}
+
+/* ADMIN PANEL */
+#adminPanel{background:#0f172a;min-height:100vh;overflow-y:auto}
+.admin-topbar{background:linear-gradient(135deg,#7c3aed,#5b21b6);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;color:#fff;flex-shrink:0}
+.admin-topbar h1{font-size:16px;font-weight:900}
+.admin-section{padding:16px}
+.admin-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:16px;margin-bottom:14px}
+.admin-card h3{font-size:13px;font-weight:900;color:rgba(255,255,255,.9);margin-bottom:12px;display:flex;align-items:center;gap:6px}
+.admin-input{width:100%;padding:10px 12px;background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.12);border-radius:10px;font-size:14px;color:#fff;outline:none;margin-bottom:8px;font-family:inherit}
+.admin-input:focus{border-color:#7c3aed}
+.admin-btn{padding:10px 18px;border-radius:10px;font-size:13px;font-weight:800;border:none;cursor:pointer;font-family:inherit}
+.admin-btn.purple{background:linear-gradient(135deg,#7c3aed,#5b21b6);color:#fff;width:100%;padding:12px}
+.admin-btn.red{background:rgba(239,68,68,.2);color:#f87171;border:1px solid rgba(239,68,68,.3)}
+.admin-btn.green{background:rgba(34,197,94,.2);color:#4ade80;border:1px solid rgba(34,197,94,.3)}
+.generated-cred{background:rgba(124,58,237,.15);border:1.5px solid rgba(124,58,237,.4);border-radius:12px;padding:14px;margin-top:10px;display:none}
+.cred-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:13px}
+.cred-row:last-child{border-bottom:none}
+.cred-label{color:rgba(255,255,255,.5);font-weight:700}
+.cred-val{color:#a78bfa;font-weight:900;font-family:monospace;font-size:14px}
+.copy-btn{background:rgba(167,139,250,.2);color:#a78bfa;border:1px solid rgba(167,139,250,.3);border-radius:6px;padding:3px 8px;font-size:10px;font-weight:800;cursor:pointer;font-family:inherit}
+.clients-list{max-height:300px;overflow-y:auto}
+.client-row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.client-info{flex:1}
+.client-name{font-size:13px;font-weight:800;color:#fff}
+.client-meta{font-size:11px;color:rgba(255,255,255,.4);margin-top:2px}
+.client-status{font-size:10px;font-weight:800;padding:3px 8px;border-radius:100px}
+.status-active{background:rgba(34,197,94,.2);color:#4ade80}
+.status-expired{background:rgba(239,68,68,.2);color:#f87171}
+.time-left{font-size:10px;color:rgba(255,255,255,.5);margin-top:2px}
+
+/* APP */
+#app{overflow:hidden}
+.demo-banner{background:linear-gradient(135deg,var(--demo),#5b21b6);color:#fff;padding:8px 16px;display:flex;align-items:center;justify-content:space-between;font-size:12px;font-weight:800;flex-shrink:0;position:sticky;top:0;z-index:100}
+.demo-timer{background:rgba(255,255,255,.2);border-radius:100px;padding:3px 10px;font-size:11px;font-weight:900;min-width:90px;text-align:center}
+.topbar{background:linear-gradient(135deg,var(--olive-dark),var(--olive));padding:12px 16px;display:flex;align-items:center;justify-content:space-between;color:#fff;flex-shrink:0}
+.topbar-brand{font-size:19px;font-weight:900}
+.topbar-sub{font-size:11px;color:rgba(255,255,255,.75);margin-top:1px}
+.icon-btn{width:36px;height:36px;background:rgba(255,255,255,.15);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:17px;cursor:pointer;border:none;position:relative}
+.badge{position:absolute;top:-6px;right:-6px;background:var(--red);color:#fff;font-size:9px;font-weight:900;border-radius:10px;min-width:18px;height:18px;display:flex;align-items:center;justify-content:center;padding:0 4px}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:var(--white);border-top:1px solid var(--border);display:flex;justify-content:space-around;padding:8px 0 calc(8px + env(safe-area-inset-bottom));z-index:50}
+.nav-btn{display:flex;flex-direction:column;align-items:center;gap:3px;padding:4px 12px;cursor:pointer;border:none;background:none;font-family:inherit;flex:1}
+.nav-icon{font-size:20px}
+.nav-label{font-size:9px;font-weight:700;color:var(--text-muted)}
+.nav-btn.active .nav-label{color:var(--olive)}
+.tab-content{display:none;flex:1;overflow-y:auto}
+.tab-content.active{display:block}
+.section-title{font-size:14px;font-weight:900;color:var(--dark);padding:14px 16px 8px;display:flex;align-items:center;gap:8px}
+.empty-state{text-align:center;padding:40px 20px;color:var(--text-muted)}
+.empty-icon{font-size:48px;margin-bottom:10px}
+.card{background:var(--white);border-radius:16px;border:1.5px solid var(--border);margin:10px 14px;padding:16px}
+
+/* FOOD CARDS */
+.cat-header{font-size:14px;font-weight:900;color:var(--olive-dark);padding:10px 16px 6px;display:flex;align-items:center;gap:8px}
+.food-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 14px}
+@media(min-width:600px){.food-grid{grid-template-columns:1fr 1fr 1fr}}
+.food-card{background:var(--white);border-radius:16px;border:1.5px solid var(--border);overflow:hidden;cursor:pointer;transition:.15s}
+.food-card:active{transform:scale(.97)}
+.food-emoji{height:88px;background:linear-gradient(135deg,var(--olive-pale),var(--cream));display:flex;align-items:center;justify-content:center;font-size:40px}
+.food-info{padding:10px}
+.food-name{font-size:13px;font-weight:800;color:var(--dark);margin-bottom:3px;line-height:1.3}
+.food-desc{font-size:10px;color:var(--text-muted);margin-bottom:6px;line-height:1.4}
+.food-bottom{display:flex;align-items:center;justify-content:space-between}
+.food-price{font-size:14px;font-weight:900;color:var(--olive-dark)}
+.add-btn{width:28px;height:28px;background:var(--olive);border-radius:8px;color:#fff;font-size:18px;display:flex;align-items:center;justify-content:center;border:none;cursor:pointer}
+
+/* ORDERS */
+.order-card{background:var(--white);border-radius:14px;border:1.5px solid var(--border);margin:8px 14px;padding:14px;transition:.15s}
+.order-card.s-new{border-right:4px solid #f59e0b}
+.order-card.s-prep{border-right:4px solid var(--blue)}
+.order-card.s-ready{border-right:4px solid var(--olive)}
+.order-card.s-delivered{border-right:4px solid #22c55e;opacity:.7}
+.order-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+.order-num{font-size:14px;font-weight:900;color:var(--olive-dark)}
+.status-badge{font-size:10px;font-weight:800;padding:3px 10px;border-radius:100px}
+.s-new .status-badge{background:#fef3c7;color:#92400e}
+.s-prep .status-badge{background:var(--blue-pale);color:#1e40af}
+.s-ready .status-badge{background:var(--olive-pale);color:var(--olive-dark)}
+.s-delivered .status-badge{background:#d1fae5;color:#065f46}
+.order-meta{font-size:11px;color:var(--text-muted);margin-bottom:5px}
+.order-items{font-size:12px;color:var(--text-muted);margin-bottom:6px}
+.order-total{font-size:13px;font-weight:900}
+.order-actions{display:flex;gap:6px;margin-top:10px}
+.o-btn{flex:1;padding:8px;border-radius:10px;font-size:12px;font-weight:800;border:none;cursor:pointer;font-family:inherit}
+.o-btn.accept{background:linear-gradient(135deg,var(--olive),var(--olive-light));color:#fff}
+.o-btn.ready{background:linear-gradient(135deg,#16a34a,#22c55e);color:#fff}
+.o-btn.deliver{background:linear-gradient(135deg,var(--demo),#5b21b6);color:#fff}
+
+/* STATS */
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:12px 14px}
+@media(min-width:600px){.stats-grid{grid-template-columns:repeat(4,1fr)}}
+.stat-card{background:var(--white);border-radius:14px;border:1.5px solid var(--border);padding:14px;text-align:center;position:relative;overflow:hidden}
+.stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--olive-light),var(--olive))}
+.stat-card.gold::before{background:linear-gradient(90deg,#f0c060,var(--gold))}
+.stat-card.blue::before{background:linear-gradient(90deg,#60a5fa,var(--blue))}
+.stat-card.green::before{background:linear-gradient(90deg,#4ade80,#16a34a)}
+.stat-val{font-size:22px;font-weight:900;color:var(--olive-dark)}
+.stat-lbl{font-size:10px;color:var(--text-muted);font-weight:700;margin-top:3px}
+
+/* ADMIN TABS */
+.admin-tabs{display:flex;overflow-x:auto;gap:6px;padding:10px 14px;scrollbar-width:none;background:var(--white);border-bottom:1px solid var(--border)}
+.admin-tabs::-webkit-scrollbar{display:none}
+.tab-btn{flex-shrink:0;padding:7px 14px;border-radius:100px;font-size:12px;font-weight:800;border:1.5px solid var(--border);color:var(--text-muted);cursor:pointer;white-space:nowrap;background:var(--cream);transition:.2s}
+.tab-btn.active{background:var(--olive);border-color:var(--olive);color:#fff}
+.lock-icon{font-size:9px}
+
+/* CART */
+.cart-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:200;display:none;align-items:flex-end}
+.cart-overlay.open{display:flex}
+.cart-sheet{background:var(--white);width:100%;border-radius:24px 24px 0 0;max-height:85vh;overflow-y:auto;padding:20px 16px 36px}
+.cart-handle{width:40px;height:4px;background:var(--border);border-radius:4px;margin:0 auto 16px}
+.cart-item{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--border)}
+.cart-item-emoji{font-size:26px;flex-shrink:0}
+.cart-item-name{flex:1;font-size:13px;font-weight:700}
+.qty-ctrl{display:flex;align-items:center;gap:8px}
+.qty-btn{width:26px;height:26px;border-radius:7px;background:var(--olive-pale);color:var(--olive-dark);font-size:16px;font-weight:900;display:flex;align-items:center;justify-content:center;border:none;cursor:pointer}
+.cart-total{display:flex;justify-content:space-between;padding:14px 0;font-weight:900;font-size:16px;border-top:2px solid var(--border)}
+.d-opt-row{display:flex;gap:8px;margin:12px 0}
+.d-opt{flex:1;padding:9px;border-radius:10px;border:1.5px solid var(--border);text-align:center;font-size:12px;font-weight:800;cursor:pointer;color:var(--text-muted);transition:.2s}
+.d-opt.active{background:var(--olive-pale);border-color:var(--olive);color:var(--olive-dark)}
+
+/* LOCKED MODAL */
+.locked-overlay{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:300;display:none;align-items:center;justify-content:center;padding:20px}
+.locked-overlay.open{display:flex}
+.locked-card{background:var(--white);border-radius:24px;padding:28px 20px;max-width:380px;width:100%;text-align:center}
+@keyframes popIn{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:scale(1)}}
+.locked-card{animation:popIn .3s ease}
+.contact-section{background:linear-gradient(135deg,#1e3a1e,#2d5a2d);border-radius:16px;margin:14px;padding:16px;color:#fff;text-align:center}
+.contact-section h3{font-size:14px;font-weight:900;margin-bottom:6px}
+.contact-section p{font-size:12px;opacity:.85;margin-bottom:12px;line-height:1.6}
+.wa-btn{display:inline-flex;align-items:center;gap:8px;background:#25D366;color:#fff;border-radius:10px;padding:10px 20px;font-size:13px;font-weight:900;border:none;cursor:pointer}
+
+/* NOTIF */
+.notif{position:fixed;top:16px;left:50%;transform:translateX(-50%) translateY(-80px);background:var(--dark);color:#fff;padding:10px 20px;border-radius:12px;font-size:13px;font-weight:700;z-index:999;transition:.35s;white-space:nowrap;box-shadow:0 4px 20px rgba(0,0,0,.3)}
+.notif.show{transform:translateX(-50%) translateY(0)}
+
+/* STEP TRACK */
+.track-steps{display:flex;align-items:flex-start;gap:4px;padding:14px;background:var(--white);margin:10px 14px;border-radius:14px;border:1.5px solid var(--border)}
+.step-col{display:flex;flex-direction:column;align-items:center;gap:3px}
+.step-dot{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;flex-shrink:0}
+.step-dot.done{background:#16a34a;color:#fff}
+.step-dot.active{background:#f59e0b;color:#fff;box-shadow:0 0 0 4px rgba(245,158,11,.2)}
+.step-dot.pending{background:#e5e7eb;color:#9ca3af}
+.step-line{flex:1;height:2px;background:#e5e7eb;margin-bottom:16px}
+.step-line.done{background:#16a34a}
+.step-lbl{font-size:9px;font-weight:700;color:var(--text-muted);text-align:center}
+</style>
+</head>
+<body>
+
+<div class="notif" id="notif"></div>
+
+<!-- SPLASH -->
+<div id="splash" class="screen active">
+  <div class="splash-ring"></div>
+  <div class="splash-brand">🍽️ نظام المطاعم</div>
+  <div class="splash-sub">RESTAURANT MANAGEMENT SYSTEM</div>
+  <div class="splash-dots"><span></span><span></span><span></span></div>
+  <div style="background:rgba(255,255,255,.15);border-radius:100px;padding:6px 16px;font-size:11px;font-weight:800;color:#fff;margin-top:8px">✨ نسخة تجريبية — Demo</div>
+</div>
+
+<!-- EXPIRED -->
+<div id="expired" class="screen">
+  <div class="exp-card">
+    <div class="exp-icon">⏰</div>
+    <div class="exp-title">انتهت الفترة التجريبية</div>
+    <div class="exp-sub">انتهت الـ 48 ساعة الخاصة بتجربتك.<br/>للحصول على النسخة الكاملة تواصل معنا الآن.</div>
+    <button class="exp-wa" onclick="contactWA()"><span style="font-size:20px">💬</span>اشترك الآن عبر واتساب</button>
+    <button class="exp-call" onclick="location.href='tel:+201508613866'">📞 اتصل بنا مباشرة</button>
+  </div>
+</div>
+
+<!-- AUTH (CLIENT LOGIN) -->
+<div id="auth" class="screen">
+  <div class="auth-hero">
+    <div class="brand">🍽️ نظام المطاعم</div>
+    <div class="sub">RESTAURANT MANAGEMENT — DEMO</div>
+  </div>
+  <div class="auth-body">
+    <div class="demo-info-card">
+      <div style="font-size:38px;margin-bottom:8px">🎯</div>
+      <h3>نسخة تجريبية — 48 ساعة</h3>
+      <p>جرّب النظام بشكل كامل.<br/>استطلع المنيو، أنشئ طلبات، وشاهد الداشبورد يعمل.</p>
+      <div style="margin-top:10px">
+        <span class="locked-badge">🔒 المخزون</span>
+        <span class="locked-badge">🔒 الفروع</span>
+        <span class="locked-badge">🔒 الموظفين</span>
+        <span class="locked-badge">🔒 التقارير المتقدمة</span>
+      </div>
+    </div>
+    <div class="field">
+      <label>اسم المستخدم</label>
+      <input type="text" id="authUser" placeholder="أدخل اسم المستخدم" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+    </div>
+    <div class="field">
+      <label>كلمة السر</label>
+      <input type="password" id="authPass" placeholder="أدخل كلمة السر" onkeydown="if(event.key==='Enter')clientLogin()"/>
+    </div>
+    <div class="err-box" id="authErr">❌ اسم المستخدم أو كلمة السر غلط</div>
+    <button class="btn-primary" onclick="clientLogin()">🚀 دخول</button>
+    <div style="text-align:center;margin-top:14px;font-size:12px;color:var(--text-muted)">التجربة لمدة 48 ساعة • MG AppHouse</div>
+  </div>
+</div>
+
+<!-- ADMIN LOGIN (مخفية — لا يوجد رابط ظاهر) -->
+<div id="adminLogin" class="screen">
+  <div class="admin-login-card">
+    <div class="admin-login-icon">🔐</div>
+    <div class="admin-login-title">Admin Panel</div>
+    <div class="admin-login-sub">MG AppHouse — للمطور فقط</div>
+    <div class="admin-err" id="adminErr">❌ بيانات الدخول غلط</div>
+    <div class="admin-field">
+      <label>كلمة السر</label>
+      <input type="password" id="adminPassInput" placeholder="••••••••••" onkeydown="if(event.key==='Enter')document.getElementById('adminPinInput').focus()"/>
+      <label>PIN</label>
+      <input type="password" id="adminPinInput" placeholder="••••" maxlength="10" inputmode="numeric" onkeydown="if(event.key==='Enter')adminLogin()"/>
+    </div>
+    <button class="admin-login-btn" onclick="adminLogin()">🔓 دخول</button>
+    <div style="text-align:center;margin-top:12px">
+      <button onclick="showScreen('auth')" style="font-size:11px;color:rgba(255,255,255,.3);background:none;border:none;cursor:pointer">← رجوع</button>
+    </div>
+  </div>
+</div>
+
+<!-- ADMIN PANEL -->
+<div id="adminPanel" class="screen" style="background:#0f172a;overflow-y:auto">
+  <div class="admin-topbar">
+    <div>
+      <h1>🔐 Admin Panel</h1>
+      <div style="font-size:10px;opacity:.7;margin-top:1px">MG AppHouse — إدارة حسابات Demo</div>
+    </div>
+    <div style="display:flex;gap:8px;align-items:center">
+      <button onclick="loadClients()" style="background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:6px 12px;font-size:11px;font-weight:800;cursor:pointer;font-family:inherit">🔄 تحديث</button>
+      <button onclick="adminLogout()" style="background:rgba(239,68,68,.2);color:#f87171;border:1px solid rgba(239,68,68,.3);border-radius:8px;padding:6px 12px;font-size:11px;font-weight:800;cursor:pointer;font-family:inherit">خروج</button>
+    </div>
+  </div>
+
+  <div class="admin-section">
+
+    <!-- إنشاء حساب جديد -->
+    <div class="admin-card">
+      <h3>➕ إنشاء حساب Demo جديد</h3>
+      <input class="admin-input" id="newClientName" placeholder="اسم العميل / المطعم (مثال: مطعم النيل)"/>
+      <input class="admin-input" id="newClientUser" placeholder="اسم المستخدم (مثال: nile2024)" autocomplete="off" autocorrect="off" autocapitalize="off"/>
+      <input class="admin-input" id="newClientPass" placeholder="كلمة السر (اتركه فارغ للتوليد التلقائي)" autocomplete="off"/>
+      <input class="admin-input" id="newClientHours" type="number" placeholder="مدة التجربة بالساعات (افتراضي: 48)" min="1" max="720"/>
+      <button class="admin-btn purple" onclick="createClient()">🚀 إنشاء الحساب وتوليد بيانات الدخول</button>
+
+      <!-- النتيجة -->
+      <div class="generated-cred" id="generatedCred">
+        <div style="font-size:12px;font-weight:900;color:#a78bfa;margin-bottom:10px;text-align:center">✅ تم إنشاء الحساب — ابعت للعميل:</div>
+        <div class="cred-row"><span class="cred-label">العميل</span><span class="cred-val" id="gc-name">—</span></div>
+        <div class="cred-row"><span class="cred-label">اسم المستخدم</span><span class="cred-val" id="gc-user">—</span><button class="copy-btn" onclick="copyText('gc-user')">نسخ</button></div>
+        <div class="cred-row"><span class="cred-label">كلمة السر</span><span class="cred-val" id="gc-pass">—</span><button class="copy-btn" onclick="copyText('gc-pass')">نسخ</button></div>
+        <div class="cred-row"><span class="cred-label">تنتهي</span><span class="cred-val" id="gc-exp">—</span></div>
+        <button class="admin-btn purple" style="margin-top:10px;font-size:12px" onclick="copyFullMessage()">📋 نسخ الرسالة الكاملة للواتساب</button>
+      </div>
+    </div>
+
+    <!-- قائمة العملاء -->
+    <div class="admin-card">
+      <h3>👥 العملاء الحاليين</h3>
+      <div class="clients-list" id="clientsList">
+        <div style="text-align:center;padding:20px;color:rgba(255,255,255,.3);font-size:12px">اضغط تحديث لتحميل القائمة</div>
+      </div>
+    </div>
+
+    <!-- إحصائيات -->
+    <div class="admin-card">
+      <h3>📊 إحصائيات سريعة</h3>
+      <div id="adminStats" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
+        <div style="background:rgba(124,58,237,.15);border:1px solid rgba(124,58,237,.3);border-radius:10px;padding:10px;text-align:center">
+          <div style="font-size:20px;font-weight:900;color:#a78bfa" id="stat-total">—</div>
+          <div style="font-size:10px;color:rgba(255,255,255,.5);margin-top:2px">إجمالي</div>
+        </div>
+        <div style="background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.2);border-radius:10px;padding:10px;text-align:center">
+          <div style="font-size:20px;font-weight:900;color:#4ade80" id="stat-active">—</div>
+          <div style="font-size:10px;color:rgba(255,255,255,.5);margin-top:2px">نشط</div>
+        </div>
+        <div style="background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.2);border-radius:10px;padding:10px;text-align:center">
+          <div style="font-size:20px;font-weight:900;color:#f87171" id="stat-expired">—</div>
+          <div style="font-size:10px;color:rgba(255,255,255,.5);margin-top:2px">منتهي</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- MAIN APP -->
+<div id="app" class="screen">
+  <div class="demo-banner">
+    <span>🎯 Demo</span>
+    <div class="demo-timer" id="demoTimerEl">⏱ جاري التحميل...</div>
+    <span onclick="contactWA()" style="cursor:pointer;background:rgba(255,255,255,.2);border-radius:8px;padding:3px 8px;font-size:10px">اشترك →</span>
+  </div>
+  <div class="topbar">
+    <div>
+      <div class="topbar-brand">🍽️ Demo Restaurant</div>
+      <div class="topbar-sub" id="topbarGreet">أهلاً بك 👋</div>
+    </div>
+    <div style="display:flex;gap:8px">
+      <button class="icon-btn" onclick="openTab('tab-track')">🔍</button>
+      <button class="icon-btn" onclick="openCartSheet()">🛒<span class="badge" id="cartBadge" style="display:none">0</span></button>
+    </div>
+  </div>
+
+  <div style="flex:1;overflow-y:auto;padding-bottom:80px">
+    <!-- MENU TAB -->
+    <div id="tab-menu" class="tab-content active">
+      <div class="section-title">🍽️ قائمة الطعام</div>
+      <div id="menuContainer"></div>
+    </div>
+
+    <!-- MY ORDERS TAB -->
+    <div id="tab-my-orders" class="tab-content">
+      <div class="section-title">📋 طلباتي</div>
+      <div id="myOrdersContainer"><div class="empty-state"><div class="empty-icon">📦</div><p>لا توجد طلبات بعد</p></div></div>
+    </div>
+
+    <!-- TRACK TAB -->
+    <div id="tab-track" class="tab-content">
+      <div class="section-title">🛵 تتبع الطلب</div>
+      <div id="trackContainer"><div class="empty-state"><div class="empty-icon">🔍</div><p>لا يوجد طلب نشط</p></div></div>
+    </div>
+
+    <!-- DASHBOARD TAB -->
+    <div id="tab-admin" class="tab-content">
+      <div class="admin-tabs">
+        <button class="tab-btn active" onclick="openAdminTab('atab-orders',this)">📋 الطلبات</button>
+        <button class="tab-btn" onclick="openAdminTab('atab-stats',this)">📊 إحصائيات</button>
+        <button class="tab-btn" onclick="openAdminTab('atab-reports',this)">📈 تقارير</button>
+        <button class="tab-btn" onclick="showLocked('المخزون','إدارة المخزون ومتابعة الكميات والتنبيهات وإعادة الطلب التلقائي')"><span class="lock-icon">🔒</span> المخزون</button>
+        <button class="tab-btn" onclick="showLocked('العملاء','قاعدة بيانات العملاء الكاملة وبرنامج VIP والولاء')"><span class="lock-icon">🔒</span> العملاء</button>
+        <button class="tab-btn" onclick="showLocked('الموظفين','إدارة الموظفين والصلاحيات والورديات')"><span class="lock-icon">🔒</span> الموظفين</button>
+        <button class="tab-btn" onclick="showLocked('الفروع','إدارة فروع متعددة مع داشبورد مركزي')"><span class="lock-icon">🔒</span> الفروع</button>
+        <button class="tab-btn" onclick="showLocked('التسويق','كوبونات وإعلانات وإشعارات Push للعملاء')"><span class="lock-icon">🔒</span> التسويق</button>
+        <button class="tab-btn" onclick="showLocked('الإعدادات','إعدادات المطعم ومواعيد العمل والتوصيل')"><span class="lock-icon">🔒</span> الإعدادات</button>
+      </div>
+      <div id="atab-orders" class="tab-content active">
+        <div class="stats-grid" id="quickStats"></div>
+        <div class="section-title">🆕 الطلبات</div>
+        <div id="adminOrdersList"></div>
+      </div>
+      <div id="atab-stats" class="tab-content">
+        <div class="section-title">📊 إحصائيات اليوم</div>
+        <div class="stats-grid" id="todayStats"></div>
+        <div class="card" style="margin:0 14px" id="todayReport"></div>
+      </div>
+      <div id="atab-reports" class="tab-content">
+        <div class="stats-grid" id="reportsStats"></div>
+        <div class="section-title">📋 آخر الطلبات</div>
+        <div id="reportsList"></div>
+        <div class="contact-section">
+          <h3>📈 تقارير متقدمة في النسخة الكاملة</h3>
+          <p>يومية / أسبوعية / شهرية<br/>أفضل المنتجات • تحليل العملاء</p>
+          <button class="wa-btn" onclick="contactWA()">💬 اشترك الآن</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTACT TAB -->
+    <div id="tab-contact" class="tab-content">
+      <div class="section-title">📞 تواصل معنا</div>
+      <div class="contact-section" style="margin-top:10px">
+        <h3>🚀 فعّل النسخة الكاملة</h3>
+        <p>فروع متعددة • برنامج VIP<br/>تقارير تفصيلية • دعم فني 24/7</p>
+        <button class="wa-btn" onclick="contactWA()"><span>💬</span> واتساب</button>
+      </div>
+      <div class="card">
+        <div style="text-align:center">
+          <div style="font-size:30px;margin-bottom:8px">👨‍💻</div>
+          <div style="font-size:14px;font-weight:900">MG AppHouse</div>
+          <div style="font-size:12px;color:var(--text-muted);margin-top:4px">تطوير أنظمة إدارة المطاعم</div>
+          <div style="font-size:13px;color:var(--olive);margin-top:6px;font-weight:800">01508613866</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-nav">
+    <button class="nav-btn active" onclick="openTab('tab-menu')" id="nav-menu"><span class="nav-icon">🍽️</span><span class="nav-label">المنيو</span></button>
+    <button class="nav-btn" onclick="openTab('tab-my-orders')" id="nav-my-orders"><span class="nav-icon">📋</span><span class="nav-label">طلباتي</span></button>
+    <button class="nav-btn" onclick="openTab('tab-admin')" id="nav-admin"><span class="nav-icon">📊</span><span class="nav-label">Dashboard</span></button>
+    <button class="nav-btn" onclick="openTab('tab-contact')" id="nav-contact"><span class="nav-icon">📞</span><span class="nav-label">تواصل</span></button>
+  </div>
+</div>
+
+<!-- CART SHEET -->
+<div class="cart-overlay" id="cartOverlay" onclick="if(event.target===this)closeCartSheet()">
+  <div class="cart-sheet">
+    <div class="cart-handle"></div>
+    <div style="font-size:16px;font-weight:900;margin-bottom:14px">🛒 سلة الطلبات</div>
+    <div id="cartItemsList"></div>
+    <div class="d-opt-row">
+      <div class="d-opt active" id="dopt-delivery" onclick="selectDelivery('delivery')">🛵 توصيل</div>
+      <div class="d-opt" id="dopt-pickup" onclick="selectDelivery('pickup')">🏪 استلام</div>
+      <div class="d-opt" id="dopt-dine" onclick="selectDelivery('dine')">🪑 داخل</div>
+    </div>
+    <div class="field" id="addressField"><label>العنوان</label><input type="text" id="cartAddress" placeholder="أدخل عنوانك"/></div>
+    <div class="field"><label>ملاحظات</label><input type="text" id="cartNotes" placeholder="أي طلب خاص؟"/></div>
+    <div class="cart-total"><span>الإجمالي</span><span id="cartTotalEl">0 ج.م</span></div>
+    <button class="btn-primary" onclick="placeOrder()">✅ تأكيد الطلب</button>
+    <button style="width:100%;padding:10px;color:var(--text-muted);font-size:13px;margin-top:8px" onclick="closeCartSheet()">إغلاق</button>
+  </div>
+</div>
+
+<!-- LOCKED MODAL -->
+<div class="locked-overlay" id="lockedOverlay" onclick="if(event.target===this)closeLocked()">
+  <div class="locked-card">
+    <div style="font-size:48px;margin-bottom:10px">🔒</div>
+    <div style="font-size:17px;font-weight:900;margin-bottom:8px" id="lockedTitle">هذه الميزة في النسخة الكاملة</div>
+    <div style="font-size:12px;color:var(--text-muted);line-height:1.7;margin-bottom:18px" id="lockedDesc"></div>
+    <button style="width:100%;padding:12px;background:linear-gradient(135deg,var(--demo),#5b21b6);color:#fff;border-radius:12px;font-size:14px;font-weight:900;border:none;cursor:pointer;margin-bottom:8px" onclick="contactWA();closeLocked()">🚀 تفعيل النسخة الكاملة</button>
+    <button style="width:100%;padding:10px;color:var(--text-muted);font-size:13px;background:none;border:none;cursor:pointer" onclick="closeLocked()">إغلاق</button>
+  </div>
+</div>
+
+<!-- FIREBASE -->
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
+
+<script>
+// ================================================================
+// ⚠️ DEMO Firebase — منفصل تماماً عن zamzam-restaurant-cafe
+// ================================================================
+const FB_CFG = {
+  apiKey:            "AIzaSyBAFdsFpHfePUkXgwS7fWUfN0D685h9VeU",
+  authDomain:        "restaurant-demo-mg.firebaseapp.com",
+  databaseURL:       "https://restaurant-demo-mg-default-rtdb.firebaseio.com",
+  projectId:         "restaurant-demo-mg",
+  storageBucket:     "restaurant-demo-mg.firebasestorage.app",
+  messagingSenderId: "581740869226",
+  appId:             "1:581740869226:web:b3a5ee61c1fe9df6973c13"
+};
+
+// ── Admin Credentials (SHA-256 — مش قابل للعكس) ──
+const ADMIN_PASS_HASH = "f8d124b2109e00c9ab77a75c232feb83edb5a816e1e1690f54c5c65caf7673ba";
+const ADMIN_PIN_HASH  = "fddc599a3afe6c68b8098f7ef3db02335f7e398e3c0bd34b663f04f424886aeb";
+
+const DEVELOPER_WA   = '201508613866';
+const DEMO_MENU = {
+  burgers:{label:'🍔 برجر',emoji:'🍔',items:[
+    {id:'b1',name:'كلاسيك برجر',desc:'لحم بقري طازج مع الخضار',price:75,emoji:'🍔'},
+    {id:'b2',name:'دبل برجر',desc:'ضعف اللحم والجبنة',price:110,emoji:'🍔'},
+    {id:'b3',name:'كريسبي تشيكن',desc:'فيليه دجاج مقرمش',price:85,emoji:'🍗'},
+    {id:'b4',name:'مشروم برجر',desc:'برجر بالمشروم والجبنة',price:95,emoji:'🍄'}
+  ]},
+  pizza:{label:'🍕 بيتزا',emoji:'🍕',items:[
+    {id:'p1',name:'مارجريتا',desc:'صوص طماطم وموتزاريلا',price:80,emoji:'🍕'},
+    {id:'p2',name:'بيبروني',desc:'بيبروني وجبنة مشكلة',price:95,emoji:'🍕'},
+    {id:'p3',name:'خضار',desc:'خضار مشكلة وزيتون',price:85,emoji:'🥗'}
+  ]},
+  meals:{label:'🥘 وجبات',emoji:'🥘',items:[
+    {id:'m1',name:'شاورما دجاج',desc:'شاورما مع الثوم والطحينة',price:65,emoji:'🌯'},
+    {id:'m2',name:'كباب مشوي',desc:'كباب لحم مع الأرز والسلطة',price:120,emoji:'🍖'},
+    {id:'m3',name:'فراخ مشوية',desc:'نصف فرخة مع الشيبس',price:100,emoji:'🍗'}
+  ]},
+  drinks:{label:'🥤 مشروبات',emoji:'🥤',items:[
+    {id:'d1',name:'كولا',desc:'كوكاكولا بارد',price:15,emoji:'🥤'},
+    {id:'d2',name:'عصير مانجو',desc:'مانجو طبيعي طازج',price:30,emoji:'🥭'},
+    {id:'d3',name:'شاي',desc:'شاي بالنعناع أو باللبن',price:12,emoji:'🍵'},
+    {id:'d4',name:'قهوة عربية',desc:'بالهيل والزعفران',price:18,emoji:'☕'}
+  ]},
+  desserts:{label:'🍰 حلويات',emoji:'🍰',items:[
+    {id:'sw1',name:'كنافة',desc:'كنافة بالقشطة والعسل',price:45,emoji:'🍮'},
+    {id:'sw2',name:'تشيز كيك',desc:'تشيز كيك بالفراولة',price:55,emoji:'🎂'}
+  ]}
+};
+
+// ── STATE ──
+let db = null, cart = [], deliveryType = 'delivery';
+let allOrders = [], demoSession = null, timerInterval = null;
+
+// ================================================================
+// FIREBASE INIT
+// ================================================================
+function initFB() {
+  try {
+    if (!firebase.apps.length) firebase.initializeApp(FB_CFG);
+    db = firebase.database();
+    return true;
+  } catch(e) { console.warn('FB init failed:', e); return false; }
+}
+
+// ================================================================
+// SHA-256 (Web Crypto API)
+// ================================================================
+async function sha256(str) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
+}
+
+// ================================================================
+// SCREENS
+// ================================================================
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+// كشف #admin في الـ URL (مخفي عن العملاء)
+function detectAdminRoute() {
+  return location.hash === '#admin' || location.hash === '#admin/';
+}
+
+// ================================================================
+// ADMIN LOGIN
+// ================================================================
+async function adminLogin() {
+  const pass = document.getElementById('adminPassInput').value;
+  const pin  = document.getElementById('adminPinInput').value;
+  const errEl = document.getElementById('adminErr');
+  errEl.style.display = 'none';
+
+  const [ph, pinh] = await Promise.all([sha256(pass), sha256(pin)]);
+
+  if (ph !== ADMIN_PASS_HASH || pinh !== ADMIN_PIN_HASH) {
+    errEl.style.display = 'block';
+    document.getElementById('adminPinInput').value = '';
+    document.getElementById('adminPassInput').focus();
+    // تأخير 2 ثانية بعد كل محاولة غلط (حماية Brute Force)
+    await new Promise(r => setTimeout(r, 2000));
+    return;
+  }
+
+  // حفظ session Admin (مؤقت — بيختفي لما يقفل المتصفح)
+  sessionStorage.setItem('zz_admin_ok', '1');
+  showScreen('adminPanel');
+  loadClients();
+}
+
+function adminLogout() {
+  sessionStorage.removeItem('zz_admin_ok');
+  document.getElementById('adminPassInput').value = '';
+  document.getElementById('adminPinInput').value = '';
+  location.hash = '';
+  showScreen('auth');
+}
+
+// ================================================================
+// ADMIN — إنشاء حساب عميل جديد
+// ================================================================
+function genPassword(len=8) {
+  const chars = 'abcdefghjkmnpqrstuvwxyz23456789';
+  let p = '';
+  for (let i = 0; i < len; i++) p += chars[Math.floor(Math.random() * chars.length)];
+  return p;
+}
+
+async function createClient() {
+  const name   = document.getElementById('newClientName').value.trim();
+  const user   = document.getElementById('newClientUser').value.trim().toLowerCase().replace(/\s/g,'');
+  const passIn = document.getElementById('newClientPass').value.trim();
+  const hours  = parseInt(document.getElementById('newClientHours').value) || 48;
+
+  if (!name || !user) { showNotif('⚠️ أدخل اسم العميل واسم المستخدم'); return; }
+  if (user.length < 3) { showNotif('⚠️ اسم المستخدم 3 أحرف على الأقل'); return; }
+
+  const pass = passIn || genPassword();
+  const passHash = await sha256(pass);
+  const now = Date.now();
+  const expiresAt = now + hours * 3600000;
+
+  const clientData = {
+    name, username: user,
+    passHash,           // الباسورد المشفر — مش الباسورد الحقيقي
+    createdAt: now,
+    expiresAt,
+    hoursGranted: hours,
+    status: 'active',
+    firstLoginAt: null
+  };
+
+  if (!db) { showNotif('⚠️ Firebase غير متصل'); return; }
+
+  // التحقق إن اليوزر مش موجود
+  const existing = await db.ref('demo_clients/' + user).get();
+  if (existing.exists()) { showNotif('⚠️ اسم المستخدم ده موجود بالفعل'); return; }
+
+  await db.ref('demo_clients/' + user).set(clientData);
+
+  // عرض النتيجة
+  const expDate = new Date(expiresAt).toLocaleString('ar-EG', {
+    day:'numeric', month:'long', hour:'2-digit', minute:'2-digit'
+  });
+  document.getElementById('gc-name').textContent = name;
+  document.getElementById('gc-user').textContent = user;
+  document.getElementById('gc-pass').textContent = pass;
+  document.getElementById('gc-exp').textContent  = expDate;
+  document.getElementById('generatedCred').style.display = 'block';
+
+  // حفظ للـ copy رسالة
+  window._lastCred = { name, user, pass, expDate, hours };
+
+  // تنظيف الحقول
+  document.getElementById('newClientName').value = '';
+  document.getElementById('newClientUser').value = '';
+  document.getElementById('newClientPass').value = '';
+  document.getElementById('newClientHours').value = '';
+
+  showNotif('✅ تم إنشاء الحساب: ' + user);
+  loadClients();
+}
+
+function copyText(elId) {
+  const val = document.getElementById(elId).textContent;
+  navigator.clipboard.writeText(val).then(() => showNotif('✅ تم النسخ'));
+}
+
+function copyFullMessage() {
+  const c = window._lastCred;
+  if (!c) return;
+  const msg = `مرحباً ${c.name} 🌟\n\nيسعدنا تقديم نسخة تجريبية مجانية من نظام إدارة المطاعم لمدة ${c.hours} ساعة.\n\n🔗 الرابط: ${location.origin}${location.pathname}\n\n👤 اسم المستخدم: ${c.user}\n🔑 كلمة السر: ${c.pass}\n\n⏰ تنتهي التجربة: ${c.expDate}\n\nلأي استفسار تواصل معنا 📞\nMG AppHouse`;
+  navigator.clipboard.writeText(msg).then(() => showNotif('✅ تم نسخ الرسالة'));
+}
+
+// ================================================================
+// ADMIN — تحميل قائمة العملاء
+// ================================================================
+async function loadClients() {
+  if (!db) return;
+  const snap = await db.ref('demo_clients').get();
+  const list = document.getElementById('clientsList');
+
+  if (!snap.exists()) {
+    list.innerHTML = '<div style="text-align:center;padding:16px;color:rgba(255,255,255,.3);font-size:12px">لا يوجد عملاء بعد</div>';
+    return;
+  }
+
+  const clients = [];
+  snap.forEach(c => { const v = c.val(); if(v) clients.push({key: c.key, ...v}); });
+  clients.sort((a,b) => (b.createdAt||0)-(a.createdAt||0));
+
+  const now = Date.now();
+  let totalActive = 0, totalExpired = 0;
+
+  list.innerHTML = clients.map(c => {
+    const isExpired = now > c.expiresAt || c.status === 'expired';
+    if (isExpired) totalExpired++; else totalActive++;
+    const left = isExpired ? 0 : Math.max(0, c.expiresAt - now);
+    const h = Math.floor(left/3600000), m = Math.floor((left%3600000)/60000);
+    const timeStr = isExpired ? 'منتهية' : `${h} ساعة ${m} دقيقة`;
+    const expDate = new Date(c.expiresAt).toLocaleString('ar-EG',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'});
+    return `
+    <div class="client-row">
+      <div class="client-info">
+        <div class="client-name">${c.name||c.key}</div>
+        <div class="client-meta">👤 ${c.username||c.key} | ⏰ تنتهي: ${expDate}</div>
+        <div class="time-left">${isExpired ? '🔴 منتهية' : '🟢 متبقي: '+timeStr}</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:4px;align-items:flex-end">
+        <span class="client-status ${isExpired?'status-expired':'status-active'}">${isExpired?'منتهي':'نشط'}</span>
+        <div style="display:flex;flex-direction:column;gap:4px;margin-top:4px">
+          ${!isExpired ? `<button onclick="stopClient('${c.key}')" style="background:rgba(239,68,68,.25);color:#f87171;border:1px solid rgba(239,68,68,.4);border-radius:6px;padding:4px 10px;font-size:10px;font-weight:900;cursor:pointer;font-family:inherit">⛔ إيقاف فوري</button>` : ''}
+          <button onclick="deleteClient('${c.key}')" style="background:rgba(255,255,255,.06);color:rgba(255,255,255,.3);border:1px solid rgba(255,255,255,.1);border-radius:6px;padding:4px 10px;font-size:10px;font-weight:800;cursor:pointer;font-family:inherit">🗑 حذف</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+
+  document.getElementById('stat-total').textContent   = clients.length;
+  document.getElementById('stat-active').textContent  = totalActive;
+  document.getElementById('stat-expired').textContent = totalExpired;
+}
+
+async function stopClient(username) {
+  if (!confirm(`إيقاف فوري لحساب "${username}"؟\n\nهيتقفل على الفور من كل الأجهزة\nوما يقدرش يدخل تاني حتى لو عنده session شغالة.`)) return;
+  if (!db) return;
+  await db.ref('demo_clients/' + username + '/status').set('expired');
+  await db.ref('demo_clients/' + username + '/stoppedAt').set(Date.now());
+  await db.ref('demo_clients/' + username + '/stoppedBy').set('admin');
+  showNotif('⛔ تم الإيقاف الفوري: ' + username);
+  loadClients();
+}
+
+async function deleteClient(username) {
+  if (!confirm(`حذف حساب "${username}" نهائياً؟\n\nهيتمسح كل بياناته وطلباته.`)) return;
+  await db.ref('demo_clients/' + username).remove();
+  await db.ref('demo_orders/' + username).remove();
+  showNotif('✅ تم حذف الحساب نهائياً');
+  loadClients();
+}
+
+// ================================================================
+// CLIENT LOGIN — من Firebase
+// ================================================================
+async function clientLogin() {
+  const user    = (document.getElementById('authUser').value||'').trim().toLowerCase();
+  const pass    = (document.getElementById('authPass').value||'').trim();
+  const errEl   = document.getElementById('authErr');
+  errEl.style.display = 'none';
+
+  if (!user || !pass) { showNotif('⚠️ أدخل اسم المستخدم وكلمة السر'); return; }
+
+  if (!db) { showNotif('⚠️ جاري الاتصال... حاول مجدداً'); return; }
+
+  // جلب بيانات العميل من Firebase
+  const snap = await db.ref('demo_clients/' + user).get().catch(()=>null);
+
+  if (!snap || !snap.exists()) {
+    errEl.style.display = 'block';
+    document.getElementById('authPass').value = '';
+    return;
+  }
+
+  const clientData = snap.val();
+
+  // التحقق من الباسورد (SHA-256)
+  const passHash = await sha256(pass);
+  if (passHash !== clientData.passHash) {
+    errEl.style.display = 'block';
+    document.getElementById('authPass').value = '';
+    return;
+  }
+
+  // فحص الانتهاء من السيرفر
+  const now = Date.now();
+  if (now > clientData.expiresAt || clientData.status === 'expired') {
+    await db.ref('demo_clients/' + user + '/status').set('expired');
+    showExpiredScreen();
+    return;
+  }
+
+  // أول دخول — سجّل الوقت
+  if (!clientData.firstLoginAt) {
+    await db.ref('demo_clients/' + user + '/firstLoginAt').set(now);
+  }
+
+  // حفظ الـ session محلياً
+  demoSession = { username: user, name: clientData.name, expiresAt: clientData.expiresAt };
+  try { sessionStorage.setItem('zz_demo_session', JSON.stringify(demoSession)); } catch(e){}
+
+  launchApp();
+}
+
+// ================================================================
+// SESSION CHECK — عند فتح الصفحة من جديد
+// ================================================================
+async function checkExistingSession() {
+  try {
+    const stored = sessionStorage.getItem('zz_demo_session');
+    if (!stored) return false;
+    const s = JSON.parse(stored);
+    if (!s || !s.username) return false;
+
+    // تحقق من Firebase (السيرفر هو المرجع)
+    const snap = await db.ref('demo_clients/' + s.username).get();
+    if (!snap.exists()) return false;
+
+    const data = snap.val();
+    // فحص الإيقاف الفوري أو انتهاء الوقت
+    if (!data || Date.now() > data.expiresAt || data.status === 'expired') {
+      sessionStorage.removeItem('zz_demo_session');
+      showExpiredScreen();
+      return true;
+    }
+
+    demoSession = { username: s.username, name: data.name, expiresAt: data.expiresAt };
+    launchApp();
+    return true;
+  } catch(e) { return false; }
+}
+
+// ================================================================
+// APP LAUNCH
+// ================================================================
+function launchApp() {
+  document.getElementById('topbarGreet').textContent = 'أهلاً ' + (demoSession.name||'') + ' 👋';
+  loadDemoOrders();
+  startTimer();
+  renderMenu();
+  renderAdminOrders();
+  renderTodayStats();
+  showScreen('app');
+}
+
+function showExpiredScreen() {
+  if (timerInterval) clearInterval(timerInterval);
+  sessionStorage.removeItem('zz_demo_session');
+  showScreen('expired');
+}
+
+// ================================================================
+// TIMER
+// ================================================================
+function startTimer() {
+  if (timerInterval) clearInterval(timerInterval);
+
+  async function tick() {
+    if (!demoSession) return;
+    const left = demoSession.expiresAt - Date.now();
+    const el = document.getElementById('demoTimerEl');
+    if (!el) return;
+    if (left <= 0) {
+      clearInterval(timerInterval);
+      if (db) db.ref('demo_clients/' + demoSession.username + '/status').set('expired').catch(()=>{});
+      showExpiredScreen();
+      return;
+    }
+    const h = String(Math.floor(left/3600000)).padStart(2,'0');
+    const m = String(Math.floor((left%3600000)/60000)).padStart(2,'0');
+    const s = String(Math.floor((left%60000)/1000)).padStart(2,'0');
+    el.textContent = `⏱ ${h}:${m}:${s}`;
+    if (left < 3600000) el.style.background = 'rgba(239,68,68,.4)';
+    else if (left < 10800000) el.style.background = 'rgba(245,158,11,.3)';
+  }
+
+  tick();
+  timerInterval = setInterval(tick, 1000);
+
+  // تحقق من السيرفر كل 5 دقائق (مقاومة التلاعب بوقت الجهاز)
+  setInterval(async () => {
+    if (!db || !demoSession) return;
+    // فحص الوقت والـ status من السيرفر (مقاومة الإيقاف الفوري والتلاعب)
+    const clientSnap = await db.ref('demo_clients/' + demoSession.username).get().catch(()=>null);
+    if (clientSnap && clientSnap.exists()) {
+      const data = clientSnap.val();
+      if (!data || data.status === 'expired' || Date.now() > data.expiresAt) {
+        showExpiredScreen(); return;
+      }
+      demoSession.expiresAt = data.expiresAt; // تحديث من السيرفر
+    } else if (clientSnap && !clientSnap.exists()) {
+      // الحساب اتمسح من الأدمن
+      showExpiredScreen();
+    }
+  }, 5 * 60 * 1000);
+}
+
+// ================================================================
+// MENU
+// ================================================================
+function renderMenu() {
+  let html = '';
+  Object.entries(DEMO_MENU).forEach(([catKey, cat]) => {
+    html += `<div><div class="cat-header">${cat.emoji} ${cat.label}</div><div class="food-grid">`;
+    cat.items.forEach(item => {
+      html += `<div class="food-card" onclick="addToCart('${catKey}','${item.id}')">
+        <div class="food-emoji">${item.emoji}</div>
+        <div class="food-info">
+          <div class="food-name">${item.name}</div>
+          <div class="food-desc">${item.desc}</div>
+          <div class="food-bottom">
+            <div class="food-price">${item.price} ج.م</div>
+            <button class="add-btn" onclick="event.stopPropagation();addToCart('${catKey}','${item.id}')">+</button>
+          </div>
+        </div>
+      </div>`;
+    });
+    html += '</div></div>';
+  });
+  document.getElementById('menuContainer').innerHTML = html;
+}
+
+// ================================================================
+// CART
+// ================================================================
+function addToCart(catKey, itemId) {
+  const item = DEMO_MENU[catKey]?.items?.find(i=>i.id===itemId);
+  if (!item) return;
+  const ex = cart.find(c=>c.id===itemId);
+  if (ex) ex.qty++; else cart.push({id:itemId,name:item.name,emoji:item.emoji,price:item.price,qty:1});
+  updateBadge(); showNotif('✓ أُضيف: '+item.name);
+}
+function removeFromCart(id){cart=cart.filter(c=>c.id!==id);updateBadge();renderCartItems();}
+function changeQty(id,d){const i=cart.find(c=>c.id===id);if(!i)return;i.qty=Math.max(0,i.qty+d);if(!i.qty)cart=cart.filter(c=>c.id!==id);updateBadge();renderCartItems();}
+function updateBadge(){const t=cart.reduce((s,c)=>s+c.qty,0);const b=document.getElementById('cartBadge');b.textContent=t;b.style.display=t?'flex':'none';}
+function openCartSheet(){renderCartItems();document.getElementById('cartOverlay').classList.add('open');}
+function closeCartSheet(){document.getElementById('cartOverlay').classList.remove('open');}
+function selectDelivery(t){deliveryType=t;document.querySelectorAll('.d-opt').forEach(d=>d.classList.remove('active'));document.getElementById('dopt-'+t).classList.add('active');document.getElementById('addressField').style.display=t==='delivery'?'block':'none';}
+function renderCartItems(){
+  const l=document.getElementById('cartItemsList');
+  if(!cart.length){l.innerHTML='<div class="empty-state" style="padding:20px 0"><div class="empty-icon">🛒</div><p>السلة فارغة</p></div>';document.getElementById('cartTotalEl').textContent='0 ج.م';return;}
+  let total=0;
+  l.innerHTML=cart.map(i=>{total+=i.price*i.qty;return`<div class="cart-item"><div class="cart-item-emoji">${i.emoji}</div><div class="cart-item-name">${i.name}<br/><span style="font-size:11px;color:var(--text-muted)">${i.price}×${i.qty}</span></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty('${i.id}',-1)">−</button><span style="font-size:13px;font-weight:800;min-width:16px;text-align:center">${i.qty}</span><button class="qty-btn" onclick="changeQty('${i.id}',1)">+</button></div></div>`;}).join('');
+  document.getElementById('cartTotalEl').textContent=total+' ج.م';
+}
+
+// ================================================================
+// PLACE ORDER
+// ================================================================
+async function placeOrder() {
+  if (!demoSession){showNotif('⚠️ سجّل أولاً');return;}
+  if (!cart.length){showNotif('⚠️ السلة فارغة');return;}
+  const now=Date.now();
+  const id='D-'+String(Math.floor(1000+Math.random()*9000));
+  const total=cart.reduce((s,c)=>s+c.price*c.qty,0);
+  const order={
+    id, demoUsername:demoSession.username, name:demoSession.name,
+    items:cart.map(c=>({name:c.name,qty:c.qty,price:c.price})),
+    total, type:deliveryType,
+    address:document.getElementById('cartAddress').value.trim()||null,
+    notes:document.getElementById('cartNotes').value.trim()||null,
+    status:'new', timestamp:now,
+    date:new Date(now).toLocaleDateString('ar-EG'),
+    time:new Date(now).toLocaleTimeString('ar-EG',{hour:'2-digit',minute:'2-digit'})
+  };
+  if(db) await db.ref('demo_orders/'+demoSession.username+'/'+id).set(order).catch(()=>{});
+  allOrders.unshift(order);
+  cart=[];
+  document.getElementById('cartAddress').value='';
+  document.getElementById('cartNotes').value='';
+  updateBadge();
+  closeCartSheet();
+  showNotif('✅ تم إرسال طلبك! رقم: '+id);
+  openTab('tab-my-orders');
+  renderMyOrders();renderAdminOrders();renderTodayStats();
+  simulateOrder(id);
+}
+
+function simulateOrder(orderId){
+  [{d:8000,s:'prep',l:'👨‍🍳 جاري التجهيز...'},{d:25000,s:'ready',l:'✅ طلبك جاهز!'},{d:45000,s:'delivered',l:'🎉 تم التسليم!'}].forEach(({d,s,l})=>{
+    setTimeout(()=>{
+      const o=allOrders.find(x=>x.id===orderId);if(!o)return;
+      o.status=s;
+      if(db&&demoSession) db.ref('demo_orders/'+demoSession.username+'/'+orderId+'/status').set(s).catch(()=>{});
+      showNotif(l);renderMyOrders();renderAdminOrders();renderTodayStats();
+    },d);
+  });
+}
+
+// ================================================================
+// ORDERS
+// ================================================================
+function loadDemoOrders(){
+  allOrders=[];
+  if(!db||!demoSession)return;
+  db.ref('demo_orders/'+demoSession.username).on('value',snap=>{
+    const orders=[];
+    snap.forEach(c=>{const v=c.val();if(v&&v.id)orders.push(v);});
+    orders.sort((a,b)=>(b.timestamp||0)-(a.timestamp||0));
+    allOrders=orders;
+    renderMyOrders();renderAdminOrders();renderTodayStats();
+  });
+}
+
+const STATUS_MAP={new:'جديد 🆕',prep:'قيد التجهيز 👨‍🍳',ready:'جاهز ✅',delivered:'تم التسليم 🎉'};
+const TYPE_MAP={delivery:'🛵 توصيل',pickup:'🏪 استلام',dine:'🪑 داخل'};
+
+function renderMyOrders(){
+  const c=document.getElementById('myOrdersContainer');
+  if(!allOrders.length){c.innerHTML='<div class="empty-state"><div class="empty-icon">📦</div><p>لا توجد طلبات بعد</p></div>';return;}
+  c.innerHTML=allOrders.map(o=>`
+    <div class="order-card s-${o.status}" onclick="showTrack('${o.id}')">
+      <div class="order-header"><div class="order-num">#${o.id}</div><span class="status-badge">${STATUS_MAP[o.status]||o.status}</span></div>
+      <div class="order-items">${(o.items||[]).map(i=>i.name+'×'+i.qty).join(' • ')}</div>
+      <div class="order-total">${o.total} ج.م</div>
+      <div style="font-size:11px;color:var(--text-muted);margin-top:4px">${o.date} — ${o.time}</div>
+    </div>`).join('');
+}
+
+function showTrack(id){openTab('tab-track');renderTrackOrder(id);}
+function renderTrackOrder(orderId){
+  const o=allOrders.find(x=>x.id===orderId);
+  const c=document.getElementById('trackContainer');
+  if(!o){c.innerHTML='<div class="empty-state"><div class="empty-icon">🔍</div><p>لا يوجد طلب</p></div>';return;}
+  const steps=[{k:'new',l:'الطلب',i:'📋'},{k:'prep',l:'التجهيز',i:'👨‍🍳'},{k:'ready',l:'جاهز',i:'✅'},{k:'delivered',l:'التسليم',i:'🎉'}];
+  const si=steps.findIndex(s=>s.k===o.status);
+  let stHtml='<div class="track-steps">';
+  steps.forEach((s,i)=>{
+    const done=i<=si,active=i===si;
+    stHtml+=`<div class="step-col"><div class="step-dot ${done?'done':active?'active':'pending'}">${done?'✓':i+1}</div><div class="step-lbl">${s.l}</div></div>`;
+    if(i<steps.length-1) stHtml+=`<div class="step-line ${i<si?'done':''}"></div>`;
+  });
+  stHtml+='</div>';
+  c.innerHTML=stHtml+`
+    <div class="card">
+      <div style="font-size:13px;font-weight:800;margin-bottom:8px">#${o.id} — ${STATUS_MAP[o.status]||o.status}</div>
+      ${(o.items||[]).map(i=>`<div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--border);font-size:12px"><span>${i.name}×${i.qty}</span><span style="font-weight:800">${i.price*i.qty} ج.م</span></div>`).join('')}
+      <div style="display:flex;justify-content:space-between;padding:8px 0 0;font-size:13px;font-weight:900"><span>الإجمالي</span><span style="color:var(--olive-dark)">${o.total} ج.م</span></div>
+    </div>
+    ${o.status==='delivered'?`<div style="background:linear-gradient(135deg,#16a34a,#22c55e);border-radius:14px;padding:20px;margin:0 14px;text-align:center;color:#fff"><div style="font-size:36px;margin-bottom:8px">🎉</div><div style="font-size:15px;font-weight:900">تم التسليم بنجاح!</div></div>`:''}`;
+}
+
+function renderAdminOrders(){
+  const today=new Date().toLocaleDateString('ar-EG');
+  const tod=allOrders.filter(o=>o.date===today);
+  const newO=allOrders.filter(o=>o.status==='new'||o.status==='prep');
+  const rev=tod.reduce((s,o)=>s+(o.total||0),0);
+  document.getElementById('quickStats').innerHTML=`
+    <div class="stat-card gold"><div class="stat-val">${tod.length}</div><div class="stat-lbl">📦 طلبات اليوم</div></div>
+    <div class="stat-card blue"><div class="stat-val">${newO.length}</div><div class="stat-lbl">🆕 قيد التنفيذ</div></div>
+    <div class="stat-card green"><div class="stat-val">${rev.toLocaleString('ar-EG')}</div><div class="stat-lbl">💰 مبيعات ج.م</div></div>
+    <div class="stat-card"><div class="stat-val">${allOrders.filter(o=>o.status==='delivered').length}</div><div class="stat-lbl">✅ مكتملة</div></div>`;
+  const nextA={new:{l:'✅ قبول',cls:'accept',n:'prep'},prep:{l:'✅ جاهز',cls:'ready',n:'ready'},ready:{l:'🛵 تسليم',cls:'deliver',n:'delivered'}};
+  const c=document.getElementById('adminOrdersList');
+  if(!allOrders.length){c.innerHTML='<div class="empty-state"><div class="empty-icon">📋</div><p>لا توجد طلبات</p></div>';return;}
+  c.innerHTML=allOrders.slice(0,20).map(o=>{
+    const a=nextA[o.status];
+    return`<div class="order-card s-${o.status}">
+      <div class="order-header"><div class="order-num">#${o.id}</div><span class="status-badge">${STATUS_MAP[o.status]||o.status}</span></div>
+      <div class="order-meta">👤 ${o.name} | ${TYPE_MAP[o.type]||o.type}</div>
+      <div class="order-items">${(o.items||[]).map(i=>i.name+'×'+i.qty).join(' • ')}</div>
+      <div class="order-total">${o.total} ج.م — ${o.date} ${o.time}</div>
+      ${a?`<div class="order-actions"><button class="o-btn ${a.cls}" onclick="updateStatus('${o.id}','${a.n}')">${a.l}</button></div>`:''}
+    </div>`;}).join('');
+}
+
+async function updateStatus(orderId,newStatus){
+  const o=allOrders.find(x=>x.id===orderId);if(!o)return;
+  o.status=newStatus;
+  if(db&&demoSession) await db.ref('demo_orders/'+demoSession.username+'/'+orderId+'/status').set(newStatus).catch(()=>{});
+  const l={prep:'👨‍🍳 جاري التجهيز',ready:'✅ جاهز للتسليم!',delivered:'🎉 تم التسليم!'};
+  showNotif(l[newStatus]||'تم التحديث');
+  renderAdminOrders();renderMyOrders();
+}
+
+function renderTodayStats(){
+  const today=new Date().toLocaleDateString('ar-EG');
+  const tod=allOrders.filter(o=>o.date===today);
+  const rev=tod.reduce((s,o)=>s+(o.total||0),0);
+  const avg=tod.length?Math.round(rev/tod.length):0;
+  document.getElementById('todayStats').innerHTML=`
+    <div class="stat-card gold"><div class="stat-val">${tod.length}</div><div class="stat-lbl">📦 طلبات اليوم</div></div>
+    <div class="stat-card green"><div class="stat-val">${rev.toLocaleString('ar-EG')}</div><div class="stat-lbl">💰 المبيعات</div></div>
+    <div class="stat-card"><div class="stat-val">${tod.filter(o=>o.status==='delivered').length}</div><div class="stat-lbl">✅ مكتملة</div></div>
+    <div class="stat-card blue"><div class="stat-val">${avg}</div><div class="stat-lbl">📊 متوسط الطلب</div></div>`;
+  document.getElementById('todayReport').innerHTML=`
+    <div style="font-size:13px;font-weight:800;margin-bottom:8px">📋 ملخص — ${today}</div>
+    ${[['📦 إجمالي الطلبات',tod.length],['🛵 توصيل',tod.filter(o=>o.type==='delivery').length],['🏪 استلام',tod.filter(o=>o.type==='pickup').length],['🪑 داخل',tod.filter(o=>o.type==='dine').length],['💰 المبيعات',rev+' ج.م']].map(([l,v])=>`<div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--border);font-size:12px"><span>${l}</span><span style="font-weight:900">${v}</span></div>`).join('')}`;
+  // Reports
+  const allRev=allOrders.reduce((s,o)=>s+(o.total||0),0);
+  document.getElementById('reportsStats').innerHTML=`
+    <div class="stat-card gold"><div class="stat-val">${allOrders.length}</div><div class="stat-lbl">📦 إجمالي الطلبات</div></div>
+    <div class="stat-card green"><div class="stat-val">${allRev.toLocaleString('ar-EG')}</div><div class="stat-lbl">💰 إجمالي المبيعات</div></div>
+    <div class="stat-card"><div class="stat-val">${allOrders.filter(o=>o.status==='delivered').length}</div><div class="stat-lbl">✅ مكتملة</div></div>
+    <div class="stat-card blue"><div class="stat-val">${allOrders.length?Math.round(allRev/allOrders.length):0}</div><div class="stat-lbl">📊 متوسط</div></div>`;
+  document.getElementById('reportsList').innerHTML=allOrders.slice(0,10).map(o=>`
+    <div style="display:flex;justify-content:space-between;padding:8px 14px;border-bottom:1px solid var(--border);font-size:12px">
+      <div><div style="font-weight:800">#${o.id} — ${o.name}</div><div style="color:var(--text-muted);font-size:10px">${o.date} ${o.time}</div></div>
+      <div style="font-weight:900;color:var(--olive-dark)">${o.total} ج.م</div>
+    </div>`).join('');
+}
+
+// ================================================================
+// TABS
+// ================================================================
+function openTab(id){
+  document.querySelectorAll('.tab-content[id^="tab-"]').forEach(t=>t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  const nm={menu:'nav-menu','my-orders':'nav-my-orders',admin:'nav-admin',track:'nav-admin',contact:'nav-contact'};
+  const key=id.replace('tab-','');
+  const nb=document.getElementById('nav-'+key)||document.getElementById(nm[key]);
+  if(nb)nb.classList.add('active');
+  if(id==='tab-admin'){renderAdminOrders();renderTodayStats();}
+  if(id==='tab-my-orders')renderMyOrders();
+}
+
+function openAdminTab(id,btn){
+  document.querySelectorAll('#app .tab-content[id^="atab-"]').forEach(t=>t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.admin-tabs .tab-btn').forEach(b=>b.classList.remove('active'));
+  if(btn)btn.classList.add('active');
+  if(id==='atab-stats')renderTodayStats();
+}
+
+// ================================================================
+// LOCKED
+// ================================================================
+function showLocked(title,desc){
+  document.getElementById('lockedTitle').textContent='🔒 '+title+' — في النسخة الكاملة';
+  document.getElementById('lockedDesc').textContent=desc+'\n\nاشترك الآن لتفعيل جميع المميزات.';
+  document.getElementById('lockedOverlay').classList.add('open');
+}
+function closeLocked(){document.getElementById('lockedOverlay').classList.remove('open');}
+
+// ================================================================
+// CONTACT
+// ================================================================
+function contactWA(){
+  const msg=encodeURIComponent('السلام عليكم\n\nجربت نسخة Demo من نظام إدارة المطاعم وأنا مهتم بالنسخة الكاملة.\n\nيرجى التواصل معي.');
+  window.open('https://wa.me/'+DEVELOPER_WA+'?text='+msg,'_blank');
+}
+
+// ================================================================
+// NOTIF
+// ================================================================
+function showNotif(msg){
+  const el=document.getElementById('notif');
+  el.textContent=msg;el.classList.add('show');
+  setTimeout(()=>el.classList.remove('show'),3000);
+}
+
+// ================================================================
+// INIT
+// ================================================================
+window.addEventListener('load',async()=>{
+  await new Promise(r=>setTimeout(r,1600));
+  initFB();
+
+  // كشف Admin Route (مخفي تماماً)
+  if(detectAdminRoute()){
+    if(sessionStorage.getItem('zz_admin_ok')==='1'){
+      showScreen('adminPanel');loadClients();
+    } else {
+      showScreen('adminLogin');
+    }
+    return;
+  }
+
+  // فحص Session موجودة
+  const hasSession = await checkExistingSession();
+  if(!hasSession) showScreen('auth');
+});
+
+// لو غيّر الـ hash وهو داخل
+window.addEventListener('hashchange',()=>{
+  if(detectAdminRoute()){
+    if(sessionStorage.getItem('zz_admin_ok')==='1') showScreen('adminPanel');
+    else showScreen('adminLogin');
+  }
+});
+</script>
+</body>
+</html>
