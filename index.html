@@ -191,7 +191,8 @@ input,select,textarea{font-family:inherit}
 .lock-icon{font-size:9px}
 .locked-preview-wrap{position:relative;min-height:400px;overflow:hidden}
 .locked-preview-content{filter:blur(2px);pointer-events:none;user-select:none;opacity:.6}
-.locked-preview-overlay{position:absolute;inset:0;background:rgba(250,247,240,.88);backdrop-filter:blur(6px);display:flex;align-items:flex-start;justify-content:center;z-index:10;padding:16px;overflow-y:auto}
+.locked-preview-overlay{position:absolute;inset:0;background:rgba(250,247,240,.88);backdrop-filter:blur(6px);display:flex;align-items:flex-start;justify-content:center;z-index:10;padding:16px;overflow-y:auto;scrollbar-width:none;-ms-overflow-style:none}
+.locked-preview-overlay::-webkit-scrollbar{display:none}
 .locked-preview-card{background:var(--white);border-radius:22px;padding:24px 20px;max-width:380px;width:100%;text-align:center;box-shadow:0 8px 40px rgba(0,0,0,.12);border:2px solid var(--demo-pale);margin:auto}
 .scroll-hint{position:sticky;bottom:12px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:4px;pointer-events:none;z-index:20;transition:opacity .4s}
 .scroll-hint.hidden{opacity:0}
