@@ -125,17 +125,28 @@ input,select,textarea{font-family:inherit}
 
 /* FOOD CARDS */
 .cat-header{font-size:14px;font-weight:900;color:var(--olive-dark);padding:10px 16px 6px;display:flex;align-items:center;gap:8px}
-.food-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 14px}
+/* ── MENU PROFESSIONAL ── */
+.menu-section{margin-bottom:24px}
+.cat-header{font-size:15px;font-weight:900;color:var(--olive-dark);padding:16px 16px 10px;display:flex;align-items:center;gap:8px;border-bottom:2px solid var(--olive-pale);margin:0 14px 12px}
+.cat-header-emoji{width:34px;height:34px;background:linear-gradient(135deg,var(--olive),var(--olive-light));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.food-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 14px 4px}
 @media(min-width:600px){.food-grid{grid-template-columns:1fr 1fr 1fr}}
-.food-card{background:var(--white);border-radius:16px;border:1.5px solid var(--border);overflow:hidden;cursor:pointer;transition:.15s}
-.food-card:active{transform:scale(.97)}
-.food-emoji{height:88px;background:linear-gradient(135deg,var(--olive-pale),var(--cream));display:flex;align-items:center;justify-content:center;font-size:40px}
-.food-info{padding:10px}
-.food-name{font-size:13px;font-weight:800;color:var(--dark);margin-bottom:3px;line-height:1.3}
-.food-desc{font-size:10px;color:var(--text-muted);margin-bottom:6px;line-height:1.4}
+.food-card{background:var(--white);border-radius:18px;border:1.5px solid var(--border);overflow:hidden;cursor:pointer;transition:.2s;box-shadow:0 2px 12px rgba(0,0,0,.06)}
+.food-card:active{transform:scale(.96);box-shadow:0 1px 4px rgba(0,0,0,.1)}
+.food-card:hover{border-color:var(--olive-light);box-shadow:0 4px 20px rgba(74,124,31,.15)}
+.food-img-wrap{position:relative;height:140px;overflow:hidden;background:linear-gradient(135deg,var(--olive-pale),var(--cream))}
+.food-img{width:100%;height:100%;object-fit:cover;display:block;transition:.4s}
+.food-card:hover .food-img{transform:scale(1.08)}
+.food-emoji-fallback{width:100%;height:140px;display:flex;align-items:center;justify-content:center;font-size:52px;background:linear-gradient(135deg,var(--olive-pale),var(--cream))}
+.food-price-tag{position:absolute;bottom:8px;left:8px;background:rgba(0,0,0,.65);backdrop-filter:blur(4px);color:#fff;font-size:12px;font-weight:900;padding:4px 10px;border-radius:100px}
+.food-info{padding:12px 12px 10px}
+.food-name{font-size:13px;font-weight:900;color:var(--dark);margin-bottom:4px;line-height:1.35}
+.food-desc{font-size:10px;color:var(--text-muted);margin-bottom:8px;line-height:1.5}
 .food-bottom{display:flex;align-items:center;justify-content:space-between}
-.food-price{font-size:14px;font-weight:900;color:var(--olive-dark)}
-.add-btn{width:28px;height:28px;background:var(--olive);border-radius:8px;color:#fff;font-size:18px;display:flex;align-items:center;justify-content:center;border:none;cursor:pointer}
+.food-price{font-size:15px;font-weight:900;color:var(--olive-dark)}
+.food-currency{font-size:11px;font-weight:700;color:var(--olive);margin-right:2px}
+.add-btn{width:32px;height:32px;background:linear-gradient(135deg,var(--olive),var(--olive-light));border-radius:10px;color:#fff;font-size:20px;display:flex;align-items:center;justify-content:center;border:none;cursor:pointer;box-shadow:0 2px 8px rgba(74,124,31,.35);transition:.2s}
+.add-btn:active{transform:scale(.9)}
 
 /* ORDERS */
 .order-card{background:var(--white);border-radius:14px;border:1.5px solid var(--border);margin:8px 14px;padding:14px;transition:.15s}
@@ -175,7 +186,21 @@ input,select,textarea{font-family:inherit}
 .admin-tabs::-webkit-scrollbar{display:none}
 .tab-btn{flex-shrink:0;padding:7px 14px;border-radius:100px;font-size:12px;font-weight:800;border:1.5px solid var(--border);color:var(--text-muted);cursor:pointer;white-space:nowrap;background:var(--cream);transition:.2s}
 .tab-btn.active{background:var(--olive);border-color:var(--olive);color:#fff}
+.tab-locked{opacity:.75}
+.tab-locked::before{content:'🔒 ';font-size:9px}
 .lock-icon{font-size:9px}
+.locked-preview-wrap{position:relative;min-height:400px;overflow:hidden}
+.locked-preview-content{filter:blur(2px);pointer-events:none;user-select:none;opacity:.6}
+.locked-preview-overlay{position:absolute;inset:0;background:rgba(250,247,240,.85);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;z-index:10;padding:20px}
+.locked-preview-card{background:var(--white);border-radius:22px;padding:28px 22px;max-width:380px;width:100%;text-align:center;box-shadow:0 8px 40px rgba(0,0,0,.12);border:2px solid var(--demo-pale)}
+.lp-icon{font-size:54px;margin-bottom:12px}
+.lp-title{font-size:18px;font-weight:900;color:var(--dark);margin-bottom:8px}
+.lp-desc{font-size:13px;color:var(--text-muted);line-height:1.7;margin-bottom:6px}
+.lp-features{background:var(--olive-pale);border-radius:12px;padding:12px 14px;margin:12px 0;text-align:right}
+.lp-feature{font-size:12px;color:var(--olive-dark);font-weight:700;padding:4px 0;display:flex;align-items:center;gap:8px}
+.lp-feature::before{content:'✅';font-size:11px}
+.lp-cta{width:100%;padding:13px;background:linear-gradient(135deg,var(--demo),#5b21b6);color:#fff;border-radius:12px;font-size:14px;font-weight:900;border:none;cursor:pointer;margin-top:14px;margin-bottom:8px}
+.lp-wa{width:100%;padding:11px;background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;border-radius:12px;font-size:13px;font-weight:800;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px}
 
 /* CART */
 .cart-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:200;display:none;align-items:flex-end}
@@ -403,16 +428,25 @@ input,select,textarea{font-family:inherit}
         <button class="tab-btn active" onclick="openAdminTab('atab-orders',this)">📋 الطلبات</button>
         <button class="tab-btn" onclick="openAdminTab('atab-stats',this)">📊 إحصائيات</button>
         <button class="tab-btn" onclick="openAdminTab('atab-reports',this)">📈 تقارير</button>
-        <button class="tab-btn" onclick="showLocked('المخزون','إدارة المخزون ومتابعة الكميات والتنبيهات وإعادة الطلب التلقائي')"><span class="lock-icon">🔒</span> المخزون</button>
-        <button class="tab-btn" onclick="showLocked('العملاء','قاعدة بيانات العملاء الكاملة وبرنامج VIP والولاء')"><span class="lock-icon">🔒</span> العملاء</button>
-        <button class="tab-btn" onclick="showLocked('الموظفين','إدارة الموظفين والصلاحيات والورديات')"><span class="lock-icon">🔒</span> الموظفين</button>
-        <button class="tab-btn" onclick="showLocked('الفروع','إدارة فروع متعددة مع داشبورد مركزي')"><span class="lock-icon">🔒</span> الفروع</button>
-        <button class="tab-btn" onclick="showLocked('التسويق','كوبونات وإعلانات وإشعارات Push للعملاء')"><span class="lock-icon">🔒</span> التسويق</button>
-        <button class="tab-btn" onclick="showLocked('الإعدادات','إعدادات المطعم ومواعيد العمل والتوصيل')"><span class="lock-icon">🔒</span> الإعدادات</button>
+        <button class="tab-btn tab-locked" onclick="openLockedTab('atab-cashier',this)">🧾 الكاشير</button>
+        <button class="tab-btn tab-locked" onclick="openLockedTab('atab-menu-mgmt',this)">🍽️ إدارة المنيو</button>
+        <button class="tab-btn tab-locked" onclick="openLockedTab('atab-inventory',this)">📦 المخزون</button>
+        <button class="tab-btn tab-locked" onclick="openLockedTab('atab-customers',this)">👥 العملاء</button>
+        <button class="tab-btn tab-locked" onclick="openLockedTab('atab-agents',this)">🛵 المندوبين</button>
+        <button class="tab-btn tab-locked" onclick="openLockedTab('atab-employees',this)">👨‍💼 الموظفين</button>
+        <button class="tab-btn tab-locked" onclick="openLockedTab('atab-branches',this)">🏪 الفروع</button>
+        <button class="tab-btn tab-locked" onclick="openLockedTab('atab-offers',this)">🎁 العروض</button>
+        <button class="tab-btn tab-locked" onclick="openLockedTab('atab-marketing',this)">📣 التسويق</button>
+        <button class="tab-btn tab-locked" onclick="openLockedTab('atab-bookings',this)">📅 الحجوزات</button>
+        <button class="tab-btn tab-locked" onclick="openLockedTab('atab-vip',this)">👑 VIP</button>
+        <button class="tab-btn tab-locked" onclick="openLockedTab('atab-settings',this)">⚙️ الإعدادات</button>
+        <button class="tab-btn tab-locked" onclick="openLockedTab('atab-backup',this)">💾 النسخ الاحتياطي</button>
       </div>
+
+      <!-- تابات مفتوحة -->
       <div id="atab-orders" class="tab-content active">
         <div class="stats-grid" id="quickStats"></div>
-        <div class="section-title">🆕 الطلبات</div>
+        <div class="section-title">🆕 الطلبات الواردة</div>
         <div id="adminOrdersList"></div>
       </div>
       <div id="atab-stats" class="tab-content">
@@ -424,12 +458,27 @@ input,select,textarea{font-family:inherit}
         <div class="stats-grid" id="reportsStats"></div>
         <div class="section-title">📋 آخر الطلبات</div>
         <div id="reportsList"></div>
-        <div class="contact-section">
+        <div class="contact-section" style="margin-top:10px">
           <h3>📈 تقارير متقدمة في النسخة الكاملة</h3>
           <p>يومية / أسبوعية / شهرية<br/>أفضل المنتجات • تحليل العملاء</p>
           <button class="wa-btn" onclick="contactWA()">💬 اشترك الآن</button>
         </div>
       </div>
+
+      <!-- تابات مقفولة — Preview فقط -->
+      <div id="atab-cashier" class="tab-content locked-tab-content" style="display:none"></div>
+      <div id="atab-menu-mgmt" class="tab-content locked-tab-content" style="display:none"></div>
+      <div id="atab-inventory" class="tab-content locked-tab-content" style="display:none"></div>
+      <div id="atab-customers" class="tab-content locked-tab-content" style="display:none"></div>
+      <div id="atab-agents" class="tab-content locked-tab-content" style="display:none"></div>
+      <div id="atab-employees" class="tab-content locked-tab-content" style="display:none"></div>
+      <div id="atab-branches" class="tab-content locked-tab-content" style="display:none"></div>
+      <div id="atab-offers" class="tab-content locked-tab-content" style="display:none"></div>
+      <div id="atab-marketing" class="tab-content locked-tab-content" style="display:none"></div>
+      <div id="atab-bookings" class="tab-content locked-tab-content" style="display:none"></div>
+      <div id="atab-vip" class="tab-content locked-tab-content" style="display:none"></div>
+      <div id="atab-settings" class="tab-content locked-tab-content" style="display:none"></div>
+      <div id="atab-backup" class="tab-content locked-tab-content" style="display:none"></div>
     </div>
 
     <!-- CONTACT TAB -->
@@ -514,30 +563,30 @@ const ADMIN_PIN_HASH  = "fddc599a3afe6c68b8098f7ef3db02335f7e398e3c0bd34b663f04f
 const DEVELOPER_WA   = '201508613866';
 const DEMO_MENU = {
   burgers:{label:'🍔 برجر',emoji:'🍔',items:[
-    {id:'b1',name:'كلاسيك برجر',desc:'لحم بقري طازج مع الخضار',price:75,emoji:'🍔'},
-    {id:'b2',name:'دبل برجر',desc:'ضعف اللحم والجبنة',price:110,emoji:'🍔'},
-    {id:'b3',name:'كريسبي تشيكن',desc:'فيليه دجاج مقرمش',price:85,emoji:'🍗'},
-    {id:'b4',name:'مشروم برجر',desc:'برجر بالمشروم والجبنة',price:95,emoji:'🍄'}
+    {id:'b1',name:'كلاسيك برجر',desc:'لحم بقري طازج مع الخضار والصوص',price:75,emoji:'🍔',img:'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&h=280&fit=crop&auto=format'},
+    {id:'b2',name:'دبل برجر',desc:'ضعف اللحم والجبنة الذائبة',price:110,emoji:'🍔',img:'https://images.unsplash.com/photo-1553979459-d2229ba7433b?w=400&h=280&fit=crop&auto=format'},
+    {id:'b3',name:'كريسبي تشيكن',desc:'فيليه دجاج مقرمش بالصوص الحار',price:85,emoji:'🍗',img:'https://images.unsplash.com/photo-1606755962773-d324e0a13086?w=400&h=280&fit=crop&auto=format'},
+    {id:'b4',name:'مشروم برجر',desc:'برجر بالمشروم والجبنة الزرقاء',price:95,emoji:'🍄',img:'https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=400&h=280&fit=crop&auto=format'}
   ]},
   pizza:{label:'🍕 بيتزا',emoji:'🍕',items:[
-    {id:'p1',name:'مارجريتا',desc:'صوص طماطم وموتزاريلا',price:80,emoji:'🍕'},
-    {id:'p2',name:'بيبروني',desc:'بيبروني وجبنة مشكلة',price:95,emoji:'🍕'},
-    {id:'p3',name:'خضار',desc:'خضار مشكلة وزيتون',price:85,emoji:'🥗'}
+    {id:'p1',name:'مارجريتا',desc:'صوص طماطم وموتزاريلا طازجة',price:80,emoji:'🍕',img:'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=400&h=280&fit=crop&auto=format'},
+    {id:'p2',name:'بيبروني',desc:'بيبروني وجبنة مشكلة',price:95,emoji:'🍕',img:'https://images.unsplash.com/photo-1628840042765-356cda07504e?w=400&h=280&fit=crop&auto=format'},
+    {id:'p3',name:'خضار',desc:'خضار مشكلة وزيتون وفلفل',price:85,emoji:'🥗',img:'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400&h=280&fit=crop&auto=format'}
   ]},
   meals:{label:'🥘 وجبات',emoji:'🥘',items:[
-    {id:'m1',name:'شاورما دجاج',desc:'شاورما مع الثوم والطحينة',price:65,emoji:'🌯'},
-    {id:'m2',name:'كباب مشوي',desc:'كباب لحم مع الأرز والسلطة',price:120,emoji:'🍖'},
-    {id:'m3',name:'فراخ مشوية',desc:'نصف فرخة مع الشيبس',price:100,emoji:'🍗'}
+    {id:'m1',name:'شاورما دجاج',desc:'شاورما مع الثوم والطحينة والخضار',price:65,emoji:'🌯',img:'https://images.unsplash.com/photo-1561651823-34feb02250e4?w=400&h=280&fit=crop&auto=format'},
+    {id:'m2',name:'كباب مشوي',desc:'كباب لحم مع الأرز والسلطة',price:120,emoji:'🍖',img:'https://images.unsplash.com/photo-1544025162-d76694265947?w=400&h=280&fit=crop&auto=format'},
+    {id:'m3',name:'فراخ مشوية',desc:'نصف فرخة مشوية مع الشيبس والسلطة',price:100,emoji:'🍗',img:'https://images.unsplash.com/photo-1598103442097-8b74394b95c7?w=400&h=280&fit=crop&auto=format'}
   ]},
   drinks:{label:'🥤 مشروبات',emoji:'🥤',items:[
-    {id:'d1',name:'كولا',desc:'كوكاكولا بارد',price:15,emoji:'🥤'},
-    {id:'d2',name:'عصير مانجو',desc:'مانجو طبيعي طازج',price:30,emoji:'🥭'},
-    {id:'d3',name:'شاي',desc:'شاي بالنعناع أو باللبن',price:12,emoji:'🍵'},
-    {id:'d4',name:'قهوة عربية',desc:'بالهيل والزعفران',price:18,emoji:'☕'}
+    {id:'d1',name:'كولا',desc:'كوكاكولا بارد مثلج',price:15,emoji:'🥤',img:'https://images.unsplash.com/photo-1629203851122-3726ecdf080e?w=400&h=280&fit=crop&auto=format'},
+    {id:'d2',name:'عصير مانجو',desc:'مانجو طبيعي طازج 100%',price:30,emoji:'🥭',img:'https://images.unsplash.com/photo-1546173159-315724a31696?w=400&h=280&fit=crop&auto=format'},
+    {id:'d3',name:'شاي بالنعناع',desc:'شاي أحمر بالنعناع الطازج',price:12,emoji:'🍵',img:'https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=400&h=280&fit=crop&auto=format'},
+    {id:'d4',name:'قهوة عربية',desc:'بالهيل والزعفران الأصيل',price:18,emoji:'☕',img:'https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=400&h=280&fit=crop&auto=format'}
   ]},
   desserts:{label:'🍰 حلويات',emoji:'🍰',items:[
-    {id:'sw1',name:'كنافة',desc:'كنافة بالقشطة والعسل',price:45,emoji:'🍮'},
-    {id:'sw2',name:'تشيز كيك',desc:'تشيز كيك بالفراولة',price:55,emoji:'🎂'}
+    {id:'sw1',name:'كنافة',desc:'كنافة بالقشطة الطازجة والعسل',price:45,emoji:'🍮',img:'https://images.unsplash.com/photo-1519915028121-7d3463d20b13?w=400&h=280&fit=crop&auto=format'},
+    {id:'sw2',name:'تشيز كيك',desc:'تشيز كيك نيويورك بالفراولة',price:55,emoji:'🎂',img:'https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=400&h=280&fit=crop&auto=format'}
   ]}
 };
 
@@ -906,15 +955,28 @@ function startTimer() {
 function renderMenu() {
   let html = '';
   Object.entries(DEMO_MENU).forEach(([catKey, cat]) => {
-    html += `<div><div class="cat-header">${cat.emoji} ${cat.label}</div><div class="food-grid">`;
+    html += `<div class="menu-section">
+      <div class="cat-header">
+        <div class="cat-header-emoji">${cat.emoji}</div>
+        <span>${cat.label}</span>
+      </div>
+      <div class="food-grid">`;
     cat.items.forEach(item => {
+      const imgContent = item.img
+        ? `<img class="food-img" src="${item.img}" alt="${item.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`
+        : '';
+      const fallback = `<div class="food-emoji-fallback" style="${item.img?'display:none':''}"> ${item.emoji}</div>`;
       html += `<div class="food-card" onclick="addToCart('${catKey}','${item.id}')">
-        <div class="food-emoji">${item.emoji}</div>
+        <div class="food-img-wrap">
+          ${imgContent}
+          ${fallback}
+          <div class="food-price-tag">${item.price} ج.م</div>
+        </div>
         <div class="food-info">
           <div class="food-name">${item.name}</div>
           <div class="food-desc">${item.desc}</div>
           <div class="food-bottom">
-            <div class="food-price">${item.price} ج.م</div>
+            <div class="food-price"><span class="food-currency">ج.م</span>${item.price}</div>
             <button class="add-btn" onclick="event.stopPropagation();addToCart('${catKey}','${item.id}')">+</button>
           </div>
         </div>
@@ -1121,11 +1183,139 @@ function openTab(id){
 }
 
 function openAdminTab(id,btn){
-  document.querySelectorAll('#app .tab-content[id^="atab-"]').forEach(t=>t.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('#app .tab-content[id^="atab-"]').forEach(t=>{t.classList.remove('active');t.style.display='none';});
+  const el=document.getElementById(id);if(el){el.classList.add('active');el.style.display='block';}
   document.querySelectorAll('.admin-tabs .tab-btn').forEach(b=>b.classList.remove('active'));
   if(btn)btn.classList.add('active');
   if(id==='atab-stats')renderTodayStats();
+}
+
+// بيانات كل تاب مقفول
+const LOCKED_TABS_DATA = {
+  'atab-cashier': {
+    icon:'🧾', title:'شاشة الكاشير',
+    desc:'شاشة متخصصة للكاشير لمتابعة الطلبات الواردة وتغيير حالاتها وإدارة المدفوعات بشكل احترافي.',
+    features:['عرض جميع الطلبات الجديدة فور وصولها','قبول وتغيير حالة الطلب بضغطة واحدة','فلترة الطلبات حسب النوع والحالة','طباعة الفاتورة مباشرة','إشعارات صوتية للطلبات الجديدة','إحصائيات الكاشير اليومية']
+  },
+  'atab-menu-mgmt': {
+    icon:'🍽️', title:'إدارة المنيو',
+    desc:'تحكم كامل في قائمة الطعام — أضف وعدّل وأخفِ الأصناف في أي وقت من داشبورد واحد.',
+    features:['إضافة وتعديل وحذف الأصناف','رفع صور الأصناف مباشرة','إدارة الأقسام والتصنيفات','تفعيل وإيقاف الأصناف لحظياً','إضافة إكسترا وتخصيصات','ربط الأصناف بمواعيد محددة']
+  },
+  'atab-inventory': {
+    icon:'📦', title:'إدارة المخزون',
+    desc:'تتبع المخزون لحظياً مع تنبيهات تلقائية عند نقص أي مادة خام.',
+    features:['تتبع الكميات لحظياً لكل مادة خام','تنبيه تلقائي عند الوصول للحد الأدنى','ربط الأصناف بالمواد الخام','تقرير استهلاك يومي وأسبوعي','إدارة الموردين وطلبات الشراء','تاريخ حركات المخزون كاملة']
+  },
+  'atab-customers': {
+    icon:'👥', title:'إدارة العملاء',
+    desc:'قاعدة بيانات كاملة لعملائك مع سجل مشترياتهم وتحليل سلوكهم.',
+    features:['قاعدة بيانات كاملة لكل العملاء','سجل الطلبات لكل عميل','تصنيف العملاء حسب الإنفاق','عملاء VIP مع مزايا خاصة','إرسال رسائل مخصصة للعملاء','تحليل العملاء الجدد والمنتظمين']
+  },
+  'atab-agents': {
+    icon:'🛵', title:'إدارة المندوبين',
+    desc:'تتبع مندوبي التوصيل لحظياً على الخريطة وإدارة أدائهم بشكل كامل.',
+    features:['تتبع موقع المندوب على الخريطة لحظياً','تعيين الطلبات للمندوبين','تقييم أداء كل مندوب','سجل التوصيلات والأرباح','إشعار العميل بموقع المندوب','تقارير المندوبين الأسبوعية']
+  },
+  'atab-employees': {
+    icon:'👨‍💼', title:'إدارة الموظفين',
+    desc:'تحكم كامل في فريق العمل مع صلاحيات مخصصة لكل موظف.',
+    features:['إضافة وإدارة حسابات الموظفين','صلاحيات مخصصة لكل دور (كاشير - مدير - مندوب)','جدول الورديات والمناوبات','تقارير أداء الموظفين','سجل دخول وخروج كل موظف','ربط الموظف بالفرع المحدد']
+  },
+  'atab-branches': {
+    icon:'🏪', title:'إدارة الفروع',
+    desc:'أدِر فروع متعددة من داشبورد مركزي واحد مع إحصائيات منفصلة لكل فرع.',
+    features:['إضافة وإدارة فروع غير محدودة','داشبورد مركزي لكل الفروع','إحصائيات ومبيعات كل فرع منفردة','نقل الموظفين بين الفروع','منيو مختلف لكل فرع','تقارير مقارنة بين الفروع']
+  },
+  'atab-offers': {
+    icon:'🎁', title:'العروض والخصومات',
+    desc:'أنشئ عروض وخصومات احترافية تزيد مبيعاتك وتجذب عملاء جدد.',
+    features:['كوبونات خصم بنسبة أو مبلغ ثابت','عروض محدودة الوقت والكمية','خصم أول طلب للعميل الجديد','عروض خاصة لعملاء VIP','توصيل مجاني عند حد معين','تتبع استخدام كل كوبون']
+  },
+  'atab-marketing': {
+    icon:'📣', title:'التسويق والإعلانات',
+    desc:'أدوات تسويقية متكاملة لزيادة مبيعاتك والتواصل مع عملائك.',
+    features:['إشعارات Push للعملاء المسجلين','إعلانات بانر داخل التطبيق','مسابقات وتحديات تفاعلية','حملات واتساب جماعية','إعلانات موجهة لفئات محددة','تتبع نتائج كل حملة إعلانية']
+  },
+  'atab-bookings': {
+    icon:'📅', title:'الحجوزات',
+    desc:'نظام حجز طاولات احترافي مع تأكيد تلقائي وإدارة السعة.',
+    features:['حجز الطاولات أونلاين','تأكيد تلقائي للحجز على واتساب','إدارة الطاولات والسعة الكاملة','تذكير تلقائي للعميل قبل الموعد','تقرير الحجوزات اليومية','قائمة انتظار تلقائية']
+  },
+  'atab-vip': {
+    icon:'👑', title:'نظام VIP والولاء',
+    desc:'برنامج ولاء احترافي يكافئ عملاءك المميزين ويزيد تكرار الشراء.',
+    features:['نقاط مكافآت مع كل طلب','مستويات VIP (فضي - ذهبي - بلاتيني)','هدايا تلقائية عند حد النقاط','كارد VIP مخصص لكل عميل','تقرير أداء برنامج الولاء','مزايا حصرية لعملاء البلاتيني']
+  },
+  'atab-settings': {
+    icon:'⚙️', title:'الإعدادات',
+    desc:'تحكم كامل في إعدادات المطعم ومواعيد العمل وطرق الدفع والتوصيل.',
+    features:['إعدادات مواعيد العمل لكل يوم','تخصيص مناطق التوصيل والأسعار','إدارة طرق الدفع (كاش - فيزا - محفظة)','تخصيص رسائل واتساب التلقائية','إعدادات الضرائب والرسوم','تخصيص هوية المطعم والشعار']
+  },
+  'atab-backup': {
+    icon:'💾', title:'النسخ الاحتياطي',
+    desc:'حماية بيانات مطعمك بنسخ احتياطي تلقائي منتظم مع إمكانية الاسترجاع في ثوان.',
+    features:['نسخ احتياطي تلقائي يومي','تصدير البيانات بصيغة Excel و PDF','استرجاع البيانات بضغطة واحدة','حفظ سجل الطلبات لسنوات','تصدير تقارير للمحاسب','نقل البيانات بين الأجهزة بسهولة']
+  }
+};
+
+function openLockedTab(id, btn) {
+  // إخفاء كل التابات
+  document.querySelectorAll('#app .tab-content[id^="atab-"]').forEach(t=>{t.classList.remove('active');t.style.display='none';});
+  document.querySelectorAll('.admin-tabs .tab-btn').forEach(b=>b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+
+  const el = document.getElementById(id);
+  if(!el) return;
+  el.style.display = 'block';
+  el.classList.add('active');
+
+  // بناء محتوى الـ Preview لو لم يُبنَ قبل كده
+  if(el.dataset.built) return;
+  el.dataset.built = '1';
+
+  const data = LOCKED_TABS_DATA[id];
+  if(!data) return;
+
+  const featuresHtml = data.features.map(f => `<div class="lp-feature">${f}</div>`).join('');
+
+  // محتوى خلفية Preview (بيانات وهمية تبدو حقيقية)
+  const previewContent = getPreviewContent(id);
+
+  el.innerHTML = `
+    <div class="locked-preview-wrap">
+      <div class="locked-preview-content">${previewContent}</div>
+      <div class="locked-preview-overlay">
+        <div class="locked-preview-card">
+          <div class="lp-icon">${data.icon}</div>
+          <div class="lp-title">🔒 ${data.title}</div>
+          <div class="lp-desc">${data.desc}</div>
+          <div class="lp-features">${featuresHtml}</div>
+          <button class="lp-cta" onclick="contactWA()">🚀 احصل على النسخة الكاملة</button>
+          <button class="lp-wa" onclick="contactWA()"><span>💬</span> تواصل معنا على واتساب</button>
+        </div>
+      </div>
+    </div>`;
+}
+
+function getPreviewContent(id) {
+  // محتوى وهمي يبدو حقيقي في الخلفية (مع blur)
+  const previews = {
+    'atab-cashier': `<div style="padding:14px"><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:14px">${['🆕 12 طلب جديد','⏳ 5 قيد التجهيز','✅ 28 مكتمل'].map(t=>`<div style="background:#fff;border-radius:12px;padding:14px;text-align:center;border:1.5px solid #e0ddd5;font-size:13px;font-weight:800">${t}</div>`).join('')}</div>${Array(4).fill(0).map((_,i)=>`<div style="background:#fff;border-radius:12px;padding:14px;margin-bottom:8px;border:1.5px solid #e0ddd5;display:flex;justify-content:space-between;align-items:center"><div><div style="font-weight:900;font-size:13px">طلب #D-${1001+i}</div><div style="font-size:11px;color:#6b7280">كلاسيك برجر × 2 • كولا × 1</div></div><span style="background:#fef3c7;color:#92400e;font-size:10px;font-weight:800;padding:3px 10px;border-radius:100px">جديد</span></div>`).join('')}</div>`,
+    'atab-menu-mgmt': `<div style="padding:14px">${Array(6).fill(0).map((_,i)=>`<div style="background:#fff;border-radius:12px;padding:12px;margin-bottom:8px;border:1.5px solid #e0ddd5;display:flex;align-items:center;gap:12px"><div style="width:48px;height:48px;border-radius:10px;background:#e8f5d0;display:flex;align-items:center;justify-content:center;font-size:24px">${['🍔','🍕','🌯','🥤','🍰','🍗'][i]}</div><div style="flex:1"><div style="font-weight:900;font-size:13px">${['كلاسيك برجر','مارجريتا','شاورما','كولا','كنافة','فراخ مشوية'][i]}</div><div style="font-size:11px;color:#6b7280">${[75,80,65,15,45,100][i]} ج.م</div></div><div style="width:36px;height:20px;background:#4a7c1f;border-radius:10px"></div></div>`).join('')}</div>`,
+    'atab-inventory': `<div style="padding:14px">${[['دقيق','85%','#16a34a'],['زيت','42%','#f59e0b'],['لحم مفروم','18%','#e03030'],['دجاج','67%','#16a34a'],['جبنة','55%','#f59e0b']].map(([n,p,c])=>`<div style="background:#fff;border-radius:12px;padding:12px;margin-bottom:8px;border:1.5px solid #e0ddd5"><div style="display:flex;justify-content:space-between;margin-bottom:6px;font-size:13px;font-weight:800"><span>${n}</span><span style="color:${c}">${p}</span></div><div style="height:8px;background:#f0f0f0;border-radius:4px"><div style="height:100%;width:${p};background:${c};border-radius:4px"></div></div></div>`).join('')}</div>`,
+    'atab-customers': `<div style="padding:14px">${['أحمد محمد','سارة خالد','محمود علي','نور إبراهيم','علي حسن'].map((n,i)=>`<div style="background:#fff;border-radius:12px;padding:12px;margin-bottom:8px;border:1.5px solid #e0ddd5;display:flex;align-items:center;gap:12px"><div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#4a7c1f,#6aab2e);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:14px">${n[0]}</div><div style="flex:1"><div style="font-weight:900;font-size:13px">${n}</div><div style="font-size:11px;color:#6b7280">${[24,16,31,8,19][i]} طلب • ${[1850,1240,2100,580,1430][i]} ج.م</div></div>${i<2?'<span style="background:#fef3c7;color:#92400e;font-size:10px;font-weight:800;padding:3px 8px;border-radius:100px">👑 VIP</span>':''}</div>`).join('')}</div>`,
+    'atab-agents': `<div style="padding:14px">${['محمد السائق','أحمد التوصيل','علي الدليفري'].map((n,i)=>`<div style="background:#fff;border-radius:12px;padding:12px;margin-bottom:8px;border:1.5px solid #e0ddd5"><div style="display:flex;align-items:center;gap:12px;margin-bottom:8px"><div style="width:40px;height:40px;border-radius:50%;background:#fef3c7;display:flex;align-items:center;justify-content:center;font-size:20px">🛵</div><div style="flex:1"><div style="font-weight:900;font-size:13px">${n}</div><div style="font-size:11px;color:${['#16a34a','#f59e0b','#16a34a'][i]};font-weight:800">${['🟢 في الطريق','🟡 في انتظار طلب','🟢 في الطريق'][i]}</div></div><span style="font-size:13px;font-weight:900">⭐ ${[4.8,4.5,4.9][i]}</span></div></div>`).join('')}</div>`,
+    'atab-employees': `<div style="padding:14px">${['أحمد - كاشير','مريم - مديرة','خالد - مندوب','سلمى - كاشير'].map((n,i)=>`<div style="background:#fff;border-radius:12px;padding:12px;margin-bottom:8px;border:1.5px solid #e0ddd5;display:flex;justify-content:space-between;align-items:center"><div><div style="font-weight:900;font-size:13px">${n}</div><div style="font-size:11px;color:#6b7280">آخر دخول: منذ ${[2,0,5,1][i]} ساعة</div></div><span style="background:${['#d1fae5','#fef3c7','#d1fae5','#d1fae5'][i]};color:${['#065f46','#92400e','#065f46','#065f46'][i]};font-size:10px;font-weight:800;padding:3px 10px;border-radius:100px">${['نشط','نشط','غير متاح','نشط'][i]}</span></div>`).join('')}</div>`,
+    'atab-branches': `<div style="padding:14px">${['الفرع الرئيسي - المهندسين','فرع مدينة نصر','فرع الزمالك'].map((n,i)=>`<div style="background:#fff;border-radius:12px;padding:14px;margin-bottom:10px;border:2px solid ${['#4a7c1f','#e0ddd5','#e0ddd5'][i]}"><div style="display:flex;justify-content:space-between;margin-bottom:8px"><div style="font-weight:900;font-size:13px">🏪 ${n}</div><span style="background:#d1fae5;color:#065f46;font-size:10px;font-weight:800;padding:3px 10px;border-radius:100px">نشط</span></div><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px">${['${[42,28,35][i]} طلب','${[3200,2100,2800][i]} ج.م','${[3,2,2][i]} موظف'].map(s=>`<div style="background:#f7f4ed;border-radius:8px;padding:6px;text-align:center;font-size:11px;font-weight:800">${s}</div>`)}</div></div>`).join('')}</div>`,
+    'atab-offers': `<div style="padding:14px">${[['WELCOME20','خصم 20% للطلب الأول','🎁',true],['SUMMER50','خصم 50 ج عند 200 ج','🌞',true],['FREESHIP','توصيل مجاني عند 150 ج','🛵',false]].map(([c,d,e,a])=>`<div style="background:#fff;border-radius:12px;padding:14px;margin-bottom:8px;border:1.5px solid #e0ddd5"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px"><div style="font-size:14px;font-weight:900;color:#4a7c1f">${e} ${c}</div><span style="background:${a?'#d1fae5':'#f3f4f6'};color:${a?'#065f46':'#6b7280'};font-size:10px;font-weight:800;padding:3px 10px;border-radius:100px">${a?'نشط':'منتهي'}</span></div><div style="font-size:12px;color:#6b7280">${d}</div></div>`).join('')}</div>`,
+    'atab-marketing': `<div style="padding:14px"><div style="background:#fff;border-radius:12px;padding:14px;margin-bottom:10px;border:1.5px solid #e0ddd5"><div style="font-weight:900;margin-bottom:8px">📱 آخر إشعار Push</div><div style="background:#f7f4ed;border-radius:8px;padding:10px;font-size:12px">🔥 عرض اليوم فقط! خصم 25% على البرجر — اطلب الآن!</div><div style="font-size:11px;color:#6b7280;margin-top:6px">أُرسل لـ 248 عميل • 89 تفاعل (36%)</div></div><div style="background:#fff;border-radius:12px;padding:14px;border:1.5px solid #e0ddd5"><div style="font-weight:900;margin-bottom:8px">📊 إحصائيات الحملات</div>${['حملة رمضان','حملة الصيف','عرض نهاية الأسبوع'].map((c,i)=>`<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #f0f0f0;font-size:12px"><span>${c}</span><span style="font-weight:800;color:#4a7c1f">${[42,38,29][i]}% تفاعل</span></div>`).join('')}</div></div>`,
+    'atab-bookings': `<div style="padding:14px">${['أحمد - 4 أشخاص - 8:00 م','سارة - 2 أشخاص - 9:00 م','محمود - 6 أشخاص - 7:30 م','علي - 3 أشخاص - 8:30 م'].map((b,i)=>`<div style="background:#fff;border-radius:12px;padding:12px;margin-bottom:8px;border:1.5px solid #e0ddd5;display:flex;justify-content:space-between;align-items:center"><div><div style="font-weight:900;font-size:13px">📅 ${b}</div><div style="font-size:11px;color:#6b7280">الطاولة ${i+1} • اليوم</div></div><span style="background:${['#d1fae5','#dbeafe','#d1fae5','#fef3c7'][i]};color:${['#065f46','#1e40af','#065f46','#92400e'][i]};font-size:10px;font-weight:800;padding:3px 10px;border-radius:100px">${['مؤكد','مؤكد','وصل','قيد الانتظار'][i]}</span></div>`).join('')}</div>`,
+    'atab-vip': `<div style="padding:14px"><div style="background:linear-gradient(135deg,#fef3c7,#fde68a);border-radius:16px;padding:16px;margin-bottom:12px;border:2px solid #f59e0b;text-align:center"><div style="font-size:32px;margin-bottom:6px">👑</div><div style="font-size:15px;font-weight:900;color:#92400e">برنامج الولاء الذهبي</div><div style="font-size:12px;color:#b45309;margin-top:4px">248 عميل مميز</div></div>${['بلاتيني 💎 - 5 عملاء','ذهبي 🥇 - 42 عميل','فضي 🥈 - 201 عميل'].map((l,i)=>`<div style="background:#fff;border-radius:10px;padding:10px 14px;margin-bottom:6px;border:1.5px solid #e0ddd5;display:flex;justify-content:space-between;font-size:12px;font-weight:800"><span>${l}</span><span style="color:#4a7c1f">${['+500','200-499','50-199'][i]} نقطة</span></div>`).join('')}</div>`,
+    'atab-settings': `<div style="padding:14px">${[['🕐 مواعيد العمل','السبت - الخميس: 10ص - 2ص'],['🛵 التوصيل','نطاق 10 كم • رسوم 15-25 ج.م'],['💳 طرق الدفع','كاش • فيزا • محفظة إلكترونية'],['📞 واتساب التلقائي','مفعّل • رسائل التأكيد والتتبع'],['🏪 بيانات المطعم','الاسم • الشعار • العنوان • الخريطة']].map(([t,d])=>`<div style="background:#fff;border-radius:12px;padding:12px 14px;margin-bottom:8px;border:1.5px solid #e0ddd5"><div style="font-weight:900;font-size:13px;margin-bottom:3px">${t}</div><div style="font-size:11px;color:#6b7280">${d}</div></div>`).join('')}</div>`,
+    'atab-backup': `<div style="padding:14px"><div style="background:#fff;border-radius:12px;padding:14px;margin-bottom:10px;border:1.5px solid #e0ddd5"><div style="font-weight:900;margin-bottom:10px">💾 آخر النسخ الاحتياطية</div>${['اليوم 3:00 ص - تلقائي','أمس 3:00 ص - تلقائي','13 أغسطس - يدوي'].map((b,i)=>`<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #f0f0f0;font-size:12px"><span>📁 ${b}</span><span style="color:#4a7c1f;font-weight:800">✅ ناجح</span></div>`).join('')}</div><div style="background:#fff;border-radius:12px;padding:14px;border:1.5px solid #e0ddd5"><div style="font-weight:900;margin-bottom:8px">📤 تصدير البيانات</div>${['📊 تصدير Excel للطلبات','📄 تصدير PDF للتقارير','👥 تصدير بيانات العملاء'].map(e=>`<div style="padding:8px 0;border-bottom:1px solid #f0f0f0;font-size:12px;font-weight:700">${e}</div>`).join('')}</div></div>`
+  };
+  return previews[id] || '<div style="padding:20px;text-align:center;color:#6b7280">جاري التحميل...</div>';
 }
 
 // ================================================================
