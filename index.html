@@ -495,6 +495,9 @@ input,select,textarea{font-family:inherit}
     <div class="demo-timer" id="demoTimerEl">⏱ جاري التحميل...</div>
     <span onclick="contactWA()" style="cursor:pointer;background:rgba(255,255,255,.2);border-radius:8px;padding:3px 8px;font-size:10px">اشترك →</span>
   </div>
+  <!-- بانر حالة الطلب النشط -->
+  <div id="orderStatusBanner" onclick="if(window._activeTrackId)showTrack(window._activeTrackId);else openTab('tab-my-orders')" style="display:none;background:rgba(245,158,11,.9);color:#fff;padding:7px 16px;text-align:center;font-size:12px;font-weight:900;cursor:pointer;justify-content:center;align-items:center;gap:8px;border-bottom:1px solid rgba(255,255,255,.2);transition:background .4s">
+  </div>
   <div class="topbar">
     <div>
       <div class="topbar-brand">🍽️ Demo Restaurant</div>
@@ -1055,6 +1058,44 @@ function startTimer() {
     el.textContent = `⏱ ${h}:${m}:${s}`;
     if (left < 3600000) el.style.background = 'rgba(239,68,68,.4)';
     else if (left < 10800000) el.style.background = 'rgba(245,158,11,.3)';
+
+    // تحديث الـ banner بحالة الطلب النشط
+    updateOrderStatusBanner();
+  }
+
+  function updateOrderStatusBanner() {
+    const banner = document.getElementById('orderStatusBanner');
+    if (!banner) return;
+    // آخر طلب نشط
+    const activeOrder = allOrders.find(o =>
+      o.demoUsername === demoSession?.username &&
+      o.status !== 'delivered' && o.status !== 'cancelled'
+    );
+    if (!activeOrder) {
+      banner.style.display = 'none';
+      return;
+    }
+    const msgs = {
+      new:      '⏳ في انتظار مراجعة الكاشير',
+      prep:     '👨‍🍳 جاري تجهيز طلبك الآن',
+      ready:    '✅ طلبك جاهز للاستلام!',
+      delivery: '🛵 المندوب في الطريق إليك',
+      delivered:'🎉 تم التسليم بنجاح!'
+    };
+    const msg = msgs[activeOrder.status];
+    if (msg) {
+      banner.style.display = 'flex';
+      banner.textContent = msg;
+      // لون البانر حسب المرحلة
+      const colors = {
+        new:'rgba(245,158,11,.9)', prep:'rgba(26,95,200,.9)',
+        ready:'rgba(22,163,74,.9)', delivery:'rgba(124,58,237,.9)',
+        delivered:'rgba(22,163,74,.9)'
+      };
+      banner.style.background = colors[activeOrder.status] || 'rgba(0,0,0,.8)';
+    } else {
+      banner.style.display = 'none';
+    }
   }
 
   tick();
@@ -1173,19 +1214,60 @@ async function placeOrder() {
 }
 
 function simulateOrder(orderId){
-  [{d:8000,s:'prep',l:'👨‍🍳 جاري التجهيز...'},{d:25000,s:'ready',l:'✅ طلبك جاهز!'},{d:45000,s:'delivered',l:'🎉 تم التسليم!'}].forEach(({d,s,l})=>{
-    setTimeout(()=>{
-      const o=allOrders.find(x=>x.id===orderId);if(!o)return;
-      o.status=s;
-      if(db&&demoSession) db.ref('demo_orders/'+demoSession.username+'/'+orderId+'/status').set(s).catch(()=>{});
-      showNotif(l);renderMyOrders();renderAdminOrders();renderTodayStats();
-    },d);
+  // مراحل التتبع بالترتيب مع timing مناسب
+  const stages = [
+    { delay: 5000,  status: 'prep',      notif: '👨‍🍳 بدأ تجهيز طلبك!' },
+    { delay: 18000, status: 'ready',     notif: '✅ طلبك جاهز!' },
+    { delay: 30000, status: 'delivery',  notif: '🛵 المندوب خرج في الطريق إليك!' },
+    { delay: 50000, status: 'delivered', notif: '🎉 تم تسليم طلبك بنجاح!' }
+  ];
+
+  stages.forEach(({delay, status, notif}) => {
+    setTimeout(() => {
+      const o = allOrders.find(x => x.id === orderId);
+      if (!o) return;
+
+      o.status = status;
+
+      // تحديث Firebase
+      if (db && demoSession) {
+        db.ref('demo_orders/' + demoSession.username + '/' + orderId + '/status')
+          .set(status).catch(() => {});
+      }
+
+      // إظهار الـ notification
+      showNotif(notif);
+
+      // تحديث كل الـ views
+      renderMyOrders();
+      renderAdminOrders();
+      renderTodayStats();
+
+      // لو صفحة التتبع مفتوحة — حدّثها تلقائياً
+      const trackTab = document.getElementById('tab-track');
+      if (trackTab && trackTab.style.display !== 'none' && trackTab.classList.contains('active')) {
+        renderTrackOrder(orderId);
+      }
+
+      // لو العميل في صفحة طلباتي — حدّث العداد
+      if (status === 'delivered') {
+        setTimeout(() => renderMyOrders(), 500);
+      }
+    }, delay);
   });
+
+  // تحديث صفحة التتبع كل ثانيتين لو مفتوحة (للـ animation)
+  const refreshInterval = setInterval(() => {
+    const o = allOrders.find(x => x.id === orderId);
+    const trackTab = document.getElementById('tab-track');
+    if (!o) { clearInterval(refreshInterval); return; }
+    if (trackTab && trackTab.classList.contains('active')) {
+      renderTrackOrder(orderId);
+    }
+    if (o.status === 'delivered') { clearInterval(refreshInterval); }
+  }, 2000);
 }
 
-// ================================================================
-// ORDERS
-// ================================================================
 function loadDemoOrders(){
   allOrders=[];
   if(!db||!demoSession)return;
@@ -1231,7 +1313,11 @@ function renderMyOrders(){
     </div>`).join('');
 }
 
-function showTrack(id){openTab('tab-track');renderTrackOrder(id);}
+function showTrack(id){
+  window._activeTrackId = id;
+  openTab('tab-track');
+  renderTrackOrder(id);
+}
 function renderTrackOrder(orderId){
   const o=allOrders.find(x=>x.id===orderId);
   const c=document.getElementById('trackContainer');
@@ -1445,6 +1531,7 @@ function openTab(id){
   if(nb)nb.classList.add('active');
   if(id==='tab-admin'){renderAdminOrders();renderTodayStats();}
   if(id==='tab-my-orders')renderMyOrders();
+  if(id==='tab-track' && window._activeTrackId) renderTrackOrder(window._activeTrackId);
   // اللوجو يظهر في كل التابات ما عدا المنيو
   const logoCorner = document.getElementById('mgLogoCorner');
   if(logoCorner){
