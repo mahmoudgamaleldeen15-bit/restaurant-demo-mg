@@ -233,6 +233,82 @@ input,select,textarea{font-family:inherit}
 .contact-section h3{font-size:14px;font-weight:900;margin-bottom:6px}
 .contact-section p{font-size:12px;opacity:.85;margin-bottom:12px;line-height:1.6}
 .wa-btn{display:inline-flex;align-items:center;gap:8px;background:#25D366;color:#fff;border-radius:10px;padding:10px 20px;font-size:13px;font-weight:900;border:none;cursor:pointer}
+
+/* ══════════════ TRACK PRO ══════════════ */
+.track-pro-wrap{padding:0 0 80px}
+.track-header{background:linear-gradient(135deg,var(--olive-dark),var(--olive));padding:16px;color:#fff;margin-bottom:0}
+.track-order-num{font-size:18px;font-weight:900}
+.track-order-sub{font-size:11px;opacity:.75;margin-top:2px}
+
+/* Progress Bar أعلى الصفحة */
+.track-progress-bar{height:4px;background:rgba(255,255,255,.2);border-radius:0;overflow:hidden}
+.track-progress-fill{height:100%;background:#fff;border-radius:4px;transition:width 1s ease;box-shadow:0 0 8px rgba(255,255,255,.6)}
+
+/* Steps */
+.track-steps-wrap{background:var(--white);margin:12px 14px;border-radius:18px;border:1.5px solid var(--border);overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.06)}
+.track-step{display:flex;align-items:flex-start;gap:0;padding:0;position:relative;cursor:default}
+.track-step:last-child .track-step-line{display:none}
+.track-step-left{display:flex;flex-direction:column;align-items:center;padding:16px 0 0 16px;flex-shrink:0}
+.track-step-dot{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:900;transition:.4s;position:relative;z-index:1}
+.track-step-dot.done{background:linear-gradient(135deg,#16a34a,#22c55e);color:#fff;box-shadow:0 4px 12px rgba(34,197,94,.4)}
+.track-step-dot.active{background:linear-gradient(135deg,#f59e0b,#fbbf24);color:#fff;box-shadow:0 0 0 6px rgba(245,158,11,.15);animation:activePulse 2s ease infinite}
+.track-step-dot.pending{background:#f3f4f6;color:#d1d5db}
+@keyframes activePulse{0%,100%{box-shadow:0 0 0 6px rgba(245,158,11,.15)}50%{box-shadow:0 0 0 10px rgba(245,158,11,.05)}}
+.track-step-line{width:2px;height:32px;margin:4px 0;transition:.4s}
+.track-step-line.done{background:linear-gradient(180deg,#22c55e,#16a34a)}
+.track-step-line.pending{background:#e5e7eb}
+.track-step-right{flex:1;padding:14px 16px 14px 10px}
+.track-step-title{font-size:14px;font-weight:900;margin-bottom:3px;transition:.3s}
+.track-step-title.done{color:#16a34a}
+.track-step-title.active{color:#92400e}
+.track-step-title.pending{color:#9ca3af}
+.track-step-desc{font-size:11px;line-height:1.6;transition:.3s}
+.track-step-desc.done{color:#6b7280}
+.track-step-desc.active{color:#78350f;font-weight:600}
+.track-step-desc.pending{color:#d1d5db}
+.track-step-check{font-size:10px;color:#16a34a;font-weight:800;margin-top:3px}
+.track-step-time{font-size:10px;color:#9ca3af;margin-top:2px}
+
+/* Active Step Highlight */
+.track-step.is-active{background:linear-gradient(135deg,#fffbeb,#fef9ee)}
+
+/* ETA Card */
+.track-eta-card{background:linear-gradient(135deg,var(--olive-dark),var(--olive));border-radius:18px;margin:0 14px 12px;padding:18px;color:#fff;display:flex;align-items:center;gap:14px;box-shadow:0 6px 24px rgba(45,80,22,.3)}
+.track-eta-icon{font-size:36px;animation:tickTock 1s ease-in-out infinite alternate}
+@keyframes tickTock{from{transform:rotate(-10deg)}to{transform:rotate(10deg)}}
+.track-eta-val{font-size:28px;font-weight:900;line-height:1}
+.track-eta-label{font-size:11px;opacity:.8;margin-top:3px}
+
+/* Marketing Badge */
+.track-mkt-badge{background:linear-gradient(135deg,#7c3aed,#5b21b6);border-radius:14px;margin:0 14px 12px;padding:14px;color:#fff;display:flex;align-items:center;gap:12px}
+.track-mkt-icon{font-size:28px;flex-shrink:0}
+.track-mkt-text{font-size:12px;font-weight:700;line-height:1.6;opacity:.95}
+.track-mkt-title{font-size:13px;font-weight:900;margin-bottom:3px}
+
+/* Order Details */
+.track-details-card{background:var(--white);border-radius:16px;border:1.5px solid var(--border);margin:0 14px 12px;overflow:hidden}
+.track-details-header{background:var(--olive-pale);padding:10px 14px;font-size:12px;font-weight:900;color:var(--olive-dark);display:flex;align-items:center;gap:6px}
+.track-details-body{padding:12px 14px}
+.track-item-row{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--border);font-size:12px}
+.track-total-row{display:flex;justify-content:space-between;padding:10px 0 0;font-size:14px;font-weight:900}
+
+/* Success Screen */
+.track-success{background:linear-gradient(160deg,#14532d,#16a34a,#22c55e);border-radius:18px;margin:0 14px 12px;padding:28px 20px;text-align:center;color:#fff;position:relative;overflow:hidden}
+.track-success::before{content:'🎉';font-size:80px;position:absolute;top:-10px;right:-10px;opacity:.15;transform:rotate(20deg)}
+.track-success-icon{font-size:52px;margin-bottom:10px;animation:successBounce .6s ease}
+@keyframes successBounce{0%{transform:scale(0)}70%{transform:scale(1.2)}100%{transform:scale(1)}}
+.track-success-title{font-size:20px;font-weight:900;margin-bottom:6px}
+.track-success-sub{font-size:12px;opacity:.85;line-height:1.6;margin-bottom:14px}
+
+/* Rating */
+.track-rating{background:var(--white);border-radius:16px;border:1.5px solid var(--border);margin:0 14px 12px;padding:16px;text-align:center}
+.rating-stars{display:flex;justify-content:center;gap:8px;margin:10px 0}
+.star-btn{font-size:28px;cursor:pointer;transition:.2s;filter:grayscale(1);opacity:.4}
+.star-btn.selected,.star-btn:hover{filter:grayscale(0);opacity:1;transform:scale(1.2)}
+
+/* WA Button */
+.track-wa-btn{display:flex;align-items:center;justify-content:center;gap:10px;background:linear-gradient(135deg,#25D366,#128C7E);color:#fff;border-radius:14px;padding:14px;font-size:14px;font-weight:900;border:none;cursor:pointer;width:calc(100% - 28px);margin:0 14px 12px;box-shadow:0 4px 16px rgba(37,211,102,.35);font-family:inherit}
+
 .mg-logo-corner{position:fixed;bottom:76px;left:10px;z-index:49;cursor:pointer;display:none}
 .mg-logo-corner.show{display:block}
 .mg-logo-corner-inner{background:linear-gradient(135deg,#0a1628,#0d2444);border-radius:14px;padding:7px 12px;box-shadow:0 4px 20px rgba(26,95,200,.4),0 0 0 1.5px rgba(26,95,200,.3);display:flex;align-items:center;gap:8px}
@@ -1127,13 +1203,31 @@ const TYPE_MAP={delivery:'🛵 توصيل',pickup:'🏪 استلام',dine:'🪑
 
 function renderMyOrders(){
   const c=document.getElementById('myOrdersContainer');
-  if(!allOrders.length){c.innerHTML='<div class="empty-state"><div class="empty-icon">📦</div><p>لا توجد طلبات بعد</p></div>';return;}
+  if(!allOrders.length){c.innerHTML='<div class="empty-state"><div class="empty-icon">📦</div><p>لا توجد طلبات بعد<br/>اطلب من المنيو!</p></div>';return;}
+  const notifMsgs={
+    new:'⏳ في انتظار مراجعة الكاشير',
+    prep:'👨‍🍳 الشيف بيجهز طلبك الآن',
+    ready:'✅ طلبك جاهز!',
+    delivery:'🛵 المندوب في الطريق إليك',
+    delivered:'🎉 تم التسليم بنجاح'
+  };
   c.innerHTML=allOrders.map(o=>`
-    <div class="order-card s-${o.status}" onclick="showTrack('${o.id}')">
-      <div class="order-header"><div class="order-num">#${o.id}</div><span class="status-badge">${STATUS_MAP[o.status]||o.status}</span></div>
-      <div class="order-items">${(o.items||[]).map(i=>i.name+'×'+i.qty).join(' • ')}</div>
-      <div class="order-total">${o.total} ج.م</div>
-      <div style="font-size:11px;color:var(--text-muted);margin-top:4px">${o.date} — ${o.time}</div>
+    <div class="order-card s-${o.status}">
+      <div class="order-header">
+        <div class="order-num">#${o.id}</div>
+        <span class="status-badge">${STATUS_MAP[o.status]||o.status}</span>
+      </div>
+      <div style="font-size:12px;font-weight:800;color:var(--olive-dark);margin-bottom:4px">${notifMsgs[o.status]||''}</div>
+      <div class="order-items">${(o.items||[]).map(i=>i.name+' × '+i.qty).join(' • ')}</div>
+      <div class="order-total" style="margin-top:4px">${o.total} ج.م</div>
+      <div style="font-size:11px;color:var(--text-muted);margin-top:3px">${o.date} — ${o.time}</div>
+      ${o.status!=='delivered'?`
+      <button onclick="showTrack('${o.id}')" style="margin-top:10px;width:100%;padding:10px;background:linear-gradient(135deg,var(--olive),var(--olive-light));color:#fff;border-radius:10px;font-size:12px;font-weight:900;border:none;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:6px">
+        📍 تتبع طلبك لحظة بلحظة
+      </button>`:`
+      <button onclick="showTrack('${o.id}')" style="margin-top:10px;width:100%;padding:8px;background:var(--olive-pale);color:var(--olive-dark);border-radius:10px;font-size:11px;font-weight:800;border:1.5px solid var(--olive-light);cursor:pointer;font-family:inherit">
+        📋 تفاصيل الطلب
+      </button>`}
     </div>`).join('');
 }
 
@@ -1141,42 +1235,143 @@ function showTrack(id){openTab('tab-track');renderTrackOrder(id);}
 function renderTrackOrder(orderId){
   const o=allOrders.find(x=>x.id===orderId);
   const c=document.getElementById('trackContainer');
-  if(!o){c.innerHTML='<div class="empty-state"><div class="empty-icon">🔍</div><p>لا يوجد طلب</p></div>';return;}
+  if(!o){c.innerHTML='<div class="empty-state" style="padding-top:40px"><div class="empty-icon">🔍</div><p>لا يوجد طلب نشط<br/>اطلب من المنيو أولاً</p></div>';return;}
+
   const steps=[
-    {k:'new',      l:'تم استلام الطلب',  sub:'في انتظار مراجعة الكاشير', i:'⏳'},
-    {k:'prep',     l:'بدأ تجهيز الطلب',  sub:'المطبخ يجهز طلبك الآن',    i:'🔍'},
-    {k:'ready',    l:'الطلب جاهز',        sub:'جاهز للاستلام أو التسليم', i:'✅'},
-    {k:'delivery', l:'خرج للتوصيل',       sub:'المندوب في الطريق إليك',   i:'🛵'},
-    {k:'delivered',l:'تم التسليم',        sub:'',                          i:'🎉'}
+    {
+      k:'new', dot:'⏳',
+      title:'في انتظار مراجعة الكاشير',
+      active_desc:'📋 الكاشير بيراجع طلبك الآن ويتأكد من طريقة الدفع وصحة الطلب قبل ما يبدأ التجهيز — عشان مايحصلش أي خطأ.',
+      done_desc:'✅ راجع الكاشير الطلب وتأكد من كل التفاصيل'
+    },
+    {
+      k:'prep', dot:'👨‍🍳',
+      title:'بدأ تجهيز طلبك',
+      active_desc:'🍳 الكاشير أكد الأوردر وبدأ الشيف يجهز طلبك بكل عناية — متقلقش، كل حاجة تحت السيطرة.',
+      done_desc:'✅ الشيف خلص التجهيز وطلبك جاهز'
+    },
+    {
+      k:'ready', dot:'✅',
+      title:'طلبك جاهز!',
+      active_desc:'🎯 طلبك جاهز تماماً ومستنياك! بدل ما تتصل وتسأل "طلبي جاهز؟" — إحنا بنقولك بشكل تلقائي. راحتك هي أولويتنا.',
+      done_desc:'✅ تم تسليم الطلب للمندوب'
+    },
+    {
+      k:'delivery', dot:'🛵',
+      title:'المندوب في الطريق إليك',
+      active_desc:'📍 المندوب استلم طلبك وخرج في الطريق إليك. تقدر تتصل بيه مباشرة أو تتابع موقعه — وإحنا كإدارة بنتابع كل المندوبين لحظة بلحظة عشان نضمن وصول طلبك بأمان.',
+      done_desc:'✅ وصل المندوب وسلّم الطلب'
+    },
+    {
+      k:'delivered', dot:'🎉',
+      title:'تم التسليم بنجاح',
+      active_desc:'',
+      done_desc:''
+    }
   ];
+
   const sMap={new:0,prep:1,ready:2,delivery:3,delivered:4};
   const si=sMap[o.status]??0;
-  let stepsHtml='<div style="background:var(--white);border-radius:16px;border:1.5px solid var(--border);margin:12px 14px;padding:16px">';
-  stepsHtml+='<div style="font-size:13px;font-weight:900;color:var(--dark);margin-bottom:14px">تتبع الطلب رقم #'+o.id+'</div>';
-  steps.forEach((s,i)=>{
-    const done=i<si,active=i===si;
-    const dc=done?'#16a34a':active?'#f59e0b':'#e5e7eb';
-    const tc=done?'#16a34a':active?'#92400e':'#9ca3af';
-    const icon=done?'✓':active?s.i:(i+1);
-    stepsHtml+=`<div style="display:flex;align-items:flex-start;gap:12px">
-      <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0">
-        <div style="width:36px;height:36px;border-radius:50%;background:${dc};color:${done||active?'#fff':'#9ca3af'};display:flex;align-items:center;justify-content:center;font-size:${done?'14':'16'}px;font-weight:900;box-shadow:${active?'0 0 0 4px rgba(245,158,11,.2)':'none'}">${icon}</div>
-        ${i<steps.length-1?`<div style="width:2px;height:30px;background:${done?'#16a34a':'#e5e7eb'};margin:3px 0"></div>`:''}
+  const progressPct=[10,35,60,80,100][si];
+
+  // Header
+  let html=`<div class="track-pro-wrap">
+    <div class="track-header">
+      <div class="track-order-num">طلب رقم #${o.id}</div>
+      <div class="track-order-sub">${o.date} — ${o.time} • ${{delivery:'🛵 توصيل',pickup:'🏪 استلام',dine:'🪑 داخل المطعم'}[o.type]||''}</div>
+    </div>
+    <div class="track-progress-bar"><div class="track-progress-fill" style="width:${progressPct}%"></div></div>`;
+
+  // ETA (لو مش delivered)
+  if(o.status!=='delivered'){
+    html+=`<div style="height:12px"></div>
+    <div class="track-eta-card">
+      <div class="track-eta-icon">🕐</div>
+      <div>
+        <div class="track-eta-val">~~30 دقيقة</div>
+        <div class="track-eta-label">وقت التوصيل المتوقع</div>
       </div>
-      <div style="padding-top:6px">
-        <div style="font-size:13px;font-weight:800;color:${tc}">${s.l}</div>
-        ${active&&s.sub?`<div style="font-size:11px;color:#9ca3af;margin-top:2px">${s.sub}</div>`:''}
-        ${done?'<div style="font-size:10px;color:#16a34a;margin-top:1px">✓ مكتمل</div>':''}
+    </div>`;
+  }
+
+  // Steps
+  html+=`<div class="track-steps-wrap">`;
+  steps.forEach((s,i)=>{
+    const done=i<si, active=i===si, pending=i>si;
+    const cls=done?'done':active?'active':'pending';
+    const isActiveStep=active?' is-active':'';
+    html+=`<div class="track-step${isActiveStep}">
+      <div class="track-step-left">
+        <div class="track-step-dot ${cls}">${done?'✓':active?s.dot:''}</div>
+        ${i<steps.length-1?`<div class="track-step-line ${done?'done':'pending'}"></div>`:''}
+      </div>
+      <div class="track-step-right">
+        <div class="track-step-title ${cls}">${s.title}</div>
+        <div class="track-step-desc ${cls}">${active?s.active_desc:done&&s.done_desc?s.done_desc:''}</div>
+        ${done?'<div class="track-step-time">✓ مكتمل</div>':''}
       </div>
     </div>`;
   });
-  stepsHtml+='</div>';
-  const timeHtml=o.status!=='delivered'?`<div style="background:var(--white);border-radius:16px;border:1.5px solid var(--border);margin:0 14px 12px;padding:16px;text-align:center"><div style="font-size:12px;color:var(--text-muted);font-weight:700;margin-bottom:4px">🕐 وقت التوصيل المتوقع</div><div style="font-size:28px;font-weight:900;color:var(--olive-dark)">~~30 دقيقة</div></div>`:'';
-  const detailsHtml=`<div style="background:var(--white);border-radius:16px;border:1.5px solid var(--border);margin:0 14px 12px;padding:14px"><div style="font-size:12px;font-weight:900;color:var(--text-muted);margin-bottom:8px">📋 تفاصيل الطلب</div>${(o.items||[]).map(i=>`<div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--border);font-size:12px"><span>${i.name} × ${i.qty}</span><span style="font-weight:800">${i.price*i.qty} ج.م</span></div>`).join('')}<div style="display:flex;justify-content:space-between;padding:8px 0 0;font-size:13px;font-weight:900"><span>الإجمالي</span><span style="color:var(--olive-dark)">${o.total} ج.م</span></div></div>`;
-  const successHtml=o.status==='delivered'?`<div style="background:linear-gradient(135deg,#16a34a,#22c55e);border-radius:18px;padding:24px;margin:0 14px 12px;text-align:center;color:#fff"><div style="font-size:48px;margin-bottom:10px">🎉</div><div style="font-size:18px;font-weight:900;margin-bottom:4px">تم التسليم بنجاح!</div><div style="font-size:12px;opacity:.9">شكراً لطلبك — نراك قريباً ❤️</div></div>`:'';
-  const waHtml=`<div style="margin:0 14px 80px"><button onclick="contactWA()" style="width:100%;padding:14px;background:linear-gradient(135deg,#25D366,#128C7E);color:#fff;border-radius:14px;font-size:14px;font-weight:900;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;font-family:inherit"><span style="font-size:20px">💬</span> تواصل عبر واتساب</button></div>`;
-  c.innerHTML=stepsHtml+timeHtml+detailsHtml+successHtml+waHtml;
+  html+=`</div>`;
+
+  // Marketing Badge (للخطوات النشطة فقط)
+  const mktMsgs={
+    new:{icon:'🛡️',title:'نظام تحقق آلي',text:'نظامنا بيتحقق من كل طلب قبل التجهيز — صفر أخطاء، صفر ضياع للوقت.'},
+    prep:{icon:'⭐',title:'جودة مضمونة',text:'كل طلب بيمر بـ 3 مراحل تحقق قبل ما يوصلك — عشان تاكل وأنت مطمن.'},
+    ready:{icon:'🔔',title:'إشعار فوري',text:'مش محتاج تتصل وتسأل — إحنا بنعلمك بكل تحديث تلقائياً فور ما بيحصل.'},
+    delivery:{icon:'📡',title:'تتبع لحظي',text:'إحنا كإدارة بنتابع كل مندوبينا لحظة بلحظة — راحتك وأمانك أولويتنا.'}
+  };
+  if(o.status!=='delivered'&&mktMsgs[o.status]){
+    const m=mktMsgs[o.status];
+    html+=`<div class="track-mkt-badge">
+      <div class="track-mkt-icon">${m.icon}</div>
+      <div><div class="track-mkt-title">${m.title}</div><div class="track-mkt-text">${m.text}</div></div>
+    </div>`;
+  }
+
+  // تفاصيل الطلب
+  html+=`<div class="track-details-card">
+    <div class="track-details-header">🧾 تفاصيل طلبك</div>
+    <div class="track-details-body">
+      ${(o.items||[]).map(i=>`<div class="track-item-row"><span>${i.name} × ${i.qty}</span><span style="font-weight:800">${i.price*i.qty} ج.م</span></div>`).join('')}
+      <div class="track-total-row"><span>الإجمالي</span><span style="color:var(--olive-dark)">${o.total} ج.م</span></div>
+    </div>
+  </div>`;
+
+  // Success Screen
+  if(o.status==='delivered'){
+    html+=`<div class="track-success">
+      <div class="track-success-icon">🎉</div>
+      <div class="track-success-title">وصل طلبك بنجاح!</div>
+      <div class="track-success-sub">شكراً على ثقتك فينا ❤️<br/>رأيك يهمنا — قيّم تجربتك معنا</div>
+    </div>
+    <div class="track-rating">
+      <div style="font-size:13px;font-weight:900;color:var(--dark);margin-bottom:4px">⭐ قيّم خدمة التوصيل</div>
+      <div style="font-size:11px;color:var(--text-muted);margin-bottom:8px">تقييمك بيساعدنا نحسن الخدمة لك ولكل عملائنا</div>
+      <div class="rating-stars" id="ratingStars">
+        ${[1,2,3,4,5].map(n=>`<span class="star-btn" onclick="rateMandob(${n})" data-val="${n}">⭐</span>`).join('')}
+      </div>
+      <div id="ratingMsg" style="font-size:12px;color:var(--text-muted);min-height:16px"></div>
+    </div>`;
+  }
+
+  // WA Button
+  html+=`<button class="track-wa-btn" onclick="contactWA()">
+    <span style="font-size:20px">💬</span> تواصل معنا على واتساب
+  </button>`;
+
+  html+=`</div>`;
+  c.innerHTML=html;
 }
+
+function rateMandob(val){
+  document.querySelectorAll('.star-btn').forEach((s,i)=>{
+    s.classList.toggle('selected', i<val);
+  });
+  const msgs=['😞 نأسف على تجربتك — سنتحسن','😐 شكراً لتقييمك — سنحاول أكثر','😊 شكراً! نسعى دائماً للأفضل','😄 رائع! سعداء بخدمتك','🤩 ممتاز! أنت نجمتنا ❤️'];
+  document.getElementById('ratingMsg').textContent=msgs[val-1]||'';
+}
+
 function renderAdminOrders(){
   const today=new Date().toLocaleDateString('ar-EG');
   const tod=allOrders.filter(o=>o.date===today);
