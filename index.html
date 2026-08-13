@@ -191,8 +191,8 @@ input,select,textarea{font-family:inherit}
 .lock-icon{font-size:9px}
 .locked-preview-wrap{position:relative;min-height:400px;overflow:hidden}
 .locked-preview-content{filter:blur(2px);pointer-events:none;user-select:none;opacity:.6}
-.locked-preview-overlay{position:absolute;inset:0;background:rgba(250,247,240,.85);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;z-index:10;padding:20px}
-.locked-preview-card{background:var(--white);border-radius:22px;padding:28px 22px;max-width:380px;width:100%;text-align:center;box-shadow:0 8px 40px rgba(0,0,0,.12);border:2px solid var(--demo-pale)}
+.locked-preview-overlay{position:absolute;inset:0;background:rgba(250,247,240,.88);backdrop-filter:blur(6px);display:flex;align-items:flex-start;justify-content:center;z-index:10;padding:16px;overflow-y:auto}
+.locked-preview-card{background:var(--white);border-radius:22px;padding:24px 20px;max-width:380px;width:100%;text-align:center;box-shadow:0 8px 40px rgba(0,0,0,.12);border:2px solid var(--demo-pale);margin:auto}
 .lp-icon{font-size:54px;margin-bottom:12px}
 .lp-title{font-size:18px;font-weight:900;color:var(--dark);margin-bottom:8px}
 .lp-desc{font-size:13px;color:var(--text-muted);line-height:1.7;margin-bottom:6px}
@@ -227,11 +227,12 @@ input,select,textarea{font-family:inherit}
 .contact-section h3{font-size:14px;font-weight:900;margin-bottom:6px}
 .contact-section p{font-size:12px;opacity:.85;margin-bottom:12px;line-height:1.6}
 .wa-btn{display:inline-flex;align-items:center;gap:8px;background:#25D366;color:#fff;border-radius:10px;padding:10px 20px;font-size:13px;font-weight:900;border:none;cursor:pointer}
-.mg-logo-corner{position:fixed;bottom:76px;left:10px;z-index:49;cursor:pointer}
-.mg-logo-corner-inner{background:linear-gradient(135deg,rgba(255,255,255,.97),rgba(240,248,255,.95));border-radius:12px;padding:5px 8px;box-shadow:0 2px 16px rgba(26,95,200,.2);border:1px solid rgba(26,95,200,.15);display:flex;align-items:center;gap:6px}
-.mg-logo-corner-inner img{width:22px;height:22px;object-fit:contain}
-.mg-logo-corner-text{font-size:8px;font-weight:900;color:#1a5fc8;line-height:1.2}
-.mg-logo-corner-sub{font-size:6px;color:#6b7280;font-weight:600;letter-spacing:.5px}
+.mg-logo-corner{position:fixed;bottom:76px;left:10px;z-index:49;cursor:pointer;display:none}
+.mg-logo-corner.show{display:block}
+.mg-logo-corner-inner{background:linear-gradient(135deg,#0a1628,#0d2444);border-radius:14px;padding:7px 12px;box-shadow:0 4px 20px rgba(26,95,200,.4),0 0 0 1.5px rgba(26,95,200,.3);display:flex;align-items:center;gap:8px}
+.mg-logo-corner-inner img{width:30px;height:30px;object-fit:contain;filter:drop-shadow(0 0 4px rgba(0,180,255,.5))}
+.mg-logo-corner-text{font-size:10px;font-weight:900;background:linear-gradient(135deg,#60a5fa,#fff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1.3}
+.mg-logo-corner-sub{font-size:7px;color:rgba(255,255,255,.45);font-weight:600;letter-spacing:.8px}
 .contact-logo-wrap{background:linear-gradient(160deg,#050d1a,#0a1628,#0d2444);border-radius:22px;margin:16px 14px;padding:28px 20px;text-align:center;position:relative;overflow:hidden;border:1px solid rgba(26,95,200,.25)}
 .contact-logo-wrap::before{content:"";position:absolute;top:-50px;right:-50px;width:150px;height:150px;background:radial-gradient(circle,rgba(26,95,200,.25),transparent 70%);border-radius:50%;pointer-events:none}
 .contact-logo-wrap::after{content:"";position:absolute;bottom:-40px;left:-40px;width:120px;height:120px;background:radial-gradient(circle,rgba(0,180,255,.18),transparent 70%);border-radius:50%;pointer-events:none}
@@ -531,7 +532,7 @@ input,select,textarea{font-family:inherit}
     </div>
   </div>
 
-  <div class="mg-logo-corner" onclick="openTab('tab-contact')" title="MG AppHouse">
+  <div class="mg-logo-corner" id="mgLogoCorner" onclick="openTab('tab-contact')" title="MG AppHouse">
     <div class="mg-logo-corner-inner">
       <img src="https://mahmoudgamaleldeen15-bit.github.io/restaurant-demo-mg/logo.png" alt="MG" onerror="this.style.display='none'"/>
       <div>
@@ -1221,6 +1222,12 @@ function openTab(id){
   if(nb)nb.classList.add('active');
   if(id==='tab-admin'){renderAdminOrders();renderTodayStats();}
   if(id==='tab-my-orders')renderMyOrders();
+  // اللوجو يظهر في كل التابات ما عدا المنيو
+  const logoCorner = document.getElementById('mgLogoCorner');
+  if(logoCorner){
+    if(id === 'tab-menu') logoCorner.classList.remove('show');
+    else logoCorner.classList.add('show');
+  }
 }
 
 function openAdminTab(id,btn){
