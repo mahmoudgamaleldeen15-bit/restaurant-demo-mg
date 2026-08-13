@@ -445,8 +445,7 @@ input,select,textarea{font-family:inherit}
 
     <!-- TRACK TAB -->
     <div id="tab-track" class="tab-content">
-      <div class="section-title">🛵 تتبع الطلب</div>
-      <div id="trackContainer"><div class="empty-state"><div class="empty-icon">🔍</div><p>لا يوجد طلب نشط</p></div></div>
+      <div id="trackContainer"><div class="empty-state"><div class="empty-icon">🔍</div><p>لا يوجد طلب نشط<br/>اطلب من المنيو أولاً</p></div></div>
     </div>
 
     <!-- DASHBOARD TAB -->
@@ -457,11 +456,14 @@ input,select,textarea{font-family:inherit}
         <button class="tab-btn" onclick="openAdminTab('atab-reports',this)">📈 تقارير</button>
         <button class="tab-btn tab-locked" onclick="openLockedTab('atab-cashier',this)">🧾 الكاشير</button>
         <button class="tab-btn tab-locked" onclick="openLockedTab('atab-menu-mgmt',this)">🍽️ إدارة المنيو</button>
-        <button class="tab-btn tab-locked" onclick="openLockedTab('atab-inventory',this)">📦 المخزون</button>
         <button class="tab-btn tab-locked" onclick="openLockedTab('atab-customers',this)">👥 العملاء</button>
         <button class="tab-btn tab-locked" onclick="openLockedTab('atab-agents',this)">🛵 المندوبين</button>
-        <button class="tab-btn tab-locked" onclick="openLockedTab('atab-employees',this)">👨‍💼 الموظفين</button>
-        <button class="tab-btn tab-locked" onclick="openLockedTab('atab-branches',this)">🏪 الفروع</button>
+        <button class="tab-btn tab-locked" onclick="openLockedTab('atab-lastorder',this)">⚡ Last Order</button>
+        <button class="tab-btn tab-locked" onclick="openLockedTab('atab-prayer',this)">🕌 أوقات الصلاة</button>
+        <button class="tab-btn tab-locked" onclick="openLockedTab('atab-block',this)">🚫 الحظر</button>
+        <button class="tab-btn tab-locked" onclick="openLockedTab('atab-stats',this)">📊 الإحصائيات</button>
+        <button class="tab-btn tab-locked" onclick="openLockedTab('atab-payments',this)">💰 جرد المدفوعات</button>
+        <button class="tab-btn tab-locked" onclick="openLockedTab('atab-zones',this)">🗺️ مناطق التوصيل</button>
         <button class="tab-btn tab-locked" onclick="openLockedTab('atab-offers',this)">🎁 العروض</button>
         <button class="tab-btn tab-locked" onclick="openLockedTab('atab-marketing',this)">📣 التسويق</button>
         <button class="tab-btn tab-locked" onclick="openLockedTab('atab-bookings',this)">📅 الحجوزات</button>
@@ -495,11 +497,14 @@ input,select,textarea{font-family:inherit}
       <!-- تابات مقفولة — Preview فقط -->
       <div id="atab-cashier" class="tab-content locked-tab-content" style="display:none"></div>
       <div id="atab-menu-mgmt" class="tab-content locked-tab-content" style="display:none"></div>
-      <div id="atab-inventory" class="tab-content locked-tab-content" style="display:none"></div>
       <div id="atab-customers" class="tab-content locked-tab-content" style="display:none"></div>
       <div id="atab-agents" class="tab-content locked-tab-content" style="display:none"></div>
-      <div id="atab-employees" class="tab-content locked-tab-content" style="display:none"></div>
-      <div id="atab-branches" class="tab-content locked-tab-content" style="display:none"></div>
+      <div id="atab-lastorder" class="tab-content locked-tab-content" style="display:none"></div>
+      <div id="atab-prayer" class="tab-content locked-tab-content" style="display:none"></div>
+      <div id="atab-block" class="tab-content locked-tab-content" style="display:none"></div>
+      <div id="atab-stats" class="tab-content locked-tab-content" style="display:none"></div>
+      <div id="atab-payments" class="tab-content locked-tab-content" style="display:none"></div>
+      <div id="atab-zones" class="tab-content locked-tab-content" style="display:none"></div>
       <div id="atab-offers" class="tab-content locked-tab-content" style="display:none"></div>
       <div id="atab-marketing" class="tab-content locked-tab-content" style="display:none"></div>
       <div id="atab-bookings" class="tab-content locked-tab-content" style="display:none"></div>
@@ -1137,24 +1142,41 @@ function renderTrackOrder(orderId){
   const o=allOrders.find(x=>x.id===orderId);
   const c=document.getElementById('trackContainer');
   if(!o){c.innerHTML='<div class="empty-state"><div class="empty-icon">🔍</div><p>لا يوجد طلب</p></div>';return;}
-  const steps=[{k:'new',l:'الطلب',i:'📋'},{k:'prep',l:'التجهيز',i:'👨‍🍳'},{k:'ready',l:'جاهز',i:'✅'},{k:'delivered',l:'التسليم',i:'🎉'}];
-  const si=steps.findIndex(s=>s.k===o.status);
-  let stHtml='<div class="track-steps">';
+  const steps=[
+    {k:'new',      l:'تم استلام الطلب',  sub:'في انتظار مراجعة الكاشير', i:'⏳'},
+    {k:'prep',     l:'بدأ تجهيز الطلب',  sub:'المطبخ يجهز طلبك الآن',    i:'🔍'},
+    {k:'ready',    l:'الطلب جاهز',        sub:'جاهز للاستلام أو التسليم', i:'✅'},
+    {k:'delivery', l:'خرج للتوصيل',       sub:'المندوب في الطريق إليك',   i:'🛵'},
+    {k:'delivered',l:'تم التسليم',        sub:'',                          i:'🎉'}
+  ];
+  const sMap={new:0,prep:1,ready:2,delivery:3,delivered:4};
+  const si=sMap[o.status]??0;
+  let stepsHtml='<div style="background:var(--white);border-radius:16px;border:1.5px solid var(--border);margin:12px 14px;padding:16px">';
+  stepsHtml+='<div style="font-size:13px;font-weight:900;color:var(--dark);margin-bottom:14px">تتبع الطلب رقم #'+o.id+'</div>';
   steps.forEach((s,i)=>{
-    const done=i<=si,active=i===si;
-    stHtml+=`<div class="step-col"><div class="step-dot ${done?'done':active?'active':'pending'}">${done?'✓':i+1}</div><div class="step-lbl">${s.l}</div></div>`;
-    if(i<steps.length-1) stHtml+=`<div class="step-line ${i<si?'done':''}"></div>`;
+    const done=i<si,active=i===si;
+    const dc=done?'#16a34a':active?'#f59e0b':'#e5e7eb';
+    const tc=done?'#16a34a':active?'#92400e':'#9ca3af';
+    const icon=done?'✓':active?s.i:(i+1);
+    stepsHtml+=`<div style="display:flex;align-items:flex-start;gap:12px">
+      <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0">
+        <div style="width:36px;height:36px;border-radius:50%;background:${dc};color:${done||active?'#fff':'#9ca3af'};display:flex;align-items:center;justify-content:center;font-size:${done?'14':'16'}px;font-weight:900;box-shadow:${active?'0 0 0 4px rgba(245,158,11,.2)':'none'}">${icon}</div>
+        ${i<steps.length-1?`<div style="width:2px;height:30px;background:${done?'#16a34a':'#e5e7eb'};margin:3px 0"></div>`:''}
+      </div>
+      <div style="padding-top:6px">
+        <div style="font-size:13px;font-weight:800;color:${tc}">${s.l}</div>
+        ${active&&s.sub?`<div style="font-size:11px;color:#9ca3af;margin-top:2px">${s.sub}</div>`:''}
+        ${done?'<div style="font-size:10px;color:#16a34a;margin-top:1px">✓ مكتمل</div>':''}
+      </div>
+    </div>`;
   });
-  stHtml+='</div>';
-  c.innerHTML=stHtml+`
-    <div class="card">
-      <div style="font-size:13px;font-weight:800;margin-bottom:8px">#${o.id} — ${STATUS_MAP[o.status]||o.status}</div>
-      ${(o.items||[]).map(i=>`<div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--border);font-size:12px"><span>${i.name}×${i.qty}</span><span style="font-weight:800">${i.price*i.qty} ج.م</span></div>`).join('')}
-      <div style="display:flex;justify-content:space-between;padding:8px 0 0;font-size:13px;font-weight:900"><span>الإجمالي</span><span style="color:var(--olive-dark)">${o.total} ج.م</span></div>
-    </div>
-    ${o.status==='delivered'?`<div style="background:linear-gradient(135deg,#16a34a,#22c55e);border-radius:14px;padding:20px;margin:0 14px;text-align:center;color:#fff"><div style="font-size:36px;margin-bottom:8px">🎉</div><div style="font-size:15px;font-weight:900">تم التسليم بنجاح!</div></div>`:''}`;
+  stepsHtml+='</div>';
+  const timeHtml=o.status!=='delivered'?`<div style="background:var(--white);border-radius:16px;border:1.5px solid var(--border);margin:0 14px 12px;padding:16px;text-align:center"><div style="font-size:12px;color:var(--text-muted);font-weight:700;margin-bottom:4px">🕐 وقت التوصيل المتوقع</div><div style="font-size:28px;font-weight:900;color:var(--olive-dark)">~~30 دقيقة</div></div>`:'';
+  const detailsHtml=`<div style="background:var(--white);border-radius:16px;border:1.5px solid var(--border);margin:0 14px 12px;padding:14px"><div style="font-size:12px;font-weight:900;color:var(--text-muted);margin-bottom:8px">📋 تفاصيل الطلب</div>${(o.items||[]).map(i=>`<div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--border);font-size:12px"><span>${i.name} × ${i.qty}</span><span style="font-weight:800">${i.price*i.qty} ج.م</span></div>`).join('')}<div style="display:flex;justify-content:space-between;padding:8px 0 0;font-size:13px;font-weight:900"><span>الإجمالي</span><span style="color:var(--olive-dark)">${o.total} ج.م</span></div></div>`;
+  const successHtml=o.status==='delivered'?`<div style="background:linear-gradient(135deg,#16a34a,#22c55e);border-radius:18px;padding:24px;margin:0 14px 12px;text-align:center;color:#fff"><div style="font-size:48px;margin-bottom:10px">🎉</div><div style="font-size:18px;font-weight:900;margin-bottom:4px">تم التسليم بنجاح!</div><div style="font-size:12px;opacity:.9">شكراً لطلبك — نراك قريباً ❤️</div></div>`:'';
+  const waHtml=`<div style="margin:0 14px 80px"><button onclick="contactWA()" style="width:100%;padding:14px;background:linear-gradient(135deg,#25D366,#128C7E);color:#fff;border-radius:14px;font-size:14px;font-weight:900;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;font-family:inherit"><span style="font-size:20px">💬</span> تواصل عبر واتساب</button></div>`;
+  c.innerHTML=stepsHtml+timeHtml+detailsHtml+successHtml+waHtml;
 }
-
 function renderAdminOrders(){
   const today=new Date().toLocaleDateString('ar-EG');
   const tod=allOrders.filter(o=>o.date===today);
@@ -1248,68 +1270,99 @@ function openAdminTab(id,btn){
 const LOCKED_TABS_DATA = {
   'atab-cashier': {
     icon:'🧾', title:'شاشة الكاشير',
-    desc:'شاشة متخصصة للكاشير لمتابعة الطلبات الواردة وتغيير حالاتها وإدارة المدفوعات بشكل احترافي.',
-    features:['عرض جميع الطلبات الجديدة فور وصولها','قبول وتغيير حالة الطلب بضغطة واحدة','فلترة الطلبات حسب النوع والحالة','طباعة الفاتورة مباشرة','إشعارات صوتية للطلبات الجديدة','إحصائيات الكاشير اليومية']
+    desc:'شاشة متخصصة للكاشير — استلم الطلبات، غيّر حالاتها، وأدر المدفوعات في ثوانٍ.',
+    usp:'⚡ مطعمك يخسر طلبات كل يوم لأن الكاشير بيتأخر في التأكيد — دي الحل.',
+    features:['عرض جميع الطلبات فور وصولها مع صوت تنبيه','قبول وتغيير حالة الطلب بضغطة واحدة','فلترة الطلبات حسب النوع: توصيل / استلام / داخل','طباعة الفاتورة مباشرة من الشاشة','إشعارات صوتية وبصرية للطلبات الجديدة','ملخص مالي فوري لكل وردية']
   },
   'atab-menu-mgmt': {
     icon:'🍽️', title:'إدارة المنيو',
-    desc:'تحكم كامل في قائمة الطعام — أضف وعدّل وأخفِ الأصناف في أي وقت من داشبورد واحد.',
-    features:['إضافة وتعديل وحذف الأصناف','رفع صور الأصناف مباشرة','إدارة الأقسام والتصنيفات','تفعيل وإيقاف الأصناف لحظياً','إضافة إكسترا وتخصيصات','ربط الأصناف بمواعيد محددة']
-  },
-  'atab-inventory': {
-    icon:'📦', title:'إدارة المخزون',
-    desc:'تتبع المخزون لحظياً مع تنبيهات تلقائية عند نقص أي مادة خام.',
-    features:['تتبع الكميات لحظياً لكل مادة خام','تنبيه تلقائي عند الوصول للحد الأدنى','ربط الأصناف بالمواد الخام','تقرير استهلاك يومي وأسبوعي','إدارة الموردين وطلبات الشراء','تاريخ حركات المخزون كاملة']
+    desc:'غيّر أسعارك، أضف صنف جديد، أو أخفِ صنف نفذ — كل ده في ثوانٍ بدون مبرمج.',
+    usp:'💡 أصحاب المطاعم بيخسروا لما العميل يطلب صنف ناقص — هنا تتحكم لحظياً.',
+    features:['إضافة وتعديل وحذف الأصناف بسهولة تامة','رفع وتغيير صور الأصناف مباشرة','إدارة الأقسام والتصنيفات','تفعيل وإيقاف الأصناف لحظياً','إضافة إكسترا وخيارات تخصيص','ربط الأصناف بأوقات محددة (إفطار / غداء / عشاء)']
   },
   'atab-customers': {
     icon:'👥', title:'إدارة العملاء',
-    desc:'قاعدة بيانات كاملة لعملائك مع سجل مشترياتهم وتحليل سلوكهم.',
-    features:['قاعدة بيانات كاملة لكل العملاء','سجل الطلبات لكل عميل','تصنيف العملاء حسب الإنفاق','عملاء VIP مع مزايا خاصة','إرسال رسائل مخصصة للعملاء','تحليل العملاء الجدد والمنتظمين']
+    desc:'اعرف عملاءك الحقيقيين — مين بيطلب كتير، مين انقطع، ومين يستاهل عرض خاص.',
+    usp:'📈 العملاء المنتظمون هم 80% من إيراداتك — لازم تعرف مين هم.',
+    features:['قاعدة بيانات كاملة لكل العملاء','سجل الطلبات والمبالغ لكل عميل','تصنيف تلقائي: عميل جديد / منتظم / VIP','حظر العملاء المشكلة بضغطة واحدة','إرسال عروض مخصصة للعملاء','تقرير أفضل العملاء شهرياً']
   },
   'atab-agents': {
     icon:'🛵', title:'إدارة المندوبين',
-    desc:'تتبع مندوبي التوصيل لحظياً على الخريطة وإدارة أدائهم بشكل كامل.',
-    features:['تتبع موقع المندوب على الخريطة لحظياً','تعيين الطلبات للمندوبين','تقييم أداء كل مندوب','سجل التوصيلات والأرباح','إشعار العميل بموقع المندوب','تقارير المندوبين الأسبوعية']
+    desc:'تتبع مندوبيك لحظياً وعرف مين بيوصّل بسرعة ومين بيأخر العملاء.',
+    usp:'⏱️ التوصيل المتأخر هو السبب الأول لفقدان العملاء — ده الحل.',
+    features:['تتبع موقع المندوب على الخريطة لحظياً','تعيين الطلبات للمندوبين بسهولة','تقييم أداء كل مندوب','سجل كامل للتوصيلات والأرباح','إشعار العميل بموقع المندوب','تقارير أداء أسبوعية']
   },
-  'atab-employees': {
-    icon:'👨‍💼', title:'إدارة الموظفين',
-    desc:'تحكم كامل في فريق العمل مع صلاحيات مخصصة لكل موظف.',
-    features:['إضافة وإدارة حسابات الموظفين','صلاحيات مخصصة لكل دور (كاشير - مدير - مندوب)','جدول الورديات والمناوبات','تقارير أداء الموظفين','سجل دخول وخروج كل موظف','ربط الموظف بالفرع المحدد']
+  'atab-lastorder': {
+    icon:'⚡', title:'Last Order',
+    desc:'مطعمك بيقفل الساعة 2 بس العملاء بيطلبوا الساعة 1:55 — Last Order بيحميك.',
+    usp:'🔑 ميزة حصرية مش موجودة في أي نظام تاني في السوق.',
+    features:['تحديد وقت آخر طلب قبل الإغلاق بدقيقة','إشعار تلقائي للعملاء "آخر فرصة للطلب"','إيقاف الطلبات تلقائياً عند الوقت المحدد','يومي أو حسب الجدول الأسبوعي','يظهر للعملاء عداد تنازلي للإغلاق','يمنع الطلبات اللي مش هتتنفذ']
   },
-  'atab-branches': {
-    icon:'🏪', title:'إدارة الفروع',
-    desc:'أدِر فروع متعددة من داشبورد مركزي واحد مع إحصائيات منفصلة لكل فرع.',
-    features:['إضافة وإدارة فروع غير محدودة','داشبورد مركزي لكل الفروع','إحصائيات ومبيعات كل فرع منفردة','نقل الموظفين بين الفروع','منيو مختلف لكل فرع','تقارير مقارنة بين الفروع']
+  'atab-prayer': {
+    icon:'🕌', title:'أوقات الصلاة',
+    desc:'إيقاف الطلبات تلقائياً في أوقات الصلاة واستئنافها تلقائياً — بدون أي تدخل منك.',
+    usp:'🌙 مصممة خصيصاً للسوق العربي والإسلامي — مش موجودة في الأنظمة الأجنبية.',
+    features:['إيقاف تلقائي للطلبات وقت الصلاة','استئناف تلقائي بعد انتهاء وقت الصلاة','حسب موقع المطعم الجغرافي','إشعار للعملاء برسالة احترامية','خيار تفعيل/تعطيل لكل صلاة منفردة','يعمل بدون أي تدخل يدوي']
+  },
+  'atab-block': {
+    icon:'🚫', title:'نظام الحظر',
+    desc:'حظر العملاء المشكلة أو الأرقام الوهمية — ووقف الخسائر من الطلبات الوهمية.',
+    usp:'💸 الطلبات الوهمية من أكبر مصادر الخسارة في المطاعم — هنا تقدر توقفها.',
+    features:['حظر رقم هاتف بضغطة واحدة','حظر منطقة جغرافية كاملة','رسالة مخصصة للمحظورين','قائمة سوداء مع سجل الأسباب','إلغاء الحظر وقت ما تريد','تقرير الطلبات المحظورة']
+  },
+  'atab-stats': {
+    icon:'📊', title:'الإحصائيات المتقدمة',
+    desc:'اعرف مطعمك من الأرقام — أفضل الأوقات، أكثر الأصناف مبيعاً، وأسباب الخسارة.',
+    usp:'📉 مطعم بيشتغل بدون إحصائيات زي سيارة بدون عداد — ممكن تتفاجأ بأي حاجة.',
+    features:['أفضل الأوقات مبيعاً خلال اليوم والأسبوع','أكثر الأصناف طلباً وأقلها','تحليل مصادر الطلبات: توصيل / استلام / داخل','مقارنة الأداء أسبوع بأسبوع وشهر بشهر','تقرير الأرباح والخسائر','تصدير كل التقارير PDF أو Excel']
+  },
+  'atab-payments': {
+    icon:'💰', title:'جرد المدفوعات',
+    desc:'عارف فلوسك فين؟ جرد المدفوعات بيديك صورة كاملة عن كل جنيه في مطعمك.',
+    usp:'🔍 أغلب المطاعم بتكتشف فروقات مالية بعد فوات الأوان — هنا تعرف لحظياً.',
+    features:['جرد شامل لكل المدفوعات يومياً','فصل المدفوعات: كاش / فيزا / محفظة','تقرير فروقات الصندوق','ملخص مالي لكل وردية','مقارنة الطلبات بالمبالغ المحصلة','تقرير شهري كامل للمحاسب']
+  },
+  'atab-zones': {
+    icon:'🗺️', title:'مناطق التوصيل الذكية',
+    desc:'حدد مناطق التوصيل وأسعارها، وأوقف التوصيل لمناطق معينة في أوقات الذروة تلقائياً.',
+    usp:'🛵 التوصيل لمناطق بعيدة في الذروة = خسارة — النظام بيمنع ده تلقائياً.',
+    features:['تحديد مناطق التوصيل على الخريطة','سعر توصيل مختلف لكل منطقة','إيقاف التوصيل لمناطق معينة يدوياً أو تلقائياً','جدولة إيقاف مناطق في أوقات محددة','حد أدنى للطلب لكل منطقة','تقرير أكثر مناطق الطلب']
   },
   'atab-offers': {
     icon:'🎁', title:'العروض والخصومات',
-    desc:'أنشئ عروض وخصومات احترافية تزيد مبيعاتك وتجذب عملاء جدد.',
-    features:['كوبونات خصم بنسبة أو مبلغ ثابت','عروض محدودة الوقت والكمية','خصم أول طلب للعميل الجديد','عروض خاصة لعملاء VIP','توصيل مجاني عند حد معين','تتبع استخدام كل كوبون']
+    desc:'أنشئ عروض تجذب العملاء وتزيد متوسط الطلب — بدون ما تاخد من أرباحك.',
+    usp:'🎯 عرض صح في الوقت الصح ممكن يضاعف مبيعاتك في يوم واحد.',
+    features:['كوبونات خصم بنسبة أو مبلغ ثابت','عروض محدودة الوقت والكمية','خصم أول طلب للعميل الجديد','توصيل مجاني عند حد معين','تتبع استخدام كل كوبون','ربط العروض بأصناف محددة']
   },
   'atab-marketing': {
     icon:'📣', title:'التسويق والإعلانات',
-    desc:'أدوات تسويقية متكاملة لزيادة مبيعاتك والتواصل مع عملائك.',
-    features:['إشعارات Push للعملاء المسجلين','إعلانات بانر داخل التطبيق','مسابقات وتحديات تفاعلية','حملات واتساب جماعية','إعلانات موجهة لفئات محددة','تتبع نتائج كل حملة إعلانية']
+    desc:'تواصل مع عملاءك في الوقت الصح بالرسالة الصح — وشوف الفرق في المبيعات.',
+    usp:'📱 إشعار Push واحد في الوقت الصح يمكن يجيب طلبات تساوي وردية كاملة.',
+    features:['إشعارات Push للعملاء المسجلين','إعلانات بانر داخل التطبيق','حملات واتساب لقوائم العملاء','استهداف عملاء بفئات محددة','تتبع نتائج كل حملة بالأرقام','جدولة الحملات مسبقاً']
   },
   'atab-bookings': {
     icon:'📅', title:'الحجوزات',
-    desc:'نظام حجز طاولات احترافي مع تأكيد تلقائي وإدارة السعة.',
-    features:['حجز الطاولات أونلاين','تأكيد تلقائي للحجز على واتساب','إدارة الطاولات والسعة الكاملة','تذكير تلقائي للعميل قبل الموعد','تقرير الحجوزات اليومية','قائمة انتظار تلقائية']
+    desc:'نظام حجز طاولات أونلاين مع تأكيد واتساب تلقائي — زيّد إيرادات المطعم.',
+    usp:'🪑 الحجز المسبق = إيراد مضمون قبل ما المطعم يفتح.',
+    features:['حجز الطاولات أونلاين 24/7','تأكيد تلقائي على واتساب','إدارة الطاولات والسعة','تذكير العميل قبل الموعد','قائمة انتظار تلقائية','تقرير الحجوزات اليومية']
   },
   'atab-vip': {
     icon:'👑', title:'نظام VIP والولاء',
-    desc:'برنامج ولاء احترافي يكافئ عملاءك المميزين ويزيد تكرار الشراء.',
-    features:['نقاط مكافآت مع كل طلب','مستويات VIP (فضي - ذهبي - بلاتيني)','هدايا تلقائية عند حد النقاط','كارد VIP مخصص لكل عميل','تقرير أداء برنامج الولاء','مزايا حصرية لعملاء البلاتيني']
+    desc:'العميل اللي بيكسب نقاط عندك مش هيروح لمنافسك — برنامج الولاء بيخليه معاك.',
+    usp:'🔄 زيادة تكرار الشراء بـ 30% من نفس العملاء الحاليين بدون مصاريف تسويق.',
+    features:['نقاط مكافآت مع كل طلب','مستويات: فضي / ذهبي / بلاتيني','هدايا تلقائية عند حد النقاط','كارت VIP مخصص لكل عميل','مزايا حصرية لعملاء البلاتيني','تقرير أداء برنامج الولاء']
   },
   'atab-settings': {
     icon:'⚙️', title:'الإعدادات',
-    desc:'تحكم كامل في إعدادات المطعم ومواعيد العمل وطرق الدفع والتوصيل.',
-    features:['إعدادات مواعيد العمل لكل يوم','تخصيص مناطق التوصيل والأسعار','إدارة طرق الدفع (كاش - فيزا - محفظة)','تخصيص رسائل واتساب التلقائية','إعدادات الضرائب والرسوم','تخصيص هوية المطعم والشعار']
+    desc:'تحكم كامل في مطعمك — مواعيد العمل، التوصيل، الدفع، والهوية البصرية.',
+    usp:'🎛️ مطعمك يتغير كل يوم — الإعدادات لازم تواكب التغيير في ثوانٍ.',
+    features:['مواعيد العمل لكل يوم منفرداً','إعدادات التوصيل والأسعار','طرق الدفع: كاش / فيزا / محفظة','رسائل واتساب التلقائية','الضرائب والرسوم الإضافية','شعار المطعم والهوية البصرية']
   },
   'atab-backup': {
     icon:'💾', title:'النسخ الاحتياطي',
-    desc:'حماية بيانات مطعمك بنسخ احتياطي تلقائي منتظم مع إمكانية الاسترجاع في ثوان.',
-    features:['نسخ احتياطي تلقائي يومي','تصدير البيانات بصيغة Excel و PDF','استرجاع البيانات بضغطة واحدة','حفظ سجل الطلبات لسنوات','تصدير تقارير للمحاسب','نقل البيانات بين الأجهزة بسهولة']
+    desc:'بياناتك هي أغلى أصل في مطعمك — النسخ الاحتياطي التلقائي بيحميها 24/7.',
+    usp:'⚠️ مطعم واحد خسر بيانات 3 سنين بسبب عطل — دي مش مبالغة، دي حقيقة.',
+    features:['نسخ احتياطي تلقائي يومي','تصدير Excel و PDF في أي وقت','استرجاع البيانات في ثوانٍ','حفظ سجل الطلبات لسنوات','نقل البيانات بين الأجهزة','تقارير جاهزة للمحاسب']
   }
 };
 
@@ -1344,8 +1397,9 @@ function openLockedTab(id, btn) {
           <div class="lp-icon">${data.icon}</div>
           <div class="lp-title">🔒 ${data.title}</div>
           <div class="lp-desc">${data.desc}</div>
+          ${data.usp ? `<div style="background:linear-gradient(135deg,#fef3c7,#fde68a);border:1.5px solid #f59e0b;border-radius:12px;padding:10px 14px;margin:8px 0;font-size:12px;font-weight:800;color:#92400e;text-align:right">${data.usp}</div>` : ''}
           <div class="lp-features">${featuresHtml}</div>
-          <button class="lp-cta" onclick="contactWA()">🚀 احصل على النسخة الكاملة</button>
+          <button class="lp-cta" onclick="contactWA()">🚀 احصل على النسخة الكاملة الآن</button>
           <button class="lp-wa" onclick="contactWA()"><span>💬</span> تواصل معنا على واتساب</button>
         </div>
         <div class="scroll-hint" id="hint_${id}">
