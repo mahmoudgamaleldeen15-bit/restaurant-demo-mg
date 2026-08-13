@@ -227,6 +227,26 @@ input,select,textarea{font-family:inherit}
 .contact-section h3{font-size:14px;font-weight:900;margin-bottom:6px}
 .contact-section p{font-size:12px;opacity:.85;margin-bottom:12px;line-height:1.6}
 .wa-btn{display:inline-flex;align-items:center;gap:8px;background:#25D366;color:#fff;border-radius:10px;padding:10px 20px;font-size:13px;font-weight:900;border:none;cursor:pointer}
+.mg-logo-corner{position:fixed;bottom:76px;left:10px;z-index:49;cursor:pointer}
+.mg-logo-corner-inner{background:linear-gradient(135deg,rgba(255,255,255,.97),rgba(240,248,255,.95));border-radius:12px;padding:5px 8px;box-shadow:0 2px 16px rgba(26,95,200,.2);border:1px solid rgba(26,95,200,.15);display:flex;align-items:center;gap:6px}
+.mg-logo-corner-inner img{width:22px;height:22px;object-fit:contain}
+.mg-logo-corner-text{font-size:8px;font-weight:900;color:#1a5fc8;line-height:1.2}
+.mg-logo-corner-sub{font-size:6px;color:#6b7280;font-weight:600;letter-spacing:.5px}
+.contact-logo-wrap{background:linear-gradient(160deg,#050d1a,#0a1628,#0d2444);border-radius:22px;margin:16px 14px;padding:28px 20px;text-align:center;position:relative;overflow:hidden;border:1px solid rgba(26,95,200,.25)}
+.contact-logo-wrap::before{content:"";position:absolute;top:-50px;right:-50px;width:150px;height:150px;background:radial-gradient(circle,rgba(26,95,200,.25),transparent 70%);border-radius:50%;pointer-events:none}
+.contact-logo-wrap::after{content:"";position:absolute;bottom:-40px;left:-40px;width:120px;height:120px;background:radial-gradient(circle,rgba(0,180,255,.18),transparent 70%);border-radius:50%;pointer-events:none}
+.contact-logo-img-wrap{width:100px;height:100px;background:linear-gradient(135deg,rgba(255,255,255,.07),rgba(255,255,255,.02));border-radius:22px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;border:1.5px solid rgba(255,255,255,.1);box-shadow:0 0 40px rgba(26,95,200,.25),inset 0 0 20px rgba(255,255,255,.03)}
+.contact-logo-img{width:78px;height:78px;object-fit:contain;filter:drop-shadow(0 0 10px rgba(0,160,255,.45))}
+.contact-brand-name{font-size:24px;font-weight:900;background:linear-gradient(135deg,#60a5fa,#93c5fd,#e0f2fe);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:.5px;margin-bottom:3px}
+.contact-brand-sub{font-size:10px;color:rgba(255,255,255,.4);letter-spacing:3px;margin-bottom:14px}
+.contact-divider{width:60px;height:2px;background:linear-gradient(90deg,transparent,#1a5fc8,#60a5fa,transparent);margin:0 auto 18px;border-radius:2px}
+.contact-wa-big{display:flex;align-items:center;justify-content:center;gap:10px;background:linear-gradient(135deg,#25D366,#128C7E);color:#fff;border-radius:14px;padding:14px;font-size:15px;font-weight:900;border:none;cursor:pointer;width:100%;margin-bottom:10px;box-shadow:0 4px 20px rgba(37,211,102,.35);font-family:inherit}
+.contact-call-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,#1a5fc8,#2176e0);color:#fff;border-radius:14px;padding:12px;font-size:14px;font-weight:800;border:none;cursor:pointer;width:100%;box-shadow:0 4px 16px rgba(26,95,200,.35);font-family:inherit}
+.contact-info-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
+.contact-info-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:10px;text-align:center}
+.contact-info-icon{font-size:20px;margin-bottom:4px}
+.contact-info-label{font-size:9px;color:rgba(255,255,255,.45);font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+.contact-info-val{font-size:12px;color:#fff;font-weight:900;margin-top:3px}
 
 /* NOTIF */
 .notif{position:fixed;top:16px;left:50%;transform:translateX(-50%) translateY(-80px);background:var(--dark);color:#fff;padding:10px 20px;border-radius:12px;font-size:13px;font-weight:700;z-index:999;transition:.35s;white-space:nowrap;box-shadow:0 4px 20px rgba(0,0,0,.3)}
@@ -483,19 +503,40 @@ input,select,textarea{font-family:inherit}
 
     <!-- CONTACT TAB -->
     <div id="tab-contact" class="tab-content">
-      <div class="section-title">📞 تواصل معنا</div>
-      <div class="contact-section" style="margin-top:10px">
-        <h3>🚀 فعّل النسخة الكاملة</h3>
-        <p>فروع متعددة • برنامج VIP<br/>تقارير تفصيلية • دعم فني 24/7</p>
-        <button class="wa-btn" onclick="contactWA()"><span>💬</span> واتساب</button>
-      </div>
-      <div class="card">
-        <div style="text-align:center">
-          <div style="font-size:30px;margin-bottom:8px">👨‍💻</div>
-          <div style="font-size:14px;font-weight:900">MG AppHouse</div>
-          <div style="font-size:12px;color:var(--text-muted);margin-top:4px">تطوير أنظمة إدارة المطاعم</div>
-          <div style="font-size:13px;color:var(--olive);margin-top:6px;font-weight:800">01508613866</div>
+      <div class="contact-logo-wrap">
+        <div class="contact-logo-img-wrap">
+          <img class="contact-logo-img" src="https://mahmoudgamaleldeen15-bit.github.io/restaurant-demo-mg/logo.png" alt="MG AppHouse" onerror="this.parentElement.innerHTML='<div style=&quot;font-size:36px;font-weight:900;color:#60a5fa&quot;>MG</div>'"/>
         </div>
+        <div class="contact-brand-name">MG AppHouse</div>
+        <div class="contact-brand-sub">HOME OF SMART APPS</div>
+        <div class="contact-divider"></div>
+        <button class="contact-wa-big" onclick="contactWA()">
+          <span style="font-size:22px">💬</span> تواصل معنا على واتساب
+        </button>
+        <button class="contact-call-btn" onclick="location.href='tel:+201508613866'">
+          <span style="font-size:18px">📞</span> 01508613866
+        </button>
+        <div class="contact-info-grid">
+          <div class="contact-info-card"><div class="contact-info-icon">🍽️</div><div class="contact-info-label">التخصص</div><div class="contact-info-val">أنظمة المطاعم</div></div>
+          <div class="contact-info-card"><div class="contact-info-icon">⚡</div><div class="contact-info-label">التسليم</div><div class="contact-info-val">خلال 48 ساعة</div></div>
+          <div class="contact-info-card"><div class="contact-info-icon">🛡️</div><div class="contact-info-label">الدعم الفني</div><div class="contact-info-val">24/7</div></div>
+          <div class="contact-info-card"><div class="contact-info-icon">✅</div><div class="contact-info-label">الضمان</div><div class="contact-info-val">مدى الحياة</div></div>
+        </div>
+      </div>
+      <div style="background:var(--white);border-radius:18px;margin:0 14px 80px;border:1.5px solid var(--border);overflow:hidden">
+        <div style="background:linear-gradient(135deg,var(--olive-dark),var(--olive));padding:12px 16px;color:#fff;font-size:13px;font-weight:900">🚀 ماذا ستحصل في النسخة الكاملة؟</div>
+        <div style="padding:14px">
+<div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);font-size:12px;font-weight:700"><span style="width:24px;height:24px;background:var(--olive-pale);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0">🧾</span><span>شاشة كاشير احترافية</span></div><div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);font-size:12px;font-weight:700"><span style="width:24px;height:24px;background:var(--olive-pale);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0">📦</span><span>إدارة مخزون ذكية</span></div><div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);font-size:12px;font-weight:700"><span style="width:24px;height:24px;background:var(--olive-pale);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0">👥</span><span>قاعدة بيانات العملاء</span></div><div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);font-size:12px;font-weight:700"><span style="width:24px;height:24px;background:var(--olive-pale);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0">🛵</span><span>تتبع المندوبين لحظياً</span></div><div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);font-size:12px;font-weight:700"><span style="width:24px;height:24px;background:var(--olive-pale);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0">🏪</span><span>إدارة فروع متعددة</span></div><div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);font-size:12px;font-weight:700"><span style="width:24px;height:24px;background:var(--olive-pale);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0">📣</span><span>تسويق وإشعارات Push</span></div><div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);font-size:12px;font-weight:700"><span style="width:24px;height:24px;background:var(--olive-pale);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0">👑</span><span>برنامج VIP والولاء</span></div><div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);font-size:12px;font-weight:700"><span style="width:24px;height:24px;background:var(--olive-pale);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0">💾</span><span>نسخ احتياطي تلقائي</span></div><div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);font-size:12px;font-weight:700"><span style="width:24px;height:24px;background:var(--olive-pale);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0">📊</span><span>تقارير وتحليلات متقدمة</span></div><div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);font-size:12px;font-weight:700"><span style="width:24px;height:24px;background:var(--olive-pale);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0">⚙️</span><span>تخصيص كامل لمطعمك</span></div>        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mg-logo-corner" onclick="openTab('tab-contact')" title="MG AppHouse">
+    <div class="mg-logo-corner-inner">
+      <img src="https://mahmoudgamaleldeen15-bit.github.io/restaurant-demo-mg/logo.png" alt="MG" onerror="this.style.display='none'"/>
+      <div>
+        <div class="mg-logo-corner-text">MG AppHouse</div>
+        <div class="mg-logo-corner-sub">SMART APPS</div>
       </div>
     </div>
   </div>
