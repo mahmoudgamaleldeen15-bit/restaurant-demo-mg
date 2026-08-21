@@ -125,7 +125,6 @@ input,select,textarea{font-family:inherit}
 
 /* FOOD CARDS */
 .cat-header{font-size:14px;font-weight:900;color:var(--olive-dark);padding:10px 16px 6px;display:flex;align-items:center;gap:8px}
-/* ── MENU PROFESSIONAL ── */
 .menu-section{margin-bottom:24px}
 .cat-header{font-size:15px;font-weight:900;color:var(--olive-dark);padding:16px 16px 10px;display:flex;align-items:center;gap:8px;border-bottom:2px solid var(--olive-pale);margin:0 14px 12px}
 .cat-header-emoji{width:34px;height:34px;background:linear-gradient(135deg,var(--olive),var(--olive-light));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
@@ -178,6 +177,8 @@ input,select,textarea{font-family:inherit}
 .stat-card.gold::before{background:linear-gradient(90deg,#f0c060,var(--gold))}
 .stat-card.blue::before{background:linear-gradient(90deg,#60a5fa,var(--blue))}
 .stat-card.green::before{background:linear-gradient(90deg,#4ade80,#16a34a)}
+.stat-card.purple::before{background:linear-gradient(90deg,#a78bfa,#7c3aed)}
+.stat-card.red::before{background:linear-gradient(90deg,#fca5a5,#ef4444)}
 .stat-val{font-size:22px;font-weight:900;color:var(--olive-dark)}
 .stat-lbl{font-size:10px;color:var(--text-muted);font-weight:700;margin-top:3px}
 
@@ -186,27 +187,6 @@ input,select,textarea{font-family:inherit}
 .admin-tabs::-webkit-scrollbar{display:none}
 .tab-btn{flex-shrink:0;padding:7px 14px;border-radius:100px;font-size:12px;font-weight:800;border:1.5px solid var(--border);color:var(--text-muted);cursor:pointer;white-space:nowrap;background:var(--cream);transition:.2s}
 .tab-btn.active{background:var(--olive);border-color:var(--olive);color:#fff}
-.tab-locked{opacity:.75}
-.tab-locked::before{content:'🔒 ';font-size:9px}
-.lock-icon{font-size:9px}
-.locked-preview-wrap{position:relative;min-height:400px;overflow:hidden}
-.locked-preview-content{filter:blur(2px);pointer-events:none;user-select:none;opacity:.6}
-.locked-preview-overlay{position:absolute;inset:0;background:rgba(250,247,240,.88);backdrop-filter:blur(6px);display:flex;align-items:flex-start;justify-content:center;z-index:10;padding:16px;overflow-y:auto;scrollbar-width:none;-ms-overflow-style:none}
-.locked-preview-overlay::-webkit-scrollbar{display:none}
-.locked-preview-card{background:var(--white);border-radius:22px;padding:24px 20px;max-width:380px;width:100%;text-align:center;box-shadow:0 8px 40px rgba(0,0,0,.12);border:2px solid var(--demo-pale);margin:auto}
-.scroll-hint{position:sticky;bottom:12px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:4px;pointer-events:none;z-index:20;transition:opacity .4s}
-.scroll-hint.hidden{opacity:0}
-.scroll-hint-text{font-size:11px;font-weight:800;color:var(--demo);background:rgba(255,255,255,.92);padding:4px 12px;border-radius:100px;box-shadow:0 2px 10px rgba(124,58,237,.2);border:1px solid rgba(124,58,237,.15)}
-.scroll-hint-arrow{width:32px;height:32px;background:linear-gradient(135deg,var(--demo),#5b21b6);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(124,58,237,.4);animation:bounceDown 1.5s ease-in-out infinite}
-@keyframes bounceDown{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
-.lp-icon{font-size:54px;margin-bottom:12px}
-.lp-title{font-size:18px;font-weight:900;color:var(--dark);margin-bottom:8px}
-.lp-desc{font-size:13px;color:var(--text-muted);line-height:1.7;margin-bottom:6px}
-.lp-features{background:var(--olive-pale);border-radius:12px;padding:12px 14px;margin:12px 0;text-align:right}
-.lp-feature{font-size:12px;color:var(--olive-dark);font-weight:700;padding:4px 0;display:flex;align-items:center;gap:8px}
-.lp-feature::before{content:'✅';font-size:11px}
-.lp-cta{width:100%;padding:13px;background:linear-gradient(135deg,var(--demo),#5b21b6);color:#fff;border-radius:12px;font-size:14px;font-weight:900;border:none;cursor:pointer;margin-top:14px;margin-bottom:8px}
-.lp-wa{width:100%;padding:11px;background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;border-radius:12px;font-size:13px;font-weight:800;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px}
 
 /* CART */
 .cart-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:200;display:none;align-items:flex-end}
@@ -234,17 +214,13 @@ input,select,textarea{font-family:inherit}
 .contact-section p{font-size:12px;opacity:.85;margin-bottom:12px;line-height:1.6}
 .wa-btn{display:inline-flex;align-items:center;gap:8px;background:#25D366;color:#fff;border-radius:10px;padding:10px 20px;font-size:13px;font-weight:900;border:none;cursor:pointer}
 
-/* ══════════════ TRACK PRO ══════════════ */
+/* TRACK PRO */
 .track-pro-wrap{padding:0 0 80px}
 .track-header{background:linear-gradient(135deg,var(--olive-dark),var(--olive));padding:16px;color:#fff;margin-bottom:0}
 .track-order-num{font-size:18px;font-weight:900}
 .track-order-sub{font-size:11px;opacity:.75;margin-top:2px}
-
-/* Progress Bar أعلى الصفحة */
 .track-progress-bar{height:4px;background:rgba(255,255,255,.2);border-radius:0;overflow:hidden}
 .track-progress-fill{height:100%;background:#fff;border-radius:4px;transition:width 1s ease;box-shadow:0 0 8px rgba(255,255,255,.6)}
-
-/* Steps */
 .track-steps-wrap{background:var(--white);margin:12px 14px;border-radius:18px;border:1.5px solid var(--border);overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.06)}
 .track-step{display:flex;align-items:flex-start;gap:0;padding:0;position:relative;cursor:default}
 .track-step:last-child .track-step-line{display:none}
@@ -268,48 +244,34 @@ input,select,textarea{font-family:inherit}
 .track-step-desc.pending{color:#d1d5db}
 .track-step-check{font-size:10px;color:#16a34a;font-weight:800;margin-top:3px}
 .track-step-time{font-size:10px;color:#9ca3af;margin-top:2px}
-
-/* Active Step Highlight */
 .track-step.is-active{background:linear-gradient(135deg,#fffbeb,#fef9ee)}
-
-/* ETA Card */
 .track-eta-card{background:linear-gradient(135deg,var(--olive-dark),var(--olive));border-radius:18px;margin:0 14px 12px;padding:18px;color:#fff;display:flex;align-items:center;gap:14px;box-shadow:0 6px 24px rgba(45,80,22,.3)}
 .track-eta-icon{font-size:36px;animation:tickTock 1s ease-in-out infinite alternate}
 @keyframes tickTock{from{transform:rotate(-10deg)}to{transform:rotate(10deg)}}
 .track-eta-val{font-size:28px;font-weight:900;line-height:1}
 .track-eta-label{font-size:11px;opacity:.8;margin-top:3px}
-
-/* Marketing Badge */
 .track-mkt-badge{background:linear-gradient(135deg,#7c3aed,#5b21b6);border-radius:14px;margin:0 14px 12px;padding:14px;color:#fff;display:flex;align-items:center;gap:12px}
 .track-mkt-icon{font-size:28px;flex-shrink:0}
 .track-mkt-text{font-size:12px;font-weight:700;line-height:1.6;opacity:.95}
 .track-mkt-title{font-size:13px;font-weight:900;margin-bottom:3px}
-
-/* Order Details */
 .track-details-card{background:var(--white);border-radius:16px;border:1.5px solid var(--border);margin:0 14px 12px;overflow:hidden}
 .track-details-header{background:var(--olive-pale);padding:10px 14px;font-size:12px;font-weight:900;color:var(--olive-dark);display:flex;align-items:center;gap:6px}
 .track-details-body{padding:12px 14px}
 .track-item-row{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--border);font-size:12px}
 .track-total-row{display:flex;justify-content:space-between;padding:10px 0 0;font-size:14px;font-weight:900}
-
-/* Success Screen */
 .track-success{background:linear-gradient(160deg,#14532d,#16a34a,#22c55e);border-radius:18px;margin:0 14px 12px;padding:28px 20px;text-align:center;color:#fff;position:relative;overflow:hidden}
 .track-success::before{content:'🎉';font-size:80px;position:absolute;top:-10px;right:-10px;opacity:.15;transform:rotate(20deg)}
 .track-success-icon{font-size:52px;margin-bottom:10px;animation:successBounce .6s ease}
 @keyframes successBounce{0%{transform:scale(0)}70%{transform:scale(1.2)}100%{transform:scale(1)}}
 .track-success-title{font-size:20px;font-weight:900;margin-bottom:6px}
 .track-success-sub{font-size:12px;opacity:.85;line-height:1.6;margin-bottom:14px}
-
-/* Rating */
 .track-rating{background:var(--white);border-radius:16px;border:1.5px solid var(--border);margin:0 14px 12px;padding:16px;text-align:center}
 .rating-stars{display:flex;justify-content:center;gap:8px;margin:10px 0}
 .star-btn{font-size:28px;cursor:pointer;transition:.2s;filter:grayscale(1);opacity:.4}
 .star-btn.selected,.star-btn:hover{filter:grayscale(0);opacity:1;transform:scale(1.2)}
-
-/* WA Button */
 .track-wa-btn{display:flex;align-items:center;justify-content:center;gap:10px;background:linear-gradient(135deg,#25D366,#128C7E);color:#fff;border-radius:14px;padding:14px;font-size:14px;font-weight:900;border:none;cursor:pointer;width:calc(100% - 28px);margin:0 14px 12px;box-shadow:0 4px 16px rgba(37,211,102,.35);font-family:inherit}
 
-.mg-logo-corner{position:fixed;bottom:76px;left:10px;z-index:49;cursor:pointer;display:none}
+.mg-logo-corner{position:fixed;bottom:76px;right:12px;left:auto;z-index:49;cursor:pointer;display:none}
 .mg-logo-corner.show{display:block}
 .mg-logo-corner-inner{background:linear-gradient(135deg,#0a1628,#0d2444);border-radius:14px;padding:7px 12px;box-shadow:0 4px 20px rgba(26,95,200,.4),0 0 0 1.5px rgba(26,95,200,.3);display:flex;align-items:center;gap:8px}
 .mg-logo-corner-inner img{width:30px;height:30px;object-fit:contain;filter:drop-shadow(0 0 4px rgba(0,180,255,.5))}
@@ -335,16 +297,77 @@ input,select,textarea{font-family:inherit}
 .notif{position:fixed;top:16px;left:50%;transform:translateX(-50%) translateY(-80px);background:var(--dark);color:#fff;padding:10px 20px;border-radius:12px;font-size:13px;font-weight:700;z-index:999;transition:.35s;white-space:nowrap;box-shadow:0 4px 20px rgba(0,0,0,.3)}
 .notif.show{transform:translateX(-50%) translateY(0)}
 
-/* STEP TRACK */
-.track-steps{display:flex;align-items:flex-start;gap:4px;padding:14px;background:var(--white);margin:10px 14px;border-radius:14px;border:1.5px solid var(--border)}
-.step-col{display:flex;flex-direction:column;align-items:center;gap:3px}
-.step-dot{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;flex-shrink:0}
-.step-dot.done{background:#16a34a;color:#fff}
-.step-dot.active{background:#f59e0b;color:#fff;box-shadow:0 0 0 4px rgba(245,158,11,.2)}
-.step-dot.pending{background:#e5e7eb;color:#9ca3af}
-.step-line{flex:1;height:2px;background:#e5e7eb;margin-bottom:16px}
-.step-line.done{background:#16a34a}
-.step-lbl{font-size:9px;font-weight:700;color:var(--text-muted);text-align:center}
+/* ═══════════════════════════════════════
+   UNIFIED INTERACTIVE DEMO STYLES
+═══════════════════════════════════════ */
+.live-dot{width:8px;height:8px;background:#ef4444;border-radius:50%;flex-shrink:0;animation:livePulse 1.2s ease infinite}
+@keyframes livePulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(239,68,68,.5)}60%{opacity:.8;box-shadow:0 0 0 5px rgba(239,68,68,0)}}
+
+.interactive-demo-card{background:var(--white);border-radius:16px;margin:8px 14px;border:1.5px solid var(--border);padding:14px;transition:all .35s ease;box-shadow:0 2px 10px rgba(0,0,0,.03)}
+.interactive-demo-card.highlight{border-color:var(--olive);background:var(--olive-pale);animation:cardPop .5s ease}
+@keyframes cardPop{0%{transform:scale(.98)}50%{transform:scale(1.02)}100%{transform:scale(1)}}
+
+.demo-header-banner{background:linear-gradient(135deg,var(--olive-dark),var(--olive));border-radius:16px;margin:10px 14px 0;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;color:#fff}
+.demo-action-pill{background:#1a1a1a;color:#fff;border-radius:12px;margin:8px 14px 0;padding:10px 14px;font-size:12px;font-weight:800;display:flex;align-items:center;gap:8px;min-height:42px;transition:all .4s ease;box-shadow:0 2px 10px rgba(0,0,0,.08)}
+
+/* Robot Floating Button */
+.robot-btn{position:fixed;bottom:80px;left:14px;right:auto;z-index:48;width:48px;height:48px;background:linear-gradient(135deg,#7c3aed,#5b21b6);border-radius:50%;display:none;align-items:center;justify-content:center;font-size:24px;box-shadow:0 4px 20px rgba(124,58,237,.5);border:2px solid rgba(255,255,255,.3);cursor:pointer;transition:.3s;animation:robotFloat 3s ease-in-out infinite}
+.robot-btn.show{display:flex}
+@keyframes robotFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+
+.toggle-switch{width:40px;height:22px;border-radius:11px;position:relative;cursor:default;flex-shrink:0;transition:background .4s ease}
+.toggle-switch.on{background:var(--olive)}
+.toggle-switch.off{background:#d1d5db}
+.toggle-switch::after{content:'';position:absolute;top:3px;width:16px;height:16px;border-radius:50%;background:#fff;transition:left .4s ease,right .4s ease;box-shadow:0 1px 4px rgba(0,0,0,.2)}
+.toggle-switch.on::after{right:3px;left:auto}
+.toggle-switch.off::after{left:3px;right:auto}
+
+.demo-progress-bar{height:6px;background:#e5e7eb;border-radius:6px;overflow:hidden;margin-top:6px}
+.demo-progress-fill{height:100%;border-radius:6px;transition:width .8s ease}
+
+.live-dots{display:flex;justify-content:center;gap:5px;margin-top:10px}
+.live-dot-sm{width:7px;height:7px;border-radius:50%}
+@keyframes dotBounce{from{transform:translateY(0);opacity:.5}to{transform:translateY(-4px);opacity:1}}
+
+/* Cashier specials */
+.cashier-terminal{background:#0f1923;border-radius:16px;margin:10px 14px 0;overflow:hidden;border:1.5px solid #1e3a5f}
+.cashier-header{background:linear-gradient(135deg,#0d2444,#0a1628);padding:12px 16px;display:flex;align-items:center;justify-content:space-between}
+.cashier-title{font-size:14px;font-weight:900;color:#fff;display:flex;align-items:center;gap:8px}
+.cashier-stats-row{display:flex;gap:0;background:#0a1628;border-top:1px solid rgba(255,255,255,.06)}
+.cashier-stat{flex:1;padding:10px 8px;text-align:center;border-left:1px solid rgba(255,255,255,.06)}
+.cashier-stat:last-child{border-left:none}
+.cashier-stat-val{font-size:20px;font-weight:900}
+.cashier-stat-lbl{font-size:9px;color:rgba(255,255,255,.4);font-weight:700;margin-top:2px}
+.cashier-order-card{margin:8px 14px;border-radius:14px;overflow:hidden;transition:all .5s ease}
+.cashier-order-card.s-new{border:2px solid #ef4444;background:rgba(239,68,68,.07);animation:newFlash 2s ease infinite}
+.cashier-order-card.s-prep{border:2px solid #f59e0b;background:rgba(245,158,11,.07)}
+.cashier-order-card.s-ready{border:2px solid #22c55e;background:rgba(34,197,94,.07)}
+.cashier-order-card.s-delivered{border:2px solid rgba(107,114,128,.3);background:rgba(107,114,128,.05);opacity:.55}
+@keyframes newFlash{0%,100%{box-shadow:0 0 0 0 rgba(239,68,68,0)}50%{box-shadow:0 0 0 5px rgba(239,68,68,.2)}}
+.cashier-order-inner{padding:12px 14px}
+.cashier-order-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:7px}
+.cashier-order-id{font-size:14px;font-weight:900;color:#fff}
+.cashier-order-time{font-size:10px;color:rgba(255,255,255,.35);font-weight:700}
+.cashier-sbadge{font-size:10px;font-weight:800;padding:3px 10px;border-radius:100px}
+.cashier-sbadge.s-new{background:rgba(239,68,68,.25);color:#f87171;border:1px solid rgba(239,68,68,.4)}
+.cashier-sbadge.s-prep{background:rgba(245,158,11,.25);color:#fbbf24;border:1px solid rgba(245,158,11,.4)}
+.cashier-sbadge.s-ready{background:rgba(34,197,94,.25);color:#4ade80;border:1px solid rgba(34,197,94,.4)}
+.cashier-sbadge.s-delivered{background:rgba(107,114,128,.2);color:#9ca3af;border:1px solid rgba(107,114,128,.3)}
+.cashier-customer-name{font-size:11px;color:rgba(255,255,255,.55);margin-bottom:4px;font-weight:700}
+.cashier-items-txt{font-size:11px;color:rgba(255,255,255,.35);margin-bottom:9px;line-height:1.5}
+.cashier-order-footer{display:flex;align-items:center;justify-content:space-between}
+.cashier-total-val{font-size:15px;font-weight:900;color:#60a5fa}
+.cashier-action{padding:7px 16px;border-radius:10px;font-size:11px;font-weight:900;border:none;font-family:inherit;cursor:default;letter-spacing:.3px}
+.cashier-action.act-new{background:linear-gradient(135deg,#ef4444,#dc2626);color:#fff}
+.cashier-action.act-prep{background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff}
+.cashier-action.act-ready{background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff}
+.cashier-action.act-done{background:rgba(107,114,128,.2);color:#6b7280}
+.customer-preview-panel{margin:8px 14px;border-radius:16px;overflow:hidden;border:2px solid var(--olive-light)}
+.customer-preview-header{background:linear-gradient(135deg,var(--olive-dark),var(--olive));padding:10px 14px;display:flex;align-items:center;gap:8px}
+.customer-preview-body{background:#fff;padding:14px}
+.customer-badge{display:inline-flex;align-items:center;gap:4px;background:rgba(124,58,237,.2);color:#a78bfa;border:1px solid rgba(124,58,237,.4);border-radius:100px;padding:2px 9px;font-size:9px;font-weight:900}
+.cashier-demo-notice{background:linear-gradient(135deg,rgba(124,58,237,.12),rgba(91,33,182,.08));border:1px solid rgba(124,58,237,.2);border-radius:12px;margin:10px 14px;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.cashier-demo-notice p{font-size:11px;color:var(--demo);font-weight:700;line-height:1.5}
 </style>
 </head>
 <body>
@@ -403,7 +426,7 @@ input,select,textarea{font-family:inherit}
   </div>
 </div>
 
-<!-- ADMIN LOGIN (مخفية — لا يوجد رابط ظاهر) -->
+<!-- ADMIN LOGIN -->
 <div id="adminLogin" class="screen">
   <div class="admin-login-card">
     <div class="admin-login-icon">🔐</div>
@@ -437,8 +460,6 @@ input,select,textarea{font-family:inherit}
   </div>
 
   <div class="admin-section">
-
-    <!-- إنشاء حساب جديد -->
     <div class="admin-card">
       <h3>➕ إنشاء حساب Demo جديد</h3>
       <input class="admin-input" id="newClientName" placeholder="اسم العميل / المطعم (مثال: مطعم النيل)"/>
@@ -447,7 +468,6 @@ input,select,textarea{font-family:inherit}
       <input class="admin-input" id="newClientHours" type="number" placeholder="مدة التجربة بالساعات (افتراضي: 48)" min="1" max="720"/>
       <button class="admin-btn purple" onclick="createClient()">🚀 إنشاء الحساب وتوليد بيانات الدخول</button>
 
-      <!-- النتيجة -->
       <div class="generated-cred" id="generatedCred">
         <div style="font-size:12px;font-weight:900;color:#a78bfa;margin-bottom:10px;text-align:center">✅ تم إنشاء الحساب — ابعت للعميل:</div>
         <div class="cred-row"><span class="cred-label">العميل</span><span class="cred-val" id="gc-name">—</span></div>
@@ -458,7 +478,6 @@ input,select,textarea{font-family:inherit}
       </div>
     </div>
 
-    <!-- قائمة العملاء -->
     <div class="admin-card">
       <h3>👥 العملاء الحاليين</h3>
       <div class="clients-list" id="clientsList">
@@ -466,7 +485,6 @@ input,select,textarea{font-family:inherit}
       </div>
     </div>
 
-    <!-- إحصائيات -->
     <div class="admin-card">
       <h3>📊 إحصائيات سريعة</h3>
       <div id="adminStats" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
@@ -484,7 +502,6 @@ input,select,textarea{font-family:inherit}
         </div>
       </div>
     </div>
-
   </div>
 </div>
 
@@ -531,38 +548,48 @@ input,select,textarea{font-family:inherit}
     <div id="tab-admin" class="tab-content">
       <div class="admin-tabs">
         <button class="tab-btn active" onclick="openAdminTab('atab-orders',this)">📋 الطلبات</button>
-        <button class="tab-btn" onclick="openAdminTab('atab-stats',this)">📊 إحصائيات</button>
+        <button class="tab-btn" onclick="openAdminTab('atab-cashier',this)">🧾 الكاشير</button>
+        <button class="tab-btn" onclick="openAdminTab('atab-menu-mgmt',this)">🍽️ إدارة المنيو</button>
+        <button class="tab-btn" onclick="openAdminTab('atab-customers',this)">👥 العملاء</button>
+        <button class="tab-btn" onclick="openAdminTab('atab-agents',this)">🛵 المندوبين</button>
+        <button class="tab-btn" onclick="openAdminTab('atab-lastorder',this)">⚡ Last Order</button>
+        <button class="tab-btn" onclick="openAdminTab('atab-prayer',this)">🕌 أوقات الصلاة</button>
+        <button class="tab-btn" onclick="openAdminTab('atab-block',this)">🚫 الحظر</button>
+        <button class="tab-btn" onclick="openAdminTab('atab-stats',this)">📊 الإحصائيات</button>
+        <button class="tab-btn" onclick="openAdminTab('atab-payments',this)">💰 جرد المدفوعات</button>
+        <button class="tab-btn" onclick="openAdminTab('atab-zones',this)">🗺️ مناطق التوصيل</button>
+        <button class="tab-btn" onclick="openAdminTab('atab-offers',this)">🎁 العروض</button>
+        <button class="tab-btn" onclick="openAdminTab('atab-marketing',this)">📣 التسويق</button>
+        <button class="tab-btn" onclick="openAdminTab('atab-bookings',this)">📅 الحجوزات</button>
+        <button class="tab-btn" onclick="openAdminTab('atab-vip',this)">👑 VIP</button>
+        <button class="tab-btn" onclick="openAdminTab('atab-settings',this)">⚙️ الإعدادات</button>
+        <button class="tab-btn" onclick="openAdminTab('atab-backup',this)">💾 النسخ الاحتياطي</button>
         <button class="tab-btn" onclick="openAdminTab('atab-reports',this)">📈 تقارير</button>
-        <button class="tab-btn tab-locked" onclick="openLockedTab('atab-cashier',this)">🧾 الكاشير</button>
-        <button class="tab-btn tab-locked" onclick="openLockedTab('atab-menu-mgmt',this)">🍽️ إدارة المنيو</button>
-        <button class="tab-btn tab-locked" onclick="openLockedTab('atab-customers',this)">👥 العملاء</button>
-        <button class="tab-btn tab-locked" onclick="openLockedTab('atab-agents',this)">🛵 المندوبين</button>
-        <button class="tab-btn tab-locked" onclick="openLockedTab('atab-lastorder',this)">⚡ Last Order</button>
-        <button class="tab-btn tab-locked" onclick="openLockedTab('atab-prayer',this)">🕌 أوقات الصلاة</button>
-        <button class="tab-btn tab-locked" onclick="openLockedTab('atab-block',this)">🚫 الحظر</button>
-        <button class="tab-btn tab-locked" onclick="openLockedTab('atab-stats',this)">📊 الإحصائيات</button>
-        <button class="tab-btn tab-locked" onclick="openLockedTab('atab-payments',this)">💰 جرد المدفوعات</button>
-        <button class="tab-btn tab-locked" onclick="openLockedTab('atab-zones',this)">🗺️ مناطق التوصيل</button>
-        <button class="tab-btn tab-locked" onclick="openLockedTab('atab-offers',this)">🎁 العروض</button>
-        <button class="tab-btn tab-locked" onclick="openLockedTab('atab-marketing',this)">📣 التسويق</button>
-        <button class="tab-btn tab-locked" onclick="openLockedTab('atab-bookings',this)">📅 الحجوزات</button>
-        <button class="tab-btn tab-locked" onclick="openLockedTab('atab-vip',this)">👑 VIP</button>
-        <button class="tab-btn tab-locked" onclick="openLockedTab('atab-settings',this)">⚙️ الإعدادات</button>
-        <button class="tab-btn tab-locked" onclick="openLockedTab('atab-backup',this)">💾 النسخ الاحتياطي</button>
       </div>
 
-      <!-- تابات مفتوحة -->
+      <!-- التابات التفاعلية المفتوحة بالكامل -->
       <div id="atab-orders" class="tab-content active">
         <div class="stats-grid" id="quickStats"></div>
         <div class="section-title">🆕 الطلبات الواردة</div>
         <div id="adminOrdersList"></div>
       </div>
-      <div id="atab-stats" class="tab-content">
-        <div class="section-title">📊 إحصائيات اليوم</div>
-        <div class="stats-grid" id="todayStats"></div>
-        <div class="card" style="margin:0 14px" id="todayReport"></div>
-      </div>
-      <div id="atab-reports" class="tab-content">
+      <div id="atab-cashier" class="tab-content" style="display:none"></div>
+      <div id="atab-menu-mgmt" class="tab-content" style="display:none"></div>
+      <div id="atab-customers" class="tab-content" style="display:none"></div>
+      <div id="atab-agents" class="tab-content" style="display:none"></div>
+      <div id="atab-lastorder" class="tab-content" style="display:none"></div>
+      <div id="atab-prayer" class="tab-content" style="display:none"></div>
+      <div id="atab-block" class="tab-content" style="display:none"></div>
+      <div id="atab-stats" class="tab-content" style="display:none"></div>
+      <div id="atab-payments" class="tab-content" style="display:none"></div>
+      <div id="atab-zones" class="tab-content" style="display:none"></div>
+      <div id="atab-offers" class="tab-content" style="display:none"></div>
+      <div id="atab-marketing" class="tab-content" style="display:none"></div>
+      <div id="atab-bookings" class="tab-content" style="display:none"></div>
+      <div id="atab-vip" class="tab-content" style="display:none"></div>
+      <div id="atab-settings" class="tab-content" style="display:none"></div>
+      <div id="atab-backup" class="tab-content" style="display:none"></div>
+      <div id="atab-reports" class="tab-content" style="display:none">
         <div class="stats-grid" id="reportsStats"></div>
         <div class="section-title">📋 آخر الطلبات</div>
         <div id="reportsList"></div>
@@ -572,24 +599,6 @@ input,select,textarea{font-family:inherit}
           <button class="wa-btn" onclick="contactWA()">💬 اشترك الآن</button>
         </div>
       </div>
-
-      <!-- تابات مقفولة — Preview فقط -->
-      <div id="atab-cashier" class="tab-content locked-tab-content" style="display:none"></div>
-      <div id="atab-menu-mgmt" class="tab-content locked-tab-content" style="display:none"></div>
-      <div id="atab-customers" class="tab-content locked-tab-content" style="display:none"></div>
-      <div id="atab-agents" class="tab-content locked-tab-content" style="display:none"></div>
-      <div id="atab-lastorder" class="tab-content locked-tab-content" style="display:none"></div>
-      <div id="atab-prayer" class="tab-content locked-tab-content" style="display:none"></div>
-      <div id="atab-block" class="tab-content locked-tab-content" style="display:none"></div>
-      <div id="atab-stats" class="tab-content locked-tab-content" style="display:none"></div>
-      <div id="atab-payments" class="tab-content locked-tab-content" style="display:none"></div>
-      <div id="atab-zones" class="tab-content locked-tab-content" style="display:none"></div>
-      <div id="atab-offers" class="tab-content locked-tab-content" style="display:none"></div>
-      <div id="atab-marketing" class="tab-content locked-tab-content" style="display:none"></div>
-      <div id="atab-bookings" class="tab-content locked-tab-content" style="display:none"></div>
-      <div id="atab-vip" class="tab-content locked-tab-content" style="display:none"></div>
-      <div id="atab-settings" class="tab-content locked-tab-content" style="display:none"></div>
-      <div id="atab-backup" class="tab-content locked-tab-content" style="display:none"></div>
     </div>
 
     <!-- CONTACT TAB -->
@@ -632,6 +641,9 @@ input,select,textarea{font-family:inherit}
     </div>
   </div>
 
+  <!-- ROBOT FLOATING INFO BUTTON -->
+  <button id="robotInfoBtn" class="robot-btn" onclick="openRobotPopup(this.getAttribute('data-tab'))" title="شرح تفاصيل ومميزات هذا التاب">🤖</button>
+
   <div class="bottom-nav">
     <button class="nav-btn active" onclick="openTab('tab-menu')" id="nav-menu"><span class="nav-icon">🍽️</span><span class="nav-label">المنيو</span></button>
     <button class="nav-btn" onclick="openTab('tab-my-orders')" id="nav-my-orders"><span class="nav-icon">📋</span><span class="nav-label">طلباتي</span></button>
@@ -659,14 +671,19 @@ input,select,textarea{font-family:inherit}
   </div>
 </div>
 
-<!-- LOCKED MODAL -->
-<div class="locked-overlay" id="lockedOverlay" onclick="if(event.target===this)closeLocked()">
-  <div class="locked-card">
-    <div style="font-size:48px;margin-bottom:10px">🔒</div>
-    <div style="font-size:17px;font-weight:900;margin-bottom:8px" id="lockedTitle">هذه الميزة في النسخة الكاملة</div>
-    <div style="font-size:12px;color:var(--text-muted);line-height:1.7;margin-bottom:18px" id="lockedDesc"></div>
-    <button style="width:100%;padding:12px;background:linear-gradient(135deg,var(--demo),#5b21b6);color:#fff;border-radius:12px;font-size:14px;font-weight:900;border:none;cursor:pointer;margin-bottom:8px" onclick="contactWA();closeLocked()">🚀 تفعيل النسخة الكاملة</button>
-    <button style="width:100%;padding:10px;color:var(--text-muted);font-size:13px;background:none;border:none;cursor:pointer" onclick="closeLocked()">إغلاق</button>
+<!-- ROBOT INFO POPUP -->
+<div id="robotPopup" onclick="if(event.target===this)closeRobotPopup()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:400;align-items:flex-end;justify-content:center;backdrop-filter:blur(4px)">
+  <div style="background:#fff;border-radius:24px 24px 0 0;padding:22px 18px 36px;width:100%;max-width:480px;max-height:85vh;overflow-y:auto;box-shadow:0 -8px 32px rgba(0,0,0,.2)">
+    <div style="width:44px;height:4px;background:#e0ddd5;border-radius:4px;margin:0 auto 16px"></div>
+    <div style="text-align:center;margin-bottom:14px">
+      <div id="robotPopupIcon" style="font-size:44px;margin-bottom:8px">🤖</div>
+      <div id="robotPopupTitle" style="font-size:18px;font-weight:900;color:var(--dark);margin-bottom:6px"></div>
+      <div id="robotPopupDesc" style="font-size:12px;color:var(--text-muted);line-height:1.7;margin-bottom:8px"></div>
+    </div>
+    <div id="robotPopupUsp" style="display:none;font-size:12px;font-weight:800;color:#92400e;background:linear-gradient(135deg,#fef3c7,#fde68a);border-radius:12px;padding:10px 14px;margin-bottom:12px;border:1.5px solid #f59e0b"></div>
+    <div style="font-size:13px;font-weight:900;color:var(--olive-dark);margin-bottom:8px">✨ أهم المميزات والإعدادات:</div>
+    <div id="robotPopupFeatures" style="background:var(--olive-pale);border-radius:14px;padding:12px 14px;margin-bottom:16px"></div>
+    <button onclick="closeRobotPopup()" style="width:100%;padding:13px;background:linear-gradient(135deg,var(--olive-dark),var(--olive-light));color:#fff;border-radius:12px;font-size:14px;font-weight:900;border:none;cursor:pointer;font-family:inherit">حسناً، فهمت! 👍</button>
   </div>
 </div>
 
@@ -676,23 +693,21 @@ input,select,textarea{font-family:inherit}
 
 <script>
 // ================================================================
-// ⚠️ DEMO Firebase — منفصل تماماً عن zamzam-restaurant-cafe
+// CONFIG
 // ================================================================
 const FB_CFG = {
-  apiKey:            "AIzaSyBAFdsFpHfePUkXgwS7fWUfN0D685h9VeU",
-  authDomain:        "restaurant-demo-mg.firebaseapp.com",
-  databaseURL:       "https://restaurant-demo-mg-default-rtdb.firebaseio.com",
-  projectId:         "restaurant-demo-mg",
-  storageBucket:     "restaurant-demo-mg.firebasestorage.app",
-  messagingSenderId: "581740869226",
-  appId:             "1:581740869226:web:b3a5ee61c1fe9df6973c13"
+  apiKey:"AIzaSyBAFdsFpHfePUkXgwS7fWUfN0D685h9VeU",
+  authDomain:"restaurant-demo-mg.firebaseapp.com",
+  databaseURL:"https://restaurant-demo-mg-default-rtdb.firebaseio.com",
+  projectId:"restaurant-demo-mg",
+  storageBucket:"restaurant-demo-mg.firebasestorage.app",
+  messagingSenderId:"581740869226",
+  appId:"1:581740869226:web:b3a5ee61c1fe9df6973c13"
 };
-
-// ── Admin Credentials (SHA-256 — مش قابل للعكس) ──
 const ADMIN_PASS_HASH = "f8d124b2109e00c9ab77a75c232feb83edb5a816e1e1690f54c5c65caf7673ba";
 const ADMIN_PIN_HASH  = "fddc599a3afe6c68b8098f7ef3db02335f7e398e3c0bd34b663f04f424886aeb";
+const DEVELOPER_WA = '201508613866';
 
-const DEVELOPER_WA   = '201508613866';
 const DEMO_MENU = {
   burgers:{label:'🍔 برجر',emoji:'🍔',items:[
     {id:'b1',name:'كلاسيك برجر',desc:'لحم بقري طازج مع الخضار والصوص',price:75,emoji:'🍔',img:'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&h=280&fit=crop&auto=format'},
@@ -729,308 +744,203 @@ let allOrders = [], demoSession = null, timerInterval = null;
 // ================================================================
 // FIREBASE INIT
 // ================================================================
-function initFB() {
-  try {
-    if (!firebase.apps.length) firebase.initializeApp(FB_CFG);
-    db = firebase.database();
-    return true;
-  } catch(e) { console.warn('FB init failed:', e); return false; }
+function initFB(){
+  try{ if(!firebase.apps.length) firebase.initializeApp(FB_CFG); db=firebase.database(); return true; }
+  catch(e){ console.warn('FB init failed:',e); return false; }
 }
 
 // ================================================================
-// SHA-256 (Web Crypto API)
+// SHA-256
 // ================================================================
-async function sha256(str) {
-  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
-  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
+async function sha256(str){
+  const buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(str));
+  return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
 }
 
 // ================================================================
 // SCREENS
 // ================================================================
-function showScreen(id) {
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
 }
-
-// كشف #admin في الـ URL (مخفي عن العملاء)
-function detectAdminRoute() {
-  return location.hash === '#admin' || location.hash === '#admin/';
-}
+function detectAdminRoute(){ return location.hash==='#admin'||location.hash==='#admin/'; }
 
 // ================================================================
 // ADMIN LOGIN
 // ================================================================
-async function adminLogin() {
-  const pass = document.getElementById('adminPassInput').value;
-  const pin  = document.getElementById('adminPinInput').value;
-  const errEl = document.getElementById('adminErr');
-  errEl.style.display = 'none';
-
-  const [ph, pinh] = await Promise.all([sha256(pass), sha256(pin)]);
-
-  if (ph !== ADMIN_PASS_HASH || pinh !== ADMIN_PIN_HASH) {
-    errEl.style.display = 'block';
-    document.getElementById('adminPinInput').value = '';
+async function adminLogin(){
+  const pass=document.getElementById('adminPassInput').value;
+  const pin=document.getElementById('adminPinInput').value;
+  const errEl=document.getElementById('adminErr');
+  errEl.style.display='none';
+  const[ph,pinh]=await Promise.all([sha256(pass),sha256(pin)]);
+  if(ph!==ADMIN_PASS_HASH||pinh!==ADMIN_PIN_HASH){
+    errEl.style.display='block';
+    document.getElementById('adminPinInput').value='';
     document.getElementById('adminPassInput').focus();
-    // تأخير 2 ثانية بعد كل محاولة غلط (حماية Brute Force)
-    await new Promise(r => setTimeout(r, 2000));
+    await new Promise(r=>setTimeout(r,2000));
     return;
   }
-
-  // حفظ session Admin (مؤقت — بيختفي لما يقفل المتصفح)
-  sessionStorage.setItem('zz_admin_ok', '1');
+  sessionStorage.setItem('zz_admin_ok','1');
   showScreen('adminPanel');
   loadClients();
 }
-
-function adminLogout() {
+function adminLogout(){
   sessionStorage.removeItem('zz_admin_ok');
-  document.getElementById('adminPassInput').value = '';
-  document.getElementById('adminPinInput').value = '';
-  location.hash = '';
+  document.getElementById('adminPassInput').value='';
+  document.getElementById('adminPinInput').value='';
+  location.hash='';
   showScreen('auth');
 }
 
 // ================================================================
-// ADMIN — إنشاء حساب عميل جديد
+// ADMIN — إنشاء حساب
 // ================================================================
-function genPassword(len=8) {
-  const chars = 'abcdefghjkmnpqrstuvwxyz23456789';
-  let p = '';
-  for (let i = 0; i < len; i++) p += chars[Math.floor(Math.random() * chars.length)];
-  return p;
+function genPassword(len=8){
+  const chars='abcdefghjkmnpqrstuvwxyz23456789';
+  let p='';for(let i=0;i<len;i++)p+=chars[Math.floor(Math.random()*chars.length)];return p;
 }
-
-async function createClient() {
-  const name   = document.getElementById('newClientName').value.trim();
-  const user   = document.getElementById('newClientUser').value.trim().toLowerCase().replace(/\s/g,'');
-  const passIn = document.getElementById('newClientPass').value.trim();
-  const hours  = parseInt(document.getElementById('newClientHours').value) || 48;
-
-  if (!name || !user) { showNotif('⚠️ أدخل اسم العميل واسم المستخدم'); return; }
-  if (user.length < 3) { showNotif('⚠️ اسم المستخدم 3 أحرف على الأقل'); return; }
-
-  const pass = passIn || genPassword();
-  const passHash = await sha256(pass);
-  const now = Date.now();
-  const expiresAt = now + hours * 3600000;
-
-  const clientData = {
-    name, username: user,
-    passHash,           // الباسورد المشفر — مش الباسورد الحقيقي
-    createdAt: now,
-    expiresAt,
-    hoursGranted: hours,
-    status: 'active',
-    firstLoginAt: null
-  };
-
-  if (!db) { showNotif('⚠️ Firebase غير متصل'); return; }
-
-  // التحقق إن اليوزر مش موجود
-  const existing = await db.ref('demo_clients/' + user).get();
-  if (existing.exists()) { showNotif('⚠️ اسم المستخدم ده موجود بالفعل'); return; }
-
-  await db.ref('demo_clients/' + user).set(clientData);
-
-  // عرض النتيجة
-  const expDate = new Date(expiresAt).toLocaleString('ar-EG', {
-    day:'numeric', month:'long', hour:'2-digit', minute:'2-digit'
-  });
-  document.getElementById('gc-name').textContent = name;
-  document.getElementById('gc-user').textContent = user;
-  document.getElementById('gc-pass').textContent = pass;
-  document.getElementById('gc-exp').textContent  = expDate;
-  document.getElementById('generatedCred').style.display = 'block';
-
-  // حفظ للـ copy رسالة
-  window._lastCred = { name, user, pass, expDate, hours };
-
-  // تنظيف الحقول
-  document.getElementById('newClientName').value = '';
-  document.getElementById('newClientUser').value = '';
-  document.getElementById('newClientPass').value = '';
-  document.getElementById('newClientHours').value = '';
-
-  showNotif('✅ تم إنشاء الحساب: ' + user);
+async function createClient(){
+  const name=document.getElementById('newClientName').value.trim();
+  const user=document.getElementById('newClientUser').value.trim().toLowerCase().replace(/\s/g,'');
+  const passIn=document.getElementById('newClientPass').value.trim();
+  const hours=parseInt(document.getElementById('newClientHours').value)||48;
+  if(!name||!user){showNotif('⚠️ أدخل اسم العميل واسم المستخدم');return;}
+  if(user.length<3){showNotif('⚠️ اسم المستخدم 3 أحرف على الأقل');return;}
+  const pass=passIn||genPassword();
+  const passHash=await sha256(pass);
+  const now=Date.now();
+  const expiresAt=now+hours*3600000;
+  const clientData={name,username:user,passHash,createdAt:now,expiresAt,hoursGranted:hours,status:'active',firstLoginAt:null};
+  if(!db){showNotif('⚠️ Firebase غير متصل');return;}
+  const existing=await db.ref('demo_clients/'+user).get();
+  if(existing.exists()){showNotif('⚠️ اسم المستخدم ده موجود بالفعل');return;}
+  await db.ref('demo_clients/'+user).set(clientData);
+  const expDate=new Date(expiresAt).toLocaleString('ar-EG',{day:'numeric',month:'long',hour:'2-digit',minute:'2-digit'});
+  document.getElementById('gc-name').textContent=name;
+  document.getElementById('gc-user').textContent=user;
+  document.getElementById('gc-pass').textContent=pass;
+  document.getElementById('gc-exp').textContent=expDate;
+  document.getElementById('generatedCred').style.display='block';
+  window._lastCred={name,user,pass,expDate,hours};
+  document.getElementById('newClientName').value='';
+  document.getElementById('newClientUser').value='';
+  document.getElementById('newClientPass').value='';
+  document.getElementById('newClientHours').value='';
+  showNotif('✅ تم إنشاء الحساب: '+user);
   loadClients();
 }
-
-function copyText(elId) {
-  const val = document.getElementById(elId).textContent;
-  navigator.clipboard.writeText(val).then(() => showNotif('✅ تم النسخ'));
+function copyText(elId){
+  const val=document.getElementById(elId).textContent;
+  navigator.clipboard.writeText(val).then(()=>showNotif('✅ تم النسخ'));
 }
-
-function copyFullMessage() {
-  const c = window._lastCred;
-  if (!c) return;
-  const msg = `مرحباً ${c.name} 🌟\n\nيسعدنا تقديم نسخة تجريبية مجانية من نظام إدارة المطاعم لمدة ${c.hours} ساعة.\n\n🔗 الرابط: ${location.origin}${location.pathname}\n\n👤 اسم المستخدم: ${c.user}\n🔑 كلمة السر: ${c.pass}\n\n⏰ تنتهي التجربة: ${c.expDate}\n\nلأي استفسار تواصل معنا 📞\nMG AppHouse`;
-  navigator.clipboard.writeText(msg).then(() => showNotif('✅ تم نسخ الرسالة'));
+function copyFullMessage(){
+  const c=window._lastCred;if(!c)return;
+  const msg=`مرحباً ${c.name} 🌟\n\nيسعدنا تقديم نسخة تجريبية مجانية من نظام إدارة المطاعم لمدة ${c.hours} ساعة.\n\n🔗 الرابط: ${location.origin}${location.pathname}\n\n👤 اسم المستخدم: ${c.user}\n🔑 كلمة السر: ${c.pass}\n\n⏰ تنتهي التجربة: ${c.expDate}\n\nلأي استفسار تواصل معنا 📞\nMG AppHouse`;
+  navigator.clipboard.writeText(msg).then(()=>showNotif('✅ تم نسخ الرسالة'));
 }
 
 // ================================================================
-// ADMIN — تحميل قائمة العملاء
+// ADMIN — تحميل العملاء
 // ================================================================
-async function loadClients() {
-  if (!db) return;
-  const snap = await db.ref('demo_clients').get();
-  const list = document.getElementById('clientsList');
-
-  if (!snap.exists()) {
-    list.innerHTML = '<div style="text-align:center;padding:16px;color:rgba(255,255,255,.3);font-size:12px">لا يوجد عملاء بعد</div>';
-    return;
-  }
-
-  const clients = [];
-  snap.forEach(c => { const v = c.val(); if(v) clients.push({key: c.key, ...v}); });
-  clients.sort((a,b) => (b.createdAt||0)-(a.createdAt||0));
-
-  const now = Date.now();
-  let totalActive = 0, totalExpired = 0;
-
-  list.innerHTML = clients.map(c => {
-    const isExpired = now > c.expiresAt || c.status === 'expired';
-    if (isExpired) totalExpired++; else totalActive++;
-    const left = isExpired ? 0 : Math.max(0, c.expiresAt - now);
-    const h = Math.floor(left/3600000), m = Math.floor((left%3600000)/60000);
-    const timeStr = isExpired ? 'منتهية' : `${h} ساعة ${m} دقيقة`;
-    const expDate = new Date(c.expiresAt).toLocaleString('ar-EG',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'});
-    return `
-    <div class="client-row">
-      <div class="client-info">
-        <div class="client-name">${c.name||c.key}</div>
-        <div class="client-meta">👤 ${c.username||c.key} | ⏰ تنتهي: ${expDate}</div>
-        <div class="time-left">${isExpired ? '🔴 منتهية' : '🟢 متبقي: '+timeStr}</div>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:4px;align-items:flex-end">
-        <span class="client-status ${isExpired?'status-expired':'status-active'}">${isExpired?'منتهي':'نشط'}</span>
-        <div style="display:flex;flex-direction:column;gap:4px;margin-top:4px">
-          ${!isExpired ? `<button onclick="stopClient('${c.key}')" style="background:rgba(239,68,68,.25);color:#f87171;border:1px solid rgba(239,68,68,.4);border-radius:6px;padding:4px 10px;font-size:10px;font-weight:900;cursor:pointer;font-family:inherit">⛔ إيقاف فوري</button>` : ''}
-          <button onclick="deleteClient('${c.key}')" style="background:rgba(255,255,255,.06);color:rgba(255,255,255,.3);border:1px solid rgba(255,255,255,.1);border-radius:6px;padding:4px 10px;font-size:10px;font-weight:800;cursor:pointer;font-family:inherit">🗑 حذف</button>
-        </div>
-      </div>
-    </div>`;
+async function loadClients(){
+  if(!db)return;
+  const snap=await db.ref('demo_clients').get();
+  const list=document.getElementById('clientsList');
+  if(!snap.exists()){list.innerHTML='<div style="text-align:center;padding:16px;color:rgba(255,255,255,.3);font-size:12px">لا يوجد عملاء بعد</div>';return;}
+  const clients=[];
+  snap.forEach(c=>{const v=c.val();if(v)clients.push({key:c.key,...v});});
+  clients.sort((a,b)=>(b.createdAt||0)-(a.createdAt||0));
+  const now=Date.now();
+  let totalActive=0,totalExpired=0;
+  list.innerHTML=clients.map(c=>{
+    const isExpired=now>c.expiresAt||c.status==='expired';
+    if(isExpired)totalExpired++;else totalActive++;
+    const left=isExpired?0:Math.max(0,c.expiresAt-now);
+    const h=Math.floor(left/3600000),m=Math.floor((left%3600000)/60000);
+    const timeStr=isExpired?'منتهية':`${h} ساعة ${m} دقيقة`;
+    const expDate=new Date(c.expiresAt).toLocaleString('ar-EG',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'});
+    return`<div class="client-row"><div class="client-info"><div class="client-name">${c.name||c.key}</div><div class="client-meta">👤 ${c.username||c.key} | ⏰ تنتهي: ${expDate}</div><div class="time-left">${isExpired?'🔴 منتهية':'🟢 متبقي: '+timeStr}</div></div><div style="display:flex;flex-direction:column;gap:4px;align-items:flex-end"><span class="client-status ${isExpired?'status-expired':'status-active'}">${isExpired?'منتهي':'نشط'}</span><div style="display:flex;flex-direction:column;gap:4px;margin-top:4px">${!isExpired?`<button onclick="stopClient('${c.key}')" style="background:rgba(239,68,68,.25);color:#f87171;border:1px solid rgba(239,68,68,.4);border-radius:6px;padding:4px 10px;font-size:10px;font-weight:900;cursor:pointer;font-family:inherit">⛔ إيقاف فوري</button>`:''}<button onclick="deleteClient('${c.key}')" style="background:rgba(255,255,255,.06);color:rgba(255,255,255,.3);border:1px solid rgba(255,255,255,.1);border-radius:6px;padding:4px 10px;font-size:10px;font-weight:800;cursor:pointer;font-family:inherit">🗑 حذف</button></div></div></div>`;
   }).join('');
-
-  document.getElementById('stat-total').textContent   = clients.length;
-  document.getElementById('stat-active').textContent  = totalActive;
-  document.getElementById('stat-expired').textContent = totalExpired;
+  document.getElementById('stat-total').textContent=clients.length;
+  document.getElementById('stat-active').textContent=totalActive;
+  document.getElementById('stat-expired').textContent=totalExpired;
 }
-
-async function stopClient(username) {
-  if (!confirm(`إيقاف فوري لحساب "${username}"؟\n\nهيتقفل على الفور من كل الأجهزة\nوما يقدرش يدخل تاني حتى لو عنده session شغالة.`)) return;
-  if (!db) return;
-  await db.ref('demo_clients/' + username + '/status').set('expired');
-  await db.ref('demo_clients/' + username + '/stoppedAt').set(Date.now());
-  await db.ref('demo_clients/' + username + '/stoppedBy').set('admin');
-  showNotif('⛔ تم الإيقاف الفوري: ' + username);
+async function stopClient(username){
+  if(!confirm(`إيقاف فوري لحساب "${username}"؟`))return;
+  if(!db)return;
+  await db.ref('demo_clients/'+username+'/status').set('expired');
+  await db.ref('demo_clients/'+username+'/stoppedAt').set(Date.now());
+  showNotif('⛔ تم الإيقاف الفوري: '+username);
   loadClients();
 }
-
-async function deleteClient(username) {
-  if (!confirm(`حذف حساب "${username}" نهائياً؟\n\nهيتمسح كل بياناته وطلباته.`)) return;
-  await db.ref('demo_clients/' + username).remove();
-  await db.ref('demo_orders/' + username).remove();
+async function deleteClient(username){
+  if(!confirm(`حذف حساب "${username}" نهائياً؟`))return;
+  await db.ref('demo_clients/'+username).remove();
+  await db.ref('demo_orders/'+username).remove();
   showNotif('✅ تم حذف الحساب نهائياً');
   loadClients();
 }
 
 // ================================================================
-// CLIENT LOGIN — من Firebase
+// CLIENT LOGIN
 // ================================================================
-async function clientLogin() {
-  const user    = (document.getElementById('authUser').value||'').trim().toLowerCase();
-  const pass    = (document.getElementById('authPass').value||'').trim();
-  const errEl   = document.getElementById('authErr');
-  errEl.style.display = 'none';
-
-  if (!user || !pass) { showNotif('⚠️ أدخل اسم المستخدم وكلمة السر'); return; }
-
-  if (!db) { showNotif('⚠️ جاري الاتصال... حاول مجدداً'); return; }
-
-  // جلب بيانات العميل من Firebase
-  const snap = await db.ref('demo_clients/' + user).get().catch(()=>null);
-
-  if (!snap || !snap.exists()) {
-    errEl.style.display = 'block';
-    document.getElementById('authPass').value = '';
-    return;
+async function clientLogin(){
+  const user=(document.getElementById('authUser').value||'').trim().toLowerCase();
+  const pass=(document.getElementById('authPass').value||'').trim();
+  const errEl=document.getElementById('authErr');
+  errEl.style.display='none';
+  if(!user||!pass){showNotif('⚠️ أدخل اسم المستخدم وكلمة السر');return;}
+  if(!db){showNotif('⚠️ جاري الاتصال... حاول مجدداً');return;}
+  const snap=await db.ref('demo_clients/'+user).get().catch(()=>null);
+  if(!snap||!snap.exists()){errEl.style.display='block';document.getElementById('authPass').value='';return;}
+  const clientData=snap.val();
+  const passHash=await sha256(pass);
+  if(passHash!==clientData.passHash){errEl.style.display='block';document.getElementById('authPass').value='';return;}
+  const now=Date.now();
+  if(now>clientData.expiresAt||clientData.status==='expired'){
+    await db.ref('demo_clients/'+user+'/status').set('expired');
+    showExpiredScreen();return;
   }
-
-  const clientData = snap.val();
-
-  // التحقق من الباسورد (SHA-256)
-  const passHash = await sha256(pass);
-  if (passHash !== clientData.passHash) {
-    errEl.style.display = 'block';
-    document.getElementById('authPass').value = '';
-    return;
-  }
-
-  // فحص الانتهاء من السيرفر
-  const now = Date.now();
-  if (now > clientData.expiresAt || clientData.status === 'expired') {
-    await db.ref('demo_clients/' + user + '/status').set('expired');
-    showExpiredScreen();
-    return;
-  }
-
-  // أول دخول — سجّل الوقت
-  if (!clientData.firstLoginAt) {
-    await db.ref('demo_clients/' + user + '/firstLoginAt').set(now);
-  }
-
-  // حفظ الـ session محلياً
-  demoSession = { username: user, name: clientData.name, expiresAt: clientData.expiresAt };
-  try { sessionStorage.setItem('zz_demo_session', JSON.stringify(demoSession)); } catch(e){}
-
+  if(!clientData.firstLoginAt) await db.ref('demo_clients/'+user+'/firstLoginAt').set(now);
+  demoSession={username:user,name:clientData.name,expiresAt:clientData.expiresAt};
+  try{sessionStorage.setItem('zz_demo_session',JSON.stringify(demoSession));}catch(e){}
   launchApp();
 }
 
 // ================================================================
-// SESSION CHECK — عند فتح الصفحة من جديد
+// SESSION CHECK
 // ================================================================
-async function checkExistingSession() {
-  try {
-    const stored = sessionStorage.getItem('zz_demo_session');
-    if (!stored) return false;
-    const s = JSON.parse(stored);
-    if (!s || !s.username) return false;
-
-    // تحقق من Firebase (السيرفر هو المرجع)
-    const snap = await db.ref('demo_clients/' + s.username).get();
-    if (!snap.exists()) return false;
-
-    const data = snap.val();
-    // فحص الإيقاف الفوري أو انتهاء الوقت
-    if (!data || Date.now() > data.expiresAt || data.status === 'expired') {
-      sessionStorage.removeItem('zz_demo_session');
-      showExpiredScreen();
-      return true;
+async function checkExistingSession(){
+  try{
+    const stored=sessionStorage.getItem('zz_demo_session');
+    if(!stored)return false;
+    const s=JSON.parse(stored);
+    if(!s||!s.username)return false;
+    const snap=await db.ref('demo_clients/'+s.username).get();
+    if(!snap.exists())return false;
+    const data=snap.val();
+    if(!data||Date.now()>data.expiresAt||data.status==='expired'){
+      sessionStorage.removeItem('zz_demo_session');showExpiredScreen();return true;
     }
-
-    demoSession = { username: s.username, name: data.name, expiresAt: data.expiresAt };
-    launchApp();
-    return true;
-  } catch(e) { return false; }
+    demoSession={username:s.username,name:data.name,expiresAt:data.expiresAt};
+    launchApp();return true;
+  }catch(e){return false;}
 }
 
 // ================================================================
 // APP LAUNCH
 // ================================================================
-function launchApp() {
-  document.getElementById('topbarGreet').textContent = 'أهلاً ' + (demoSession.name||'') + ' 👋';
-  loadDemoOrders();
-  startTimer();
-  renderMenu();
-  renderAdminOrders();
-  renderTodayStats();
+function launchApp(){
+  document.getElementById('topbarGreet').textContent='أهلاً '+(demoSession.name||'')+' 👋';
+  loadDemoOrders();startTimer();renderMenu();renderAdminOrders();renderTodayStats();
   showScreen('app');
 }
-
-function showExpiredScreen() {
-  if (timerInterval) clearInterval(timerInterval);
+function showExpiredScreen(){
+  if(timerInterval)clearInterval(timerInterval);
+  stopAllDemos();
+  hideRobotBtn();
   sessionStorage.removeItem('zz_demo_session');
   showScreen('expired');
 }
@@ -1038,134 +948,73 @@ function showExpiredScreen() {
 // ================================================================
 // TIMER
 // ================================================================
-function startTimer() {
-  if (timerInterval) clearInterval(timerInterval);
-
-  async function tick() {
-    if (!demoSession) return;
-    const left = demoSession.expiresAt - Date.now();
-    const el = document.getElementById('demoTimerEl');
-    if (!el) return;
-    if (left <= 0) {
-      clearInterval(timerInterval);
-      if (db) db.ref('demo_clients/' + demoSession.username + '/status').set('expired').catch(()=>{});
-      showExpiredScreen();
-      return;
-    }
-    const h = String(Math.floor(left/3600000)).padStart(2,'0');
-    const m = String(Math.floor((left%3600000)/60000)).padStart(2,'0');
-    const s = String(Math.floor((left%60000)/1000)).padStart(2,'0');
-    el.textContent = `⏱ ${h}:${m}:${s}`;
-    if (left < 3600000) el.style.background = 'rgba(239,68,68,.4)';
-    else if (left < 10800000) el.style.background = 'rgba(245,158,11,.3)';
-
-    // تحديث الـ banner بحالة الطلب النشط
+function startTimer(){
+  if(timerInterval)clearInterval(timerInterval);
+  async function tick(){
+    if(!demoSession)return;
+    const left=demoSession.expiresAt-Date.now();
+    const el=document.getElementById('demoTimerEl');if(!el)return;
+    if(left<=0){clearInterval(timerInterval);if(db)db.ref('demo_clients/'+demoSession.username+'/status').set('expired').catch(()=>{});showExpiredScreen();return;}
+    const h=String(Math.floor(left/3600000)).padStart(2,'0');
+    const m=String(Math.floor((left%3600000)/60000)).padStart(2,'0');
+    const s=String(Math.floor((left%60000)/1000)).padStart(2,'0');
+    el.textContent=`⏱ ${h}:${m}:${s}`;
+    if(left<3600000)el.style.background='rgba(239,68,68,.4)';
+    else if(left<10800000)el.style.background='rgba(245,158,11,.3)';
     updateOrderStatusBanner();
   }
 
-  function updateOrderStatusBanner() {
-    const banner = document.getElementById('orderStatusBanner');
-    if (!banner) return;
-    // آخر طلب نشط
-    const activeOrder = allOrders.find(o =>
-      o.demoUsername === demoSession?.username &&
-      o.status !== 'delivered' && o.status !== 'cancelled'
-    );
-    if (!activeOrder) {
-      banner.style.display = 'none';
-      return;
-    }
-    const msgs = {
-      new:      '⏳ في انتظار مراجعة الكاشير',
-      prep:     '👨‍🍳 جاري تجهيز طلبك الآن',
-      ready:    '✅ طلبك جاهز للاستلام!',
-      delivery: '🛵 المندوب في الطريق إليك',
-      delivered:'🎉 تم التسليم بنجاح!'
-    };
-    const msg = msgs[activeOrder.status];
-    if (msg) {
-      banner.style.display = 'flex';
-      banner.textContent = msg;
-      // لون البانر حسب المرحلة
-      const colors = {
-        new:'rgba(245,158,11,.9)', prep:'rgba(26,95,200,.9)',
-        ready:'rgba(22,163,74,.9)', delivery:'rgba(124,58,237,.9)',
-        delivered:'rgba(22,163,74,.9)'
-      };
-      banner.style.background = colors[activeOrder.status] || 'rgba(0,0,0,.8)';
-    } else {
-      banner.style.display = 'none';
-    }
+  function updateOrderStatusBanner(){
+    const banner=document.getElementById('orderStatusBanner');
+    if(!banner)return;
+    const activeOrder=allOrders.find(o=>o.demoUsername===demoSession?.username&&o.status!=='delivered'&&o.status!=='cancelled');
+    if(!activeOrder){banner.style.display='none';return;}
+    const msgs={new:'⏳ في انتظار مراجعة الكاشير',prep:'👨‍🍳 جاري تجهيز طلبك الآن',ready:'✅ طلبك جاهز للاستلام!',delivery:'🛵 المندوب في الطريق إليك',delivered:'🎉 تم التسليم بنجاح!'};
+    const msg=msgs[activeOrder.status];
+    if(msg){
+      banner.style.display='flex';banner.textContent=msg;
+      const colors={new:'rgba(245,158,11,.9)',prep:'rgba(26,95,200,.9)',ready:'rgba(22,163,74,.9)',delivery:'rgba(124,58,237,.9)',delivered:'rgba(22,163,74,.9)'};
+      banner.style.background=colors[activeOrder.status]||'rgba(0,0,0,.8)';
+    }else banner.style.display='none';
   }
 
-  tick();
-  timerInterval = setInterval(tick, 1000);
-
-  // تحقق من السيرفر كل 5 دقائق (مقاومة التلاعب بوقت الجهاز)
-  setInterval(async () => {
-    if (!db || !demoSession) return;
-    // فحص الوقت والـ status من السيرفر (مقاومة الإيقاف الفوري والتلاعب)
-    const clientSnap = await db.ref('demo_clients/' + demoSession.username).get().catch(()=>null);
-    if (clientSnap && clientSnap.exists()) {
-      const data = clientSnap.val();
-      if (!data || data.status === 'expired' || Date.now() > data.expiresAt) {
-        showExpiredScreen(); return;
-      }
-      demoSession.expiresAt = data.expiresAt; // تحديث من السيرفر
-    } else if (clientSnap && !clientSnap.exists()) {
-      // الحساب اتمسح من الأدمن
-      showExpiredScreen();
-    }
-  }, 5 * 60 * 1000);
+  tick();timerInterval=setInterval(tick,1000);
+  setInterval(async()=>{
+    if(!db||!demoSession)return;
+    const clientSnap=await db.ref('demo_clients/'+demoSession.username).get().catch(()=>null);
+    if(clientSnap&&clientSnap.exists()){
+      const data=clientSnap.val();
+      if(!data||data.status==='expired'||Date.now()>data.expiresAt){showExpiredScreen();return;}
+      demoSession.expiresAt=data.expiresAt;
+    }else if(clientSnap&&!clientSnap.exists()){showExpiredScreen();}
+  },5*60*1000);
 }
 
 // ================================================================
 // MENU
 // ================================================================
-function renderMenu() {
-  let html = '';
-  Object.entries(DEMO_MENU).forEach(([catKey, cat]) => {
-    html += `<div class="menu-section">
-      <div class="cat-header">
-        <div class="cat-header-emoji">${cat.emoji}</div>
-        <span>${cat.label}</span>
-      </div>
-      <div class="food-grid">`;
-    cat.items.forEach(item => {
-      const imgContent = item.img
-        ? `<img class="food-img" src="${item.img}" alt="${item.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`
-        : '';
-      const fallback = `<div class="food-emoji-fallback" style="${item.img?'display:none':''}"> ${item.emoji}</div>`;
-      html += `<div class="food-card" onclick="addToCart('${catKey}','${item.id}')">
-        <div class="food-img-wrap">
-          ${imgContent}
-          ${fallback}
-          <div class="food-price-tag">${item.price} ج.م</div>
-        </div>
-        <div class="food-info">
-          <div class="food-name">${item.name}</div>
-          <div class="food-desc">${item.desc}</div>
-          <div class="food-bottom">
-            <div class="food-price"><span class="food-currency">ج.م</span>${item.price}</div>
-            <button class="add-btn" onclick="event.stopPropagation();addToCart('${catKey}','${item.id}')">+</button>
-          </div>
-        </div>
-      </div>`;
+function renderMenu(){
+  let html='';
+  Object.entries(DEMO_MENU).forEach(([catKey,cat])=>{
+    html+=`<div class="menu-section"><div class="cat-header"><div class="cat-header-emoji">${cat.emoji}</div><span>${cat.label}</span></div><div class="food-grid">`;
+    cat.items.forEach(item=>{
+      const imgContent=item.img?`<img class="food-img" src="${item.img}" alt="${item.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">` : '';
+      const fallback=`<div class="food-emoji-fallback" style="${item.img?'display:none':''}">${item.emoji}</div>`;
+      html+=`<div class="food-card" onclick="addToCart('${catKey}','${item.id}')"><div class="food-img-wrap">${imgContent}${fallback}<div class="food-price-tag">${item.price} ج.م</div></div><div class="food-info"><div class="food-name">${item.name}</div><div class="food-desc">${item.desc}</div><div class="food-bottom"><div class="food-price"><span class="food-currency">ج.م</span>${item.price}</div><button class="add-btn" onclick="event.stopPropagation();addToCart('${catKey}','${item.id}')">+</button></div></div></div>`;
     });
-    html += '</div></div>';
+    html+='</div></div>';
   });
-  document.getElementById('menuContainer').innerHTML = html;
+  document.getElementById('menuContainer').innerHTML=html;
 }
 
 // ================================================================
-// CART
+// CART & ORDERS
 // ================================================================
-function addToCart(catKey, itemId) {
-  const item = DEMO_MENU[catKey]?.items?.find(i=>i.id===itemId);
-  if (!item) return;
-  const ex = cart.find(c=>c.id===itemId);
-  if (ex) ex.qty++; else cart.push({id:itemId,name:item.name,emoji:item.emoji,price:item.price,qty:1});
-  updateBadge(); showNotif('✓ أُضيف: '+item.name);
+function addToCart(catKey,itemId){
+  const item=DEMO_MENU[catKey]?.items?.find(i=>i.id===itemId);if(!item)return;
+  const ex=cart.find(c=>c.id===itemId);
+  if(ex)ex.qty++;else cart.push({id:itemId,name:item.name,emoji:item.emoji,price:item.price,qty:1});
+  updateBadge();showNotif('✓ أُضيف: '+item.name);
 }
 function removeFromCart(id){cart=cart.filter(c=>c.id!==id);updateBadge();renderCartItems();}
 function changeQty(id,d){const i=cart.find(c=>c.id===id);if(!i)return;i.qty=Math.max(0,i.qty+d);if(!i.qty)cart=cart.filter(c=>c.id!==id);updateBadge();renderCartItems();}
@@ -1181,102 +1030,48 @@ function renderCartItems(){
   document.getElementById('cartTotalEl').textContent=total+' ج.م';
 }
 
-// ================================================================
-// PLACE ORDER
-// ================================================================
-async function placeOrder() {
-  if (!demoSession){showNotif('⚠️ سجّل أولاً');return;}
-  if (!cart.length){showNotif('⚠️ السلة فارغة');return;}
+async function placeOrder(){
+  if(!demoSession){showNotif('⚠️ سجّل أولاً');return;}
+  if(!cart.length){showNotif('⚠️ السلة فارغة');return;}
   const now=Date.now();
   const id='D-'+String(Math.floor(1000+Math.random()*9000));
   const total=cart.reduce((s,c)=>s+c.price*c.qty,0);
-  const order={
-    id, demoUsername:demoSession.username, name:demoSession.name,
-    items:cart.map(c=>({name:c.name,qty:c.qty,price:c.price})),
-    total, type:deliveryType,
-    address:document.getElementById('cartAddress').value.trim()||null,
-    notes:document.getElementById('cartNotes').value.trim()||null,
-    status:'new', timestamp:now,
-    date:new Date(now).toLocaleDateString('ar-EG'),
-    time:new Date(now).toLocaleTimeString('ar-EG',{hour:'2-digit',minute:'2-digit'})
-  };
+  const order={id,demoUsername:demoSession.username,name:demoSession.name,items:cart.map(c=>({name:c.name,qty:c.qty,price:c.price})),total,type:deliveryType,address:document.getElementById('cartAddress').value.trim()||null,notes:document.getElementById('cartNotes').value.trim()||null,status:'new',timestamp:now,date:new Date(now).toLocaleDateString('ar-EG'),time:new Date(now).toLocaleTimeString('ar-EG',{hour:'2-digit',minute:'2-digit'})};
   if(db) await db.ref('demo_orders/'+demoSession.username+'/'+id).set(order).catch(()=>{});
   allOrders.unshift(order);
-  cart=[];
-  document.getElementById('cartAddress').value='';
-  document.getElementById('cartNotes').value='';
-  updateBadge();
-  closeCartSheet();
-  showNotif('✅ تم إرسال طلبك! رقم: '+id);
-  openTab('tab-my-orders');
-  renderMyOrders();renderAdminOrders();renderTodayStats();
+  cart=[];document.getElementById('cartAddress').value='';document.getElementById('cartNotes').value='';
+  updateBadge();closeCartSheet();showNotif('✅ تم إرسال طلبك! رقم: '+id);
+  openTab('tab-my-orders');renderMyOrders();renderAdminOrders();renderTodayStats();
   simulateOrder(id);
 }
 
 function simulateOrder(orderId){
-  // مراحل التتبع بالترتيب مع timing مناسب
-  const stages = [
-    { delay: 5000,  status: 'prep',      notif: '👨‍🍳 بدأ تجهيز طلبك!' },
-    { delay: 18000, status: 'ready',     notif: '✅ طلبك جاهز!' },
-    { delay: 30000, status: 'delivery',  notif: '🛵 المندوب خرج في الطريق إليك!' },
-    { delay: 50000, status: 'delivered', notif: '🎉 تم تسليم طلبك بنجاح!' }
+  const stages=[
+    {delay:5000,status:'prep',notif:'👨‍🍳 بدأ تجهيز طلبك!'},
+    {delay:18000,status:'ready',notif:'✅ طلبك جاهز!'},
+    {delay:30000,status:'delivery',notif:'🛵 المندوب خرج في الطريق إليك!'},
+    {delay:50000,status:'delivered',notif:'🎉 تم تسليم طلبك بنجاح!'}
   ];
-
-  stages.forEach(({delay, status, notif}) => {
-    setTimeout(() => {
-      const o = allOrders.find(x => x.id === orderId);
-      if (!o) return;
-
-      o.status = status;
-
-      // تحديث Firebase
-      if (db && demoSession) {
-        db.ref('demo_orders/' + demoSession.username + '/' + orderId + '/status')
-          .set(status).catch(() => {});
-      }
-
-      // إظهار الـ notification
-      showNotif(notif);
-
-      // تحديث كل الـ views
-      renderMyOrders();
-      renderAdminOrders();
-      renderTodayStats();
-
-      // لو صفحة التتبع مفتوحة — حدّثها تلقائياً
-      const trackTab = document.getElementById('tab-track');
-      if (trackTab && trackTab.style.display !== 'none' && trackTab.classList.contains('active')) {
-        renderTrackOrder(orderId);
-      }
-
-      // لو العميل في صفحة طلباتي — حدّث العداد
-      if (status === 'delivered') {
-        setTimeout(() => renderMyOrders(), 500);
-      }
-    }, delay);
+  stages.forEach(({delay,status,notif})=>{
+    setTimeout(()=>{
+      const o=allOrders.find(x=>x.id===orderId);if(!o)return;
+      o.status=status;
+      if(db&&demoSession) db.ref('demo_orders/'+demoSession.username+'/'+orderId+'/status').set(status).catch(()=>{});
+      showNotif(notif);renderMyOrders();renderAdminOrders();renderTodayStats();
+      const trackTab=document.getElementById('tab-track');
+      if(trackTab&&trackTab.style.display!=='none'&&trackTab.classList.contains('active')) renderTrackOrder(orderId);
+      if(status==='delivered') setTimeout(()=>renderMyOrders(),500);
+    },delay);
   });
-
-  // تحديث صفحة التتبع كل ثانيتين لو مفتوحة (للـ animation)
-  const refreshInterval = setInterval(() => {
-    const o = allOrders.find(x => x.id === orderId);
-    const trackTab = document.getElementById('tab-track');
-    if (!o) { clearInterval(refreshInterval); return; }
-    if (trackTab && trackTab.classList.contains('active')) {
-      renderTrackOrder(orderId);
-    }
-    if (o.status === 'delivered') { clearInterval(refreshInterval); }
-  }, 2000);
 }
 
 function loadDemoOrders(){
-  allOrders=[];
-  if(!db||!demoSession)return;
+  allOrders=[];if(!db||!demoSession)return;
   db.ref('demo_orders/'+demoSession.username).on('value',snap=>{
     const orders=[];
     snap.forEach(c=>{const v=c.val();if(v&&v.id)orders.push(v);});
     orders.sort((a,b)=>(b.timestamp||0)-(a.timestamp||0));
-    allOrders=orders;
-    renderMyOrders();renderAdminOrders();renderTodayStats();
+    allOrders=orders;renderMyOrders();renderAdminOrders();renderTodayStats();
   });
 }
 
@@ -1286,176 +1081,49 @@ const TYPE_MAP={delivery:'🛵 توصيل',pickup:'🏪 استلام',dine:'🪑
 function renderMyOrders(){
   const c=document.getElementById('myOrdersContainer');
   if(!allOrders.length){c.innerHTML='<div class="empty-state"><div class="empty-icon">📦</div><p>لا توجد طلبات بعد<br/>اطلب من المنيو!</p></div>';return;}
-  const notifMsgs={
-    new:'⏳ في انتظار مراجعة الكاشير',
-    prep:'👨‍🍳 الشيف بيجهز طلبك الآن',
-    ready:'✅ طلبك جاهز!',
-    delivery:'🛵 المندوب في الطريق إليك',
-    delivered:'🎉 تم التسليم بنجاح'
-  };
+  const notifMsgs={new:'⏳ في انتظار مراجعة الكاشير',prep:'👨‍🍳 الشيف بيجهز طلبك الآن',ready:'✅ طلبك جاهز!',delivery:'🛵 المندوب في الطريق إليك',delivered:'🎉 تم التسليم بنجاح'};
   c.innerHTML=allOrders.map(o=>`
     <div class="order-card s-${o.status}">
-      <div class="order-header">
-        <div class="order-num">#${o.id}</div>
-        <span class="status-badge">${STATUS_MAP[o.status]||o.status}</span>
-      </div>
+      <div class="order-header"><div class="order-num">#${o.id}</div><span class="status-badge">${STATUS_MAP[o.status]||o.status}</span></div>
       <div style="font-size:12px;font-weight:800;color:var(--olive-dark);margin-bottom:4px">${notifMsgs[o.status]||''}</div>
       <div class="order-items">${(o.items||[]).map(i=>i.name+' × '+i.qty).join(' • ')}</div>
       <div class="order-total" style="margin-top:4px">${o.total} ج.م</div>
       <div style="font-size:11px;color:var(--text-muted);margin-top:3px">${o.date} — ${o.time}</div>
-      ${o.status!=='delivered'?`
-      <button onclick="showTrack('${o.id}')" style="margin-top:10px;width:100%;padding:10px;background:linear-gradient(135deg,var(--olive),var(--olive-light));color:#fff;border-radius:10px;font-size:12px;font-weight:900;border:none;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:6px">
-        📍 تتبع طلبك لحظة بلحظة
-      </button>`:`
-      <button onclick="showTrack('${o.id}')" style="margin-top:10px;width:100%;padding:8px;background:var(--olive-pale);color:var(--olive-dark);border-radius:10px;font-size:11px;font-weight:800;border:1.5px solid var(--olive-light);cursor:pointer;font-family:inherit">
-        📋 تفاصيل الطلب
-      </button>`}
+      ${o.status!=='delivered'?`<button onclick="showTrack('${o.id}')" style="margin-top:10px;width:100%;padding:10px;background:linear-gradient(135deg,var(--olive),var(--olive-light));color:#fff;border-radius:10px;font-size:12px;font-weight:900;border:none;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:6px">📍 تتبع طلبك لحظة بلحظة</button>`:`<button onclick="showTrack('${o.id}')" style="margin-top:10px;width:100%;padding:8px;background:var(--olive-pale);color:var(--olive-dark);border-radius:10px;font-size:11px;font-weight:800;border:1.5px solid var(--olive-light);cursor:pointer;font-family:inherit">📋 تفاصيل الطلب</button>`}
     </div>`).join('');
 }
 
-function showTrack(id){
-  window._activeTrackId = id;
-  openTab('tab-track');
-  renderTrackOrder(id);
-}
+function showTrack(id){ window._activeTrackId=id; openTab('tab-track'); renderTrackOrder(id); }
+
 function renderTrackOrder(orderId){
   const o=allOrders.find(x=>x.id===orderId);
   const c=document.getElementById('trackContainer');
   if(!o){c.innerHTML='<div class="empty-state" style="padding-top:40px"><div class="empty-icon">🔍</div><p>لا يوجد طلب نشط<br/>اطلب من المنيو أولاً</p></div>';return;}
-
   const steps=[
-    {
-      k:'new', dot:'⏳',
-      title:'في انتظار مراجعة الكاشير',
-      active_desc:'📋 الكاشير بيراجع طلبك الآن ويتأكد من طريقة الدفع وصحة الطلب قبل ما يبدأ التجهيز — عشان مايحصلش أي خطأ.',
-      done_desc:'✅ راجع الكاشير الطلب وتأكد من كل التفاصيل'
-    },
-    {
-      k:'prep', dot:'👨‍🍳',
-      title:'بدأ تجهيز طلبك',
-      active_desc:'🍳 الكاشير أكد الأوردر وبدأ الشيف يجهز طلبك بكل عناية — متقلقش، كل حاجة تحت السيطرة.',
-      done_desc:'✅ الشيف خلص التجهيز وطلبك جاهز'
-    },
-    {
-      k:'ready', dot:'✅',
-      title:'طلبك جاهز!',
-      active_desc:'🎯 طلبك جاهز تماماً ومستنياك! بدل ما تتصل وتسأل "طلبي جاهز؟" — إحنا بنقولك بشكل تلقائي. راحتك هي أولويتنا.',
-      done_desc:'✅ تم تسليم الطلب للمندوب'
-    },
-    {
-      k:'delivery', dot:'🛵',
-      title:'المندوب في الطريق إليك',
-      active_desc:'📍 المندوب استلم طلبك وخرج في الطريق إليك. تقدر تتصل بيه مباشرة أو تتابع موقعه — وإحنا كإدارة بنتابع كل المندوبين لحظة بلحظة عشان نضمن وصول طلبك بأمان.',
-      done_desc:'✅ وصل المندوب وسلّم الطلب'
-    },
-    {
-      k:'delivered', dot:'🎉',
-      title:'تم التسليم بنجاح',
-      active_desc:'',
-      done_desc:''
-    }
+    {k:'new',dot:'⏳',title:'في انتظار مراجعة الكاشير',active_desc:'📋 الكاشير بيراجع طلبك الآن ويتأكد من طريقة الدفع وصحة الطلب.',done_desc:'✅ راجع الكاشير الطلب وتأكد من كل التفاصيل'},
+    {k:'prep',dot:'👨‍🍳',title:'بدأ تجهيز طلبك',active_desc:'🍳 الكاشير أكد الأوردر وبدأ الشيف يجهز طلبك بكل عناية.',done_desc:'✅ الشيف خلص التجهيز وطلبك جاهز'},
+    {k:'ready',dot:'✅',title:'طلبك جاهز!',active_desc:'🎯 طلبك جاهز تماماً ومستنيك!',done_desc:'✅ تم تسليم الطلب للمندوب'},
+    {k:'delivery',dot:'🛵',title:'المندوب في الطريق إليك',active_desc:'📍 المندوب استلم طلبك وخرج في الطريق إليك.',done_desc:'✅ وصل المندوب وسلّم الطلب'},
+    {k:'delivered',dot:'🎉',title:'تم التسليم بنجاح',active_desc:'',done_desc:''}
   ];
-
   const sMap={new:0,prep:1,ready:2,delivery:3,delivered:4};
   const si=sMap[o.status]??0;
   const progressPct=[10,35,60,80,100][si];
-
-  // Header
-  let html=`<div class="track-pro-wrap">
-    <div class="track-header">
-      <div class="track-order-num">طلب رقم #${o.id}</div>
-      <div class="track-order-sub">${o.date} — ${o.time} • ${{delivery:'🛵 توصيل',pickup:'🏪 استلام',dine:'🪑 داخل المطعم'}[o.type]||''}</div>
-    </div>
-    <div class="track-progress-bar"><div class="track-progress-fill" style="width:${progressPct}%"></div></div>`;
-
-  // ETA (لو مش delivered)
+  let html=`<div class="track-pro-wrap"><div class="track-header"><div class="track-order-num">طلب رقم #${o.id}</div><div class="track-order-sub">${o.date} — ${o.time} • ${{delivery:'🛵 توصيل',pickup:'🏪 استلام',dine:'🪑 داخل المطعم'}[o.type]||''}</div></div><div class="track-progress-bar"><div class="track-progress-fill" style="width:${progressPct}%"></div></div>`;
   if(o.status!=='delivered'){
-    html+=`<div style="height:12px"></div>
-    <div class="track-eta-card">
-      <div class="track-eta-icon">🕐</div>
-      <div>
-        <div class="track-eta-val">~~30 دقيقة</div>
-        <div class="track-eta-label">وقت التوصيل المتوقع</div>
-      </div>
-    </div>`;
+    html+=`<div style="height:12px"></div><div class="track-eta-card"><div class="track-eta-icon">🕐</div><div><div class="track-eta-val">~~30 دقيقة</div><div class="track-eta-label">وقت التوصيل المتوقع</div></div></div>`;
   }
-
-  // Steps
   html+=`<div class="track-steps-wrap">`;
   steps.forEach((s,i)=>{
-    const done=i<si, active=i===si, pending=i>si;
-    const cls=done?'done':active?'active':'pending';
-    const isActiveStep=active?' is-active':'';
-    html+=`<div class="track-step${isActiveStep}">
-      <div class="track-step-left">
-        <div class="track-step-dot ${cls}">${done?'✓':active?s.dot:''}</div>
-        ${i<steps.length-1?`<div class="track-step-line ${done?'done':'pending'}"></div>`:''}
-      </div>
-      <div class="track-step-right">
-        <div class="track-step-title ${cls}">${s.title}</div>
-        <div class="track-step-desc ${cls}">${active?s.active_desc:done&&s.done_desc?s.done_desc:''}</div>
-        ${done?'<div class="track-step-time">✓ مكتمل</div>':''}
-      </div>
-    </div>`;
+    const done=i<si,active=i===si;
+    html+=`<div class="track-step${active?' is-active':''}"><div class="track-step-left"><div class="track-step-dot ${done?'done':active?'active':'pending'}">${done?'✓':active?s.dot:''}</div>${i<steps.length-1?`<div class="track-step-line ${done?'done':'pending'}"></div>`:''}</div><div class="track-step-right"><div class="track-step-title ${done?'done':active?'active':'pending'}">${s.title}</div><div class="track-step-desc ${done?'done':active?'active':'pending'}">${active?s.active_desc:done&&s.done_desc?s.done_desc:''}</div>${done?'<div class="track-step-time">✓ مكتمل</div>':''}</div></div>`;
   });
-  html+=`</div>`;
-
-  // Marketing Badge (للخطوات النشطة فقط)
-  const mktMsgs={
-    new:{icon:'🛡️',title:'نظام تحقق آلي',text:'نظامنا بيتحقق من كل طلب قبل التجهيز — صفر أخطاء، صفر ضياع للوقت.'},
-    prep:{icon:'⭐',title:'جودة مضمونة',text:'كل طلب بيمر بـ 3 مراحل تحقق قبل ما يوصلك — عشان تاكل وأنت مطمن.'},
-    ready:{icon:'🔔',title:'إشعار فوري',text:'مش محتاج تتصل وتسأل — إحنا بنعلمك بكل تحديث تلقائياً فور ما بيحصل.'},
-    delivery:{icon:'📡',title:'تتبع لحظي',text:'إحنا كإدارة بنتابع كل مندوبينا لحظة بلحظة — راحتك وأمانك أولويتنا.'}
-  };
-  if(o.status!=='delivered'&&mktMsgs[o.status]){
-    const m=mktMsgs[o.status];
-    html+=`<div class="track-mkt-badge">
-      <div class="track-mkt-icon">${m.icon}</div>
-      <div><div class="track-mkt-title">${m.title}</div><div class="track-mkt-text">${m.text}</div></div>
-    </div>`;
-  }
-
-  // تفاصيل الطلب
-  html+=`<div class="track-details-card">
-    <div class="track-details-header">🧾 تفاصيل طلبك</div>
-    <div class="track-details-body">
-      ${(o.items||[]).map(i=>`<div class="track-item-row"><span>${i.name} × ${i.qty}</span><span style="font-weight:800">${i.price*i.qty} ج.م</span></div>`).join('')}
-      <div class="track-total-row"><span>الإجمالي</span><span style="color:var(--olive-dark)">${o.total} ج.م</span></div>
-    </div>
-  </div>`;
-
-  // Success Screen
+  html+=`</div><div class="track-details-card"><div class="track-details-header">🧾 تفاصيل طلبك</div><div class="track-details-body">${(o.items||[]).map(i=>`<div class="track-item-row"><span>${i.name} × ${i.qty}</span><span style="font-weight:800">${i.price*i.qty} ج.م</span></div>`).join('')}<div class="track-total-row"><span>الإجمالي</span><span style="color:var(--olive-dark)">${o.total} ج.م</span></div></div></div>`;
   if(o.status==='delivered'){
-    html+=`<div class="track-success">
-      <div class="track-success-icon">🎉</div>
-      <div class="track-success-title">وصل طلبك بنجاح!</div>
-      <div class="track-success-sub">شكراً على ثقتك فينا ❤️<br/>رأيك يهمنا — قيّم تجربتك معنا</div>
-    </div>
-    <div class="track-rating">
-      <div style="font-size:13px;font-weight:900;color:var(--dark);margin-bottom:4px">⭐ قيّم خدمة التوصيل</div>
-      <div style="font-size:11px;color:var(--text-muted);margin-bottom:8px">تقييمك بيساعدنا نحسن الخدمة لك ولكل عملائنا</div>
-      <div class="rating-stars" id="ratingStars">
-        ${[1,2,3,4,5].map(n=>`<span class="star-btn" onclick="rateMandob(${n})" data-val="${n}">⭐</span>`).join('')}
-      </div>
-      <div id="ratingMsg" style="font-size:12px;color:var(--text-muted);min-height:16px"></div>
-    </div>`;
+    html+=`<div class="track-success"><div class="track-success-icon">🎉</div><div class="track-success-title">وصل طلبك بنجاح!</div><div class="track-success-sub">شكراً على ثقتك فينا ❤️</div></div>`;
   }
-
-  // WA Button
-  html+=`<button class="track-wa-btn" onclick="contactWA()">
-    <span style="font-size:20px">💬</span> تواصل معنا على واتساب
-  </button>`;
-
-  html+=`</div>`;
+  html+=`<button class="track-wa-btn" onclick="contactWA()"><span style="font-size:20px">💬</span> تواصل معنا على واتساب</button></div>`;
   c.innerHTML=html;
-}
-
-function rateMandob(val){
-  document.querySelectorAll('.star-btn').forEach((s,i)=>{
-    s.classList.toggle('selected', i<val);
-  });
-  const msgs=['😞 نأسف على تجربتك — سنتحسن','😐 شكراً لتقييمك — سنحاول أكثر','😊 شكراً! نسعى دائماً للأفضل','😄 رائع! سعداء بخدمتك','🤩 ممتاز! أنت نجمتنا ❤️'];
-  document.getElementById('ratingMsg').textContent=msgs[val-1]||'';
 }
 
 function renderAdminOrders(){
@@ -1463,23 +1131,14 @@ function renderAdminOrders(){
   const tod=allOrders.filter(o=>o.date===today);
   const newO=allOrders.filter(o=>o.status==='new'||o.status==='prep');
   const rev=tod.reduce((s,o)=>s+(o.total||0),0);
-  document.getElementById('quickStats').innerHTML=`
-    <div class="stat-card gold"><div class="stat-val">${tod.length}</div><div class="stat-lbl">📦 طلبات اليوم</div></div>
-    <div class="stat-card blue"><div class="stat-val">${newO.length}</div><div class="stat-lbl">🆕 قيد التنفيذ</div></div>
-    <div class="stat-card green"><div class="stat-val">${rev.toLocaleString('ar-EG')}</div><div class="stat-lbl">💰 مبيعات ج.م</div></div>
-    <div class="stat-card"><div class="stat-val">${allOrders.filter(o=>o.status==='delivered').length}</div><div class="stat-lbl">✅ مكتملة</div></div>`;
+  document.getElementById('quickStats').innerHTML=`<div class="stat-card gold"><div class="stat-val">${tod.length}</div><div class="stat-lbl">📦 طلبات اليوم</div></div><div class="stat-card blue"><div class="stat-val">${newO.length}</div><div class="stat-lbl">🆕 قيد التنفيذ</div></div><div class="stat-card green"><div class="stat-val">${rev.toLocaleString('ar-EG')}</div><div class="stat-lbl">💰 مبيعات ج.م</div></div><div class="stat-card"><div class="stat-val">${allOrders.filter(o=>o.status==='delivered').length}</div><div class="stat-lbl">✅ مكتملة</div></div>`;
   const nextA={new:{l:'✅ قبول',cls:'accept',n:'prep'},prep:{l:'✅ جاهز',cls:'ready',n:'ready'},ready:{l:'🛵 تسليم',cls:'deliver',n:'delivered'}};
   const c=document.getElementById('adminOrdersList');
   if(!allOrders.length){c.innerHTML='<div class="empty-state"><div class="empty-icon">📋</div><p>لا توجد طلبات</p></div>';return;}
   c.innerHTML=allOrders.slice(0,20).map(o=>{
     const a=nextA[o.status];
-    return`<div class="order-card s-${o.status}">
-      <div class="order-header"><div class="order-num">#${o.id}</div><span class="status-badge">${STATUS_MAP[o.status]||o.status}</span></div>
-      <div class="order-meta">👤 ${o.name} | ${TYPE_MAP[o.type]||o.type}</div>
-      <div class="order-items">${(o.items||[]).map(i=>i.name+'×'+i.qty).join(' • ')}</div>
-      <div class="order-total">${o.total} ج.م — ${o.date} ${o.time}</div>
-      ${a?`<div class="order-actions"><button class="o-btn ${a.cls}" onclick="updateStatus('${o.id}','${a.n}')">${a.l}</button></div>`:''}
-    </div>`;}).join('');
+    return`<div class="order-card s-${o.status}"><div class="order-header"><div class="order-num">#${o.id}</div><span class="status-badge">${STATUS_MAP[o.status]||o.status}</span></div><div class="order-meta">👤 ${o.name} | ${TYPE_MAP[o.type]||o.type}</div><div class="order-items">${(o.items||[]).map(i=>i.name+'×'+i.qty).join(' • ')}</div><div class="order-total">${o.total} ج.م — ${o.date} ${o.time}</div>${a?`<div class="order-actions"><button class="o-btn ${a.cls}" onclick="updateStatus('${o.id}','${a.n}')">${a.l}</button></div>`:''}</div>`;
+  }).join('');
 }
 
 async function updateStatus(orderId,newStatus){
@@ -1492,34 +1151,755 @@ async function updateStatus(orderId,newStatus){
 }
 
 function renderTodayStats(){
-  const today=new Date().toLocaleDateString('ar-EG');
-  const tod=allOrders.filter(o=>o.date===today);
-  const rev=tod.reduce((s,o)=>s+(o.total||0),0);
-  const avg=tod.length?Math.round(rev/tod.length):0;
-  document.getElementById('todayStats').innerHTML=`
-    <div class="stat-card gold"><div class="stat-val">${tod.length}</div><div class="stat-lbl">📦 طلبات اليوم</div></div>
-    <div class="stat-card green"><div class="stat-val">${rev.toLocaleString('ar-EG')}</div><div class="stat-lbl">💰 المبيعات</div></div>
-    <div class="stat-card"><div class="stat-val">${tod.filter(o=>o.status==='delivered').length}</div><div class="stat-lbl">✅ مكتملة</div></div>
-    <div class="stat-card blue"><div class="stat-val">${avg}</div><div class="stat-lbl">📊 متوسط الطلب</div></div>`;
-  document.getElementById('todayReport').innerHTML=`
-    <div style="font-size:13px;font-weight:800;margin-bottom:8px">📋 ملخص — ${today}</div>
-    ${[['📦 إجمالي الطلبات',tod.length],['🛵 توصيل',tod.filter(o=>o.type==='delivery').length],['🏪 استلام',tod.filter(o=>o.type==='pickup').length],['🪑 داخل',tod.filter(o=>o.type==='dine').length],['💰 المبيعات',rev+' ج.م']].map(([l,v])=>`<div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--border);font-size:12px"><span>${l}</span><span style="font-weight:900">${v}</span></div>`).join('')}`;
-  // Reports
   const allRev=allOrders.reduce((s,o)=>s+(o.total||0),0);
-  document.getElementById('reportsStats').innerHTML=`
-    <div class="stat-card gold"><div class="stat-val">${allOrders.length}</div><div class="stat-lbl">📦 إجمالي الطلبات</div></div>
-    <div class="stat-card green"><div class="stat-val">${allRev.toLocaleString('ar-EG')}</div><div class="stat-lbl">💰 إجمالي المبيعات</div></div>
-    <div class="stat-card"><div class="stat-val">${allOrders.filter(o=>o.status==='delivered').length}</div><div class="stat-lbl">✅ مكتملة</div></div>
-    <div class="stat-card blue"><div class="stat-val">${allOrders.length?Math.round(allRev/allOrders.length):0}</div><div class="stat-lbl">📊 متوسط</div></div>`;
-  document.getElementById('reportsList').innerHTML=allOrders.slice(0,10).map(o=>`
-    <div style="display:flex;justify-content:space-between;padding:8px 14px;border-bottom:1px solid var(--border);font-size:12px">
-      <div><div style="font-weight:800">#${o.id} — ${o.name}</div><div style="color:var(--text-muted);font-size:10px">${o.date} ${o.time}</div></div>
-      <div style="font-weight:900;color:var(--olive-dark)">${o.total} ج.م</div>
-    </div>`).join('');
+  document.getElementById('reportsStats').innerHTML=`<div class="stat-card gold"><div class="stat-val">${allOrders.length}</div><div class="stat-lbl">📦 إجمالي الطلبات</div></div><div class="stat-card green"><div class="stat-val">${allRev.toLocaleString('ar-EG')}</div><div class="stat-lbl">💰 إجمالي المبيعات</div></div><div class="stat-card"><div class="stat-val">${allOrders.filter(o=>o.status==='delivered').length}</div><div class="stat-lbl">✅ مكتملة</div></div><div class="stat-card blue"><div class="stat-val">${allOrders.length?Math.round(allRev/allOrders.length):0}</div><div class="stat-lbl">📊 متوسط</div></div>`;
+  document.getElementById('reportsList').innerHTML=allOrders.slice(0,10).map(o=>`<div style="display:flex;justify-content:space-between;padding:8px 14px;border-bottom:1px solid var(--border);font-size:12px"><div><div style="font-weight:800">#${o.id} — ${o.name}</div><div style="color:var(--text-muted);font-size:10px">${o.date} ${o.time}</div></div><div style="font-weight:900;color:var(--olive-dark)">${o.total} ج.م</div></div>`).join('');
 }
 
 // ================================================================
-// TABS
+// 🤖 ALL TAB DATA & EXPLAINERS
+// ================================================================
+const LOCKED_TABS_DATA = {
+  'atab-cashier': {
+    icon:'🧾', title:'شاشة الكاشير الذكية',
+    desc:'شاشة مخصصة للكاشير لإدارة الطلبات الواردة لحظياً وتحديث الحالات وطباعة الفواتير بسرعة فائقة.',
+    usp:'⚡ مطعمك يخسر طلبات كل يوم بسبب تأخر الكاشير في التأكيد — هذه الشاشة تحل المشكلة جذرياً.',
+    features:['عرض جميع الطلبات فور وصولها مع صوت تنبيه حي','قبول وتغيير حالة الطلب بضغطة واحدة','فلترة الطلبات (توصيل / استلام / صالة)','طباعة فورية للفواتير مع الباركود','إشعارات صوتية وبصرية فورية','ملخص مالي فوري لكل وردية']
+  },
+  'atab-menu-mgmt': {
+    icon:'🍽️', title:'إدارة المنيو والتسعير',
+    desc:'تحكم كامل في قائمة الطعام — تغيير الأسعار، إضافة أصناف جديدة، أو إخفاء الأصناف غير المتوفرة فورياً.',
+    usp:'💡 خسارة المطاعم عند طلب أصناف نافذة تنتهي هنا — تحكم لحظي يمنع الإحراج مع العميل.',
+    features:['إضافة وتعديل وحذف الأصناف بسهولة تامة','رفع وتحديث صور الأصناف بجودة عالية فوراً','إدارة الأقسام والوجبات والعروض','تفعيل وإيقاف الأصناف لحظياً (نفذت الكمية)','إضافة إكسترا وخيارات وإضافات مخصصة','ربط الأصناف بأوقات محددة (إفطار / غداء / عشاء)']
+  },
+  'atab-customers': {
+    icon:'👥', title:'إدارة وقاعدة بيانات العملاء',
+    desc:'ملف ذكي لكل عميل يجمع تاريخ طلباته، إجمالي إنفاقه، وتصنيفه التلقائي لزيادة الولاء.',
+    usp:'📈 العملاء الدائمون يمثلون 80% من أرباحك — اعرفهم وكافئهم تلقائياً.',
+    features:['قاعدة بيانات شاملة لجميع العملاء','سجل كامل لطلبات وإنفاق كل عميل','تصنيف تلقائي: عميل جديد / منتظم / VIP','إرسال عروض وكوبونات مخصصة على واتساب','البحث السريع برقم الهاتف أو الاسم','تحليلات سلوك وتفضيلات العملاء']
+  },
+  'atab-agents': {
+    icon:'🛵', title:'إدارة وتتبع المندوبين',
+    desc:'توزيع ذكي لطلبات التوصيل على المندوبين ومتابعة مواقعهم وسرعة التوصيل لحظياً.',
+    usp:'⏱️ تأخر التوصيل سبب رئيسي لخسارة الزبائن — تتبع المندوبين يضمن الدقة والانضباط.',
+    features:['تتبع موقع وحالة المندوبين لحظياً','تعيين الطلب للمندوب الأقرب بضغطة واحدة','تقييم أداء وسرعة كل سائق','سجل حسابات وتحصيل المندوبين بدقة','إشعار العميل عند خروج المندوب بالطلب','تقرير مفصل لإنتاجية كل مندوب يومياً']
+  },
+  'atab-lastorder': {
+    icon:'⚡', title:'نظام Last Order الذكي',
+    desc:'تحديد وقت تلقائي لوقف استلام الطلبات قبل موعد إغلاق المطعم لمنع الطلبات المتعثرة.',
+    usp:'🔑 ميزة حصرية تمنع الفوضى وخسائر المطبخ في الدقائق الأخيرة من العمل.',
+    features:['تحديد وقت آخر طلب قبل الإغلاق بدقة','عداد تنازلي يظهر للعملاء "آخر فرصة للطلب"','إيقاف الطلبات تلقائياً مع انتهاء الوقت','جدولة أوقات مختلفة لأيام العطلات','رسالة توضيحية راقية للعملاء خارج المواعيد','حماية المطبخ من التكدس وقت الإغلاق']
+  },
+  'atab-prayer': {
+    icon:'🕌', title:'إيقاف الطلبات وقت الصلاة',
+    desc:'إيقاف استقبال وتجهيز الطلبات تلقائياً وقت كل صلاة واستئنافها بعد انتهائها بدون تدخل يدوي.',
+    usp:'🌙 ميزة مبتكرة صُممت خصيصاً لتناسب مجتمعنا وقيمنا الإسلامية.',
+    features:['حساب أوقات الصلاة تلقائياً حسب الموقع','إيقاف الطلبات مؤقتاً أثناء الصلاة','إشعار احترامي يظهر للعملاء في التطبيق','استئناف العمل والطلبات تلقائياً بعد الصلاة','التحكم في تفعيل/تعطيل الإيقاف لكل صلاة','تحديد مدة الاستراحة بالدقائق']
+  },
+  'atab-block': {
+    icon:'🚫', title:'نظام حظر الطلبات الوهمية',
+    desc:'حظر أرقام الهواتف المزعجة أو المناطق الوهمية لمنع إهدار الطعام وحماية أرباحك.',
+    usp:'💸 الطلبات الوهمية تكلف المطاعم آلاف الجنيهات شهرياً — أوقفها نهائياً الآن.',
+    features:['حظر فوري لأي رقم هاتف بنقرة واحدة','حظر مناطق معينة ذات مشاكل متكررة','كشف وتنبيه تلقائي للطلبات المشبوهة','قائمة سوداء مع تسجيل سبب الحظر','رسالة تنبيه مخصصة للمستخدم المحظور','إلغاء الحظر وإدارة الاستثناءات بسهولة']
+  },
+  'atab-stats': {
+    icon:'📊', title:'التحليلات والإحصائيات المتقدمة',
+    desc:'لوحة مؤشرات حية تعرض ساعات الذروة، الأصناف الأكثر مبيعاً، ونمو الإيرادات والمبيعات.',
+    usp:'📉 إدارة المطعم بدون أرقام مخاطرة كبيرة — احصل على رؤية كاملة لاتخاذ قرارات رابحة.',
+    features:['تحليل ساعات الذروة اليومية والأسبوعية','ترتيب الأصناف الأكثر والأقل مبيعاً','تحليل مصادر الطلب (توصيل / صالة / استلام)','مقارنة المبيعات والأرباح يوماً بيوم','تتبع متوسط قيمة الفاتورة ومعدل التكرار','تصدير الرسوم والتقارير بصيغة PDF و Excel']
+  },
+  'atab-payments': {
+    icon:'💰', title:'جرد المدفوعات والورديات',
+    desc:'تسوية مالية دقيقة لكل جنيه يدخل المطعم مقسماً حسب الكاش، الفيزا، والمحافظ الإلكترونية.',
+    usp:'🔍 منع أي عجز مالي بالخزينة ومحاسبة الكاشير والمندوبين بمنتهى الدقة.',
+    features:['جرد مالي فوري مع إغلاق كل وردية','فصل المبالغ: كاش / فيزا / فودافون كاش / إنستاباي','كشف فوري لأي زيادة أو عجز بالصندوق','تسوية عهدة المندوبين ونسب التوصيل','تقارير محاسبية مفصلة جاهزة للطباعة','حفظ السجلات المالية لسنوات سابقة']
+  },
+  'atab-zones': {
+    icon:'🗺️', title:'مناطق التوصيل الذكية',
+    desc:'تخصيص أسعار ووقت التوصيل لكل حي أو منطقة، مع إمكانية إيقاف التوصيل لمناطق الذروة.',
+    usp:'🛵 تحسين سرعة الأسطول ومنع التوصيل للمناطق الخاسرة في أوقات الضغط.',
+    features:['تحديد مناطق التوصيل بدقة وتخصيص رسومها','حد أدنى للطلب ووقت توصيل متوقع لكل منطقة','إيقاف التوصيل لمنطقة معينة أثناء الذروة تلقائياً','تعديل رسوم التوصيل حسب المسافة أو الطقس','تحليلات أكثر المناطق طلباً وربحية','توجيه تلقائي للطلب للفرع الأقرب للمنطقة']
+  },
+  'atab-offers': {
+    icon:'🎁', title:'العروض وكوبونات الخصم',
+    desc:'إنشاء وإدارة حملات الخصم وكوبونات الترويج لزيادة المبيعات في الأوقات الهادئة.',
+    usp:'🎯 العرض الصحيح في الوقت الصحيح يضاعف عدد طلباتك اليومية فوراً.',
+    features:['إنشاء كوبونات بنسبة % أو خصم بمبلغ ثابت','عروض الشحن والتوصيل المجاني','خصومات مخصصة للطلب الأول للزبون الجديد','تحديد حد أقصى وتاريخ انتهاء لكل كوبون','تتبع عدد مرات استخدام كل عرض ومردوده','ربط الخصومات بوجبات محددة أو حد أدنى']
+  },
+  'atab-marketing': {
+    icon:'📣', title:'التسويق وإشعارات Push',
+    desc:'إرسال إشعارات وعروض ترويجية فورية لهواتف جميع العملاء لإنعاش المبيعات في ثوانٍ.',
+    usp:'📱 رسالة Push واحدة في وقت الغداء يمكن أن تملأ المطبخ بالطلبات فورياً.',
+    features:['إرسال إشعارات Push لجميع العملاء بضغطة واحدة','إعلانات وبانرات متحركة داخل المنيو والتطبيق','حملات تسويقية مجدولة مسبقاً','استهداف فئات محددة (مثل عملاء لم يطلبوا منذ أسبوع)','تتبع نسبة الفتح والتفاعل مع كل إشعار','رسائل ترويجية تلقائية على واتساب']
+  },
+  'atab-bookings': {
+    icon:'📅', title:'حجز الطاولات والمناسبات',
+    desc:'نظام حجز طاولات متكامل مع تأكيد واتساب تلقائي للعميل وإدارة سعة الصالة.',
+    usp:'🪑 ضمان إشغال الطاولات وتحصيل دخل مسبق ومنع تكدس الصالة.',
+    features:['حجز الطاولات أونلاين على مدار 24 ساعة','تأكيد فوري للحجز برسالة واتساب للعميل','إدارة سعة الصالة وتوزيع الطاولات','تذكير العميل بموعد الحجز قبلها بساعة','قائمة انتظار تلقائية عند امتلاء الصالة','سجل حجوزات المناسبات وأعياد الميلاد']
+  },
+  'atab-vip': {
+    icon:'👑', title:'برنامج ولاء عملاء VIP',
+    desc:'نظام نقاط ومكافآت ذكي يحفز العملاء على تكرار الطلب وكسب نقاط قابلة للاستبدال.',
+    usp:'🔄 عميلك لن يذهب للمنافس عندما يمتلك نقاطاً وهدايا مستحقة في مطعمك.',
+    features:['نقاط تلقائية مع كل طلب يجريه العميل','مستويات متعددة (فضي 🥈 - ذهبي 🥇 - بلاتيني 💎)','تحويل النقاط لخصومات أو وجبات مجانية','كارت VIP رقمي يظهر داخل التطبيق للعميل','مزايا وهدايا حصرية لأعضاء الفئة البلاتينية','تقارير دورية عن معدل ولاء وتكرار العملاء']
+  },
+  'atab-settings': {
+    icon:'⚙️', title:'إعدادات وتخصيص النظام',
+    desc:'التحكم الكامل في مواعيد العمل، وسائل الدفع، رسائل الواتساب، والضرائب والهوية.',
+    usp:'🎛️ مرونة كاملة لتكييف وتخصيص كل تفصيلة في النظام لتناسب طبيعة مطعمك.',
+    features:['تحديد ساعات العمل الرسمية لكل يوم منفرداً','تفعيل وتعطيل طرق الدفع (كاش - فيزا - محافظ)','تخصيص نصوص رسائل الواتساب التلقائية','ضبط نسبة الضريبة ورسوم الخدمة والتوصيل','تحديث شعار وهوية وبيانات المطعم','التحكم في أصوات التنبيهات وإشعارات الإدارة']
+  },
+  'atab-backup': {
+    icon:'💾', title:'النسخ الاحتياطي السحابي',
+    desc:'حفظ سحابي مشفر وآمن لجميع بيانات وفواتير وعملاء مطعمك مع إمكانية الاسترجاع في ثوانٍ.',
+    usp:'⚠️ بيانات مطعمك وسجل عملائك هي أثمن أصولك — الحفظ السحابي يحميها للأبد.',
+    features:['نسخ احتياطي سحابي تلقائي يومياً','تصدير كامل للبيانات بصيغ Excel و PDF و CSV','استرجاع فوري للبيانات بنقرة واحدة في أي وقت','تشفير عالي الأمان لحماية خصوصية بياناتك','أرشفة تاريخ الطلبات والحسابات لسنوات سابقة','إمكانية نقل البيانات وتشغيلها على فروع جديدة بسهولة']
+  }
+};
+
+// ================================================================
+// 🎮 UNIFIED DEMO ENGINE (ALL TABS)
+// ================================================================
+let activeDemoInterval = null;
+let currentDemoTab = null;
+
+function stopAllDemos(){
+  if(activeDemoInterval){ clearInterval(activeDemoInterval); activeDemoInterval=null; }
+}
+
+function openAdminTab(id,btn){
+  document.querySelectorAll('#app .tab-content[id^="atab-"]').forEach(t=>{t.classList.remove('active');t.style.display='none';});
+  const el=document.getElementById(id);if(el){el.classList.add('active');el.style.display='block';}
+  document.querySelectorAll('.admin-tabs .tab-btn').forEach(b=>b.classList.remove('active'));
+  if(btn)btn.classList.add('active');
+  if(id==='atab-stats'||id==='atab-reports') renderTodayStats();
+
+  stopAllDemos();
+  currentDemoTab = id;
+
+  // Run interactive demo for selected tab
+  if(id==='atab-cashier') runCashierDemo();
+  else if(id==='atab-menu-mgmt') runMenuMgmtDemo();
+  else if(id==='atab-customers') runCustomersDemo();
+  else if(id==='atab-agents') runAgentsDemo();
+  else if(id==='atab-lastorder') runLastOrderDemo();
+  else if(id==='atab-prayer') runPrayerDemo();
+  else if(id==='atab-block') runBlockDemo();
+  else if(id==='atab-stats') runAdvancedStatsDemo();
+  else if(id==='atab-payments') runPaymentsDemo();
+  else if(id==='atab-zones') runZonesDemo();
+  else if(id==='atab-offers') runOffersDemo();
+  else if(id==='atab-marketing') runMarketingDemo();
+  else if(id==='atab-bookings') runBookingsDemo();
+  else if(id==='atab-vip') runVipDemo();
+  else if(id==='atab-settings') runSettingsDemo();
+  else if(id==='atab-backup') runBackupDemo();
+
+  if(LOCKED_TABS_DATA[id]) showRobotBtn(id);
+  else hideRobotBtn();
+}
+
+function openRobotPopup(tabId){
+  const data=LOCKED_TABS_DATA[tabId];if(!data)return;
+  document.getElementById('robotPopupIcon').textContent=data.icon;
+  document.getElementById('robotPopupTitle').textContent=data.title;
+  document.getElementById('robotPopupDesc').textContent=data.desc;
+  const uspEl=document.getElementById('robotPopupUsp');
+  if(data.usp){ uspEl.textContent=data.usp; uspEl.style.display='block'; }
+  else uspEl.style.display='none';
+  document.getElementById('robotPopupFeatures').innerHTML=data.features.map(f=>`<div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid rgba(74,124,31,.2);font-size:12px;font-weight:700;color:var(--olive-dark)"><span style="font-size:11px">✅</span>${f}</div>`).join('');
+  document.getElementById('robotPopup').style.display='flex';
+}
+function closeRobotPopup(){ document.getElementById('robotPopup').style.display='none'; }
+function showRobotBtn(tabId){ const b=document.getElementById('robotInfoBtn'); if(b){ b.setAttribute('data-tab',tabId); b.classList.add('show'); } }
+function hideRobotBtn(){ const b=document.getElementById('robotInfoBtn'); if(b) b.classList.remove('show'); }
+
+function buildNoticeHeader(tabKey, actionMsg, actionColor){
+  const data=LOCKED_TABS_DATA[tabKey]||{title:'لوحة التحكم',icon:'⚡'};
+  return `
+  <div style="padding-bottom:14px">
+    <div class="cashier-demo-notice">
+      <div style="display:flex;align-items:center;gap:8px">
+        <span style="font-size:24px;flex-shrink:0">${data.icon}</span>
+        <p>عرض توضيحي تفاعلي — شاهد كيف يعمل تاب <b>${data.title}</b> تلقائياً في مطعمك</p>
+      </div>
+      <button onclick="openRobotPopup('${tabKey}')" style="background:var(--demo);color:#fff;border-radius:10px;padding:6px 12px;font-size:11px;font-weight:900;white-space:nowrap;box-shadow:0 2px 8px rgba(124,58,237,.3)">شرح التاب ℹ️</button>
+    </div>
+    <div class="demo-header-banner">
+      <div style="display:flex;align-items:center;gap:8px">
+        <div class="live-dot"></div>
+        <span style="font-size:14px;font-weight:900">${data.icon} ${data.title}</span>
+      </div>
+      <span style="font-size:10px;color:rgba(255,255,255,.75);font-weight:800;background:rgba(255,255,255,.15);padding:3px 10px;border-radius:100px">تشغيل تلقائي</span>
+    </div>
+    <div class="demo-action-pill" style="background:${actionColor||'#1a1a1a'}">
+      <span style="font-size:18px">⚡</span>
+      <span>${actionMsg||'جاري العمل والمتابعة الذكية...'}</span>
+    </div>
+  </div>`;
+}
+
+// ─────────────────────────────────────────
+// 1. CASHIER DEMO
+// ─────────────────────────────────────────
+let cashierDemoOrders=[
+  {id:'C-1001',customer:'أحمد محمد',items:[{name:'كلاسيك برجر',qty:2,price:75},{name:'كولا',qty:1,price:15}],total:165,status:'new',type:'delivery',time:'10:30 م',isSpotlight:true},
+  {id:'C-1002',customer:'سارة خالد',items:[{name:'مارجريتا',qty:1,price:80}],total:80,status:'prep',type:'pickup',time:'10:28 م',isSpotlight:false},
+  {id:'C-1003',customer:'محمود علي',items:[{name:'شاورما دجاج',qty:2,price:65}],total:130,status:'ready',type:'dine',time:'10:22 م',isSpotlight:false}
+];
+function runCashierDemo(){
+  renderCashierContent();
+  activeDemoInterval=setInterval(()=>{
+    const toAdv=cashierDemoOrders.find(o=>o.status!=='delivered');
+    if(toAdv){
+      const nxt={new:'prep',prep:'ready',ready:'delivered'};
+      toAdv.status=nxt[toAdv.status]||'delivered';
+    }else{
+      cashierDemoOrders=[
+        {id:'C-'+Math.floor(1000+Math.random()*9000),customer:'علي إبراهيم',items:[{name:'دبل برجر',qty:1,price:110}],total:110,status:'new',type:'delivery',time:new Date().toLocaleTimeString('ar-EG',{hour:'2-digit',minute:'2-digit'}),isSpotlight:true},
+        {id:'C-1004',customer:'منى سعيد',items:[{name:'تشيز كيك',qty:1,price:55}],total:55,status:'prep',type:'pickup',time:'10:35 م',isSpotlight:false}
+      ];
+    }
+    renderCashierContent();
+  },3500);
+}
+function renderCashierContent(){
+  const el=document.getElementById('atab-cashier');if(!el)return;
+  const BADGE_CLS={new:'s-new',prep:'s-prep',ready:'s-ready',delivered:'s-delivered'};
+  const BADGE_TXT={new:'🆕 جديد',prep:'👨‍🍳 قيد التجهيز',ready:'✅ جاهز',delivered:'🎉 تم التسليم'};
+  const ACT_CLS={new:'act-new',prep:'act-prep',ready:'act-ready',delivered:'act-done'};
+  const ACT_TXT={new:'✅ قبول الطلب',prep:'🍽️ جاهز للتسليم',ready:'🛵 تم التسليم',delivered:'✔ مكتمل'};
+  const ordersHtml=cashierDemoOrders.map(o=>`
+    <div class="cashier-order-card ${BADGE_CLS[o.status]}">
+      <div class="cashier-order-inner">
+        <div class="cashier-order-top">
+          <div style="display:flex;align-items:center;gap:7px">
+            <div class="cashier-order-id">#${o.id}</div>
+            ${o.isSpotlight?'<span class="customer-badge">👁 العميل يرى التزامن</span>':''}
+          </div>
+          <div style="display:flex;align-items:center;gap:8px">
+            <span class="cashier-order-time">${o.time}</span>
+            <span class="cashier-sbadge ${BADGE_CLS[o.status]}">${BADGE_TXT[o.status]}</span>
+          </div>
+        </div>
+        <div class="cashier-customer-name">👤 ${o.customer} — ${TYPE_MAP[o.type]||o.type}</div>
+        <div class="cashier-items-txt">${o.items.map(i=>i.name+' × '+i.qty).join(' • ')}</div>
+        <div class="cashier-order-footer">
+          <div class="cashier-total-val">${o.total} ج.م</div>
+          <button class="cashier-action ${ACT_CLS[o.status]}">${ACT_TXT[o.status]}</button>
+        </div>
+      </div>
+    </div>`).join('');
+  el.innerHTML=buildNoticeHeader('atab-cashier','الكاشير يستلم ويحول الطلبات لحظياً إلى المطبخ والمندوب','#1e3a5f')+ordersHtml;
+}
+
+// ─────────────────────────────────────────
+// 2. MENU MGMT DEMO
+// ─────────────────────────────────────────
+let menuItemsDemoList=[
+  {name:'كلاسيك برجر',cat:'🍔 برجر',price:75,active:true,img:'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=80&h=80&fit=crop&auto=format'},
+  {name:'مارجريتا',cat:'🍕 بيتزا',price:80,active:true,img:'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=80&h=80&fit=crop&auto=format'},
+  {name:'شاورما دجاج',cat:'🥘 وجبات',price:65,active:false,img:'https://images.unsplash.com/photo-1561651823-34feb02250e4?w=80&h=80&fit=crop&auto=format'},
+  {name:'عصير مانجو',cat:'🥤 مشروبات',price:30,active:true,img:'https://images.unsplash.com/photo-1546173159-315724a31696?w=80&h=80&fit=crop&auto=format'}
+];
+let menuActionMsg='جاري التحكم في قائمة الأسعار والأصناف المتاحة...';
+let menuActionColor='#1a1a1a';
+function runMenuMgmtDemo(){
+  renderMenuMgmtContent();
+  let step=0;
+  activeDemoInterval=setInterval(()=>{
+    step=(step+1)%4;
+    if(step===1){
+      menuItemsDemoList[0].price+=10;
+      menuActionMsg=`✏️ تم تعديل سعر "${menuItemsDemoList[0].name}" إلى ${menuItemsDemoList[0].price} ج.م فورياً`;
+      menuActionColor='#d97706';
+    }else if(step===2){
+      menuItemsDemoList[2].active=!menuItemsDemoList[2].active;
+      menuActionMsg=menuItemsDemoList[2].active?`🟢 تم إعادة تفعيل "${menuItemsDemoList[2].name}" للمنيو`:`🔴 تم إيقاف "${menuItemsDemoList[2].name}" (نفذت الكمية)`;
+      menuActionColor=menuItemsDemoList[2].active?'#16a34a':'#dc2626';
+    }else if(step===3){
+      menuActionMsg=`📸 تم رفع وتحديث صورة الوجبة بجودة عالية بنجاح!`;
+      menuActionColor='#7c3aed';
+    }else{
+      menuActionMsg='➕ تم إضافة صنف جديد "برجر مشروم سبيشال" إلى قسم البرجر';
+      menuActionColor='#1a5fc8';
+    }
+    renderMenuMgmtContent();
+  },3600);
+}
+function renderMenuMgmtContent(){
+  const el=document.getElementById('atab-menu-mgmt');if(!el)return;
+  const listHtml=menuItemsDemoList.map(i=>`
+    <div class="interactive-demo-card" style="display:flex;align-items:center;gap:12px;opacity:${i.active?1:0.55}">
+      <img src="${i.img}" style="width:46px;height:46px;border-radius:10px;object-fit:cover" alt=""/>
+      <div style="flex:1">
+        <div style="font-weight:900;font-size:13px">${i.name}</div>
+        <div style="font-size:10px;color:var(--text-muted)">${i.cat}</div>
+      </div>
+      <div style="font-weight:900;color:var(--olive-dark);font-size:14px">${i.price} ج.م</div>
+      <div class="toggle-switch ${i.active?'on':'off'}"></div>
+    </div>`).join('');
+  el.innerHTML=buildNoticeHeader('atab-menu-mgmt',menuActionMsg,menuActionColor)+listHtml;
+}
+
+// ─────────────────────────────────────────
+// 3. CUSTOMERS DEMO
+// ─────────────────────────────────────────
+let customersList=[
+  {name:'أحمد محمد',phone:'01012345678',orders:28,spent:2150,tier:'👑 VIP',lastOrder:'منذ ساعة'},
+  {name:'سارة خالد',phone:'01198765432',orders:14,spent:1120,tier:'🥈 عميل دائم',lastOrder:'منذ 3 ساعات'},
+  {name:'محمود علي',phone:'01234567890',orders:3,spent:240,tier:'🌱 عميل جديد',lastOrder:'أمس'}
+];
+let custActionMsg='قاعدة بيانات العملاء متصلة وتحدث تلقائياً مع كل طلب جديد';
+function runCustomersDemo(){
+  renderCustomersContent();
+  let step=0;
+  activeDemoInterval=setInterval(()=>{
+    step=(step+1)%3;
+    if(step===1){
+      customersList[0].spent+=180;customersList[0].orders+=1;
+      custActionMsg=`💰 العميل "${customersList[0].name}" طلب أوردر جديد (+180 ج.م) — وصل لـ ${customersList[0].orders} طلب`;
+    }else if(step===2){
+      custActionMsg=`💬 تم إرسال كوبون خصم 20% خاص تلقائياً للعميلة "${customersList[1].name}" على واتساب`;
+    }else{
+      custActionMsg='👥 انضم عميل جديد "نور إبراهيم" مسجلاً أول طلب له الآن';
+    }
+    renderCustomersContent();
+  },3800);
+}
+function renderCustomersContent(){
+  const el=document.getElementById('atab-customers');if(!el)return;
+  const listHtml=customersList.map(c=>`
+    <div class="interactive-demo-card">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+        <div style="display:flex;align-items:center;gap:8px">
+          <div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--olive),var(--olive-light));color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px">${c.name[0]}</div>
+          <div>
+            <div style="font-weight:900;font-size:13px">${c.name}</div>
+            <div style="font-size:10px;color:var(--text-muted)">${c.phone}</div>
+          </div>
+        </div>
+        <span style="font-size:10px;font-weight:800;background:var(--olive-pale);color:var(--olive-dark);padding:3px 10px;border-radius:100px">${c.tier}</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;border-top:1px solid var(--border);padding-top:8px;font-size:11px;font-weight:700">
+        <span>📦 إجمالي الطلبات: <b style="color:var(--dark)">${c.orders}</b></span>
+        <span>💵 إجمالي المشتريات: <b style="color:var(--olive-dark)">${c.spent} ج.م</b></span>
+      </div>
+    </div>`).join('');
+  el.innerHTML=buildNoticeHeader('atab-customers',custActionMsg,'#1e40af')+listHtml;
+}
+
+// ─────────────────────────────────────────
+// 4. AGENTS DEMO
+// ─────────────────────────────────────────
+let agentsList=[
+  {name:'محمد السائق',status:'🟢 في الطريق للعميل',order:'#D-1001',speed:'⭐ 4.9',trips:16},
+  {name:'أحمد الدليفري',status:'🟡 في انتظار استلام طلب',order:'—',speed:'⭐ 4.8',trips:12},
+  {name:'علي الكابتن',status:'🟢 في الطريق للعميل',order:'#D-0998',speed:'⭐ 4.9',trips:19}
+];
+let agentMsg='تتبع لحظي لمواقع المندوبين وسرعة تسليم الطلبات على الخريطة';
+function runAgentsDemo(){
+  renderAgentsContent();
+  let step=0;
+  activeDemoInterval=setInterval(()=>{
+    step=(step+1)%3;
+    if(step===1){
+      agentsList[1].status='🟢 تم تسليم الطلب #D-1002 بنجاح!';agentsList[1].trips+=1;
+      agentMsg=`🛵 الكابتن "${agentsList[1].name}" سلّم الطلب بنجاح في 18 دقيقة فقط`;
+    }else if(step===2){
+      agentMsg=`📍 تم إرسال إشعار تتبع مباشر للعميل مع رقم هاتف المندوب على واتساب`;
+    }else{
+      agentsList[1].status='🟡 في انتظار استلام طلب';
+      agentMsg='🛵 جاري توجيه وتعيين الطلب الجديد للأقرب والأسرع تلقائياً';
+    }
+    renderAgentsContent();
+  },3800);
+}
+function renderAgentsContent(){
+  const el=document.getElementById('atab-agents');if(!el)return;
+  const listHtml=agentsList.map(a=>`
+    <div class="interactive-demo-card">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+        <div style="display:flex;align-items:center;gap:8px">
+          <div style="font-size:24px">🛵</div>
+          <div>
+            <div style="font-weight:900;font-size:13px">${a.name}</div>
+            <div style="font-size:11px;font-weight:800;color:var(--olive-dark)">${a.status}</div>
+          </div>
+        </div>
+        <span style="font-size:12px;font-weight:900;color:#f59e0b">${a.speed}</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;border-top:1px solid var(--border);padding-top:8px;font-size:11px;font-weight:700">
+        <span>الطلب الحالي: <b>${a.order}</b></span>
+        <span>رحلات اليوم: <b style="color:var(--olive-dark)">${a.trips} توصيلة</b></span>
+      </div>
+    </div>`).join('');
+  el.innerHTML=buildNoticeHeader('atab-agents',agentMsg,'#16a34a')+listHtml;
+}
+
+// ─────────────────────────────────────────
+// 5. LAST ORDER DEMO
+// ─────────────────────────────────────────
+let lastOrderSec=14;
+function runLastOrderDemo(){
+  renderLastOrderContent();
+  activeDemoInterval=setInterval(()=>{
+    lastOrderSec--;
+    if(lastOrderSec<=0){
+      lastOrderSec=30;
+      showNotif('⚡ تم الإغلاق التلقائي لاستقبال طلبات اليوم لحماية المطبخ!');
+    }
+    renderLastOrderContent();
+  },1000);
+}
+function renderLastOrderContent(){
+  const el=document.getElementById('atab-lastorder');if(!el)return;
+  el.innerHTML=buildNoticeHeader('atab-lastorder',`🔒 باقي ${lastOrderSec} ثانية على انتهاء وقت استقبال طلبات اليوم`,'#b45309')+`
+    <div class="interactive-demo-card" style="text-align:center;padding:20px 14px">
+      <div style="font-size:44px;margin-bottom:6px">⏱️</div>
+      <div style="font-size:24px;font-weight:900;color:var(--dark)">00:00:${String(lastOrderSec).padStart(2,'0')}</div>
+      <div style="font-size:12px;color:var(--text-muted);margin-top:4px">العداد التنازلي يظهر لجميع العملاء داخل التطبيق لمنع الطلب المتأخر</div>
+      <div class="demo-progress-bar"><div class="demo-progress-fill" style="width:${(lastOrderSec/30)*100}%;background:#f59e0b"></div></div>
+    </div>
+    <div class="interactive-demo-card">
+      <div style="font-weight:900;font-size:13px;margin-bottom:8px">⚙️ ضبط مواعيد Last Order</div>
+      <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);font-size:12px"><span>إغلاق المطعم:</span><b>02:00 صباحاً</b></div>
+      <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);font-size:12px"><span>آخر طلب (Last Order):</span><b style="color:var(--red)">01:45 صباحاً (قبل الإغلاق بـ 15 د)</b></div>
+      <div style="display:flex;justify-content:space-between;padding:6px 0;font-size:12px"><span>إشعار التنبيه للعملاء:</span><b style="color:var(--olive)">مفعل تلقائياً ✅</b></div>
+    </div>`;
+}
+
+// ─────────────────────────────────────────
+// 6. PRAYER TIMES DEMO
+// ─────────────────────────────────────────
+let prayerList=[
+  {name:'الفجر',time:'04:45 ص',status:'passed'},
+  {name:'الظهر',time:'12:05 م',status:'passed'},
+  {name:'العصر',time:'03:30 م',status:'active'},
+  {name:'المغرب',time:'06:15 م',status:'upcoming'},
+  {name:'العشاء',time:'07:45 م',status:'upcoming'}
+];
+function runPrayerDemo(){
+  renderPrayerContent();
+  let toggle=false;
+  activeDemoInterval=setInterval(()=>{
+    toggle=!toggle;
+    renderPrayerContent(toggle);
+  },3500);
+}
+function renderPrayerContent(isPaused=false){
+  const el=document.getElementById('atab-prayer');if(!el)return;
+  const listHtml=prayerList.map(p=>`
+    <div class="interactive-demo-card" style="display:flex;align-items:center;justify-content:space-between;${p.status==='active'?'border-color:#f59e0b;background:#fefce8;':''}">
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="font-size:20px">🕌</span>
+        <div>
+          <div style="font-weight:900;font-size:13px">${p.name}</div>
+          <div style="font-size:11px;color:var(--text-muted)">${p.time}</div>
+        </div>
+      </div>
+      <span style="font-size:11px;font-weight:800;padding:3px 10px;border-radius:100px;background:${p.status==='active'?'#fef3c7':'#f3f4f6'};color:${p.status==='active'?'#92400e':'#6b7280'}">${p.status==='active'?'⏸️ إيقاف مؤقت للصلاة (15 د)':'مجدول تلقائياً'}</span>
+    </div>`).join('');
+  el.innerHTML=buildNoticeHeader('atab-prayer',isPaused?'⏸️ الطلبات متوقفة مؤقتاً لصلاة العصر — ستستأنف بعد 10 دقائق تلقائياً':'🟢 النظام يعمل بكامل طاقته ومجدول لمواقيت الصلاة تلقائياً',isPaused?'#b45309':'#16a34a')+listHtml;
+}
+
+// ─────────────────────────────────────────
+// 7. BLOCK SYSTEM DEMO
+// ─────────────────────────────────────────
+let blockList=[
+  {target:'01099887766',type:'رقم هاتف',reason:'طلب وهمي مكرر',date:'اليوم 09:15 م'},
+  {target:'منطقة مجاورة غير مغطاة',type:'منطقة جغرافية',reason:'خارج نطاق التوصيل',date:'أمس'},
+  {target:'01200011122',type:'رقم هاتف',reason:'رفض الاستلام عند الباب',date:'18 أغسطس'}
+];
+function runBlockDemo(){
+  renderBlockContent();
+  let step=0;
+  activeDemoInterval=setInterval(()=>{
+    step=(step+1)%2;
+    if(step===1){
+      showNotif('🛡️ تم صد وإلغاء محاولة طلب وهمي من رقم محظور بنجاح!');
+    }
+    renderBlockContent();
+  },3800);
+}
+function renderBlockContent(){
+  const el=document.getElementById('atab-block');if(!el)return;
+  const listHtml=blockList.map(b=>`
+    <div class="interactive-demo-card" style="border-right:4px solid #ef4444">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px">
+        <div style="font-weight:900;font-size:13px;color:#b91c1c">🚫 ${b.target}</div>
+        <span style="font-size:10px;font-weight:800;background:#fee2e2;color:#b91c1c;padding:2px 8px;border-radius:100px">${b.type}</span>
+      </div>
+      <div style="font-size:11px;color:var(--text-muted)">السبب: <b>${b.reason}</b> • ${b.date}</div>
+    </div>`).join('');
+  el.innerHTML=buildNoticeHeader('atab-block','🛡️ نظام الحماية الذكي يمنع الطلبات الوهمية والخسائر في الحال','#b91c1c')+listHtml;
+}
+
+// ─────────────────────────────────────────
+// 8. ADVANCED STATS DEMO
+// ─────────────────────────────────────────
+function runAdvancedStatsDemo(){
+  renderAdvStatsContent();
+  activeDemoInterval=setInterval(()=>{
+    renderAdvStatsContent();
+  },4000);
+}
+function renderAdvStatsContent(){
+  const el=document.getElementById('atab-stats');if(!el)return;
+  el.innerHTML=buildNoticeHeader('atab-stats','📊 تحليل فوري لساعات الذروة والأصناف الأعلى مبيعاً هذا الأسبوع','#1e3a5f')+`
+    <div class="stats-grid">
+      <div class="stat-card green"><div class="stat-val">34,580</div><div class="stat-lbl">💰 إيرادات الأسبوع (ج.م)</div></div>
+      <div class="stat-card gold"><div class="stat-val">412</div><div class="stat-lbl">📦 إجمالي الطلبات</div></div>
+      <div class="stat-card blue"><div class="stat-val">84 ج.م</div><div class="stat-lbl">📊 متوسط الفاتورة</div></div>
+      <div class="stat-card purple"><div class="stat-val">94%</div><div class="stat-lbl">⭐ رضا العملاء</div></div>
+    </div>
+    <div class="interactive-demo-card">
+      <div style="font-weight:900;font-size:13px;margin-bottom:10px">🔥 الأكثر مبيعاً هذا الأسبوع</div>
+      ${[
+        {name:'كلاسيك برجر',pct:88,sales:'142 طلب',color:'#4a7c1f'},
+        {name:'دبل برجر دجاج',pct:72,sales:'98 طلب',color:'#16a34a'},
+        {name:'بيتزا مارجريتا',pct:64,sales:'78 طلب',color:'#f59e0b'},
+        {name:'عصير مانجو فريش',pct:55,sales:'64 طلب',color:'#3b82f6'}
+      ].map(item=>`
+        <div style="margin-bottom:8px">
+          <div style="display:flex;justify-content:space-between;font-size:12px;font-weight:800;margin-bottom:3px">
+            <span>${item.name}</span><span>${item.sales}</span>
+          </div>
+          <div class="demo-progress-bar"><div class="demo-progress-fill" style="width:${item.pct}%;background:${item.color}"></div></div>
+        </div>`).join('')}
+    </div>`;
+}
+
+// ─────────────────────────────────────────
+// 9. PAYMENTS RECONCILIATION DEMO
+// ─────────────────────────────────────────
+let cashShift={cash:1840,visa:1250,wallet:680,total:3770,orders:46};
+function runPaymentsDemo(){
+  renderPaymentsContent();
+  activeDemoInterval=setInterval(()=>{
+    cashShift.cash+=75;cashShift.total+=75;cashShift.orders+=1;
+    renderPaymentsContent();
+  },3500);
+}
+function renderPaymentsContent(){
+  const el=document.getElementById('atab-payments');if(!el)return;
+  el.innerHTML=buildNoticeHeader('atab-payments',`💰 تم تحصيل طلب كاش جديد (+75 ج.م) — إجمالي الوردية: ${cashShift.total} ج.م`,'#15803d')+`
+    <div class="stats-grid">
+      <div class="stat-card green"><div class="stat-val">${cashShift.total}</div><div class="stat-lbl">💵 إجمالي الوردية (ج.م)</div></div>
+      <div class="stat-card gold"><div class="stat-val">${cashShift.cash}</div><div class="stat-lbl">💵 كاش الدرج</div></div>
+      <div class="stat-card blue"><div class="stat-val">${cashShift.visa}</div><div class="stat-lbl">💳 فيزا / شبكة</div></div>
+      <div class="stat-card purple"><div class="stat-val">${cashShift.wallet}</div><div class="stat-lbl">📱 محافظ إلكترونية</div></div>
+    </div>
+    <div class="interactive-demo-card">
+      <div style="font-weight:900;font-size:13px;margin-bottom:8px">📋 تقرير إغلاق الوردية الحالية</div>
+      <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);font-size:12px"><span>الكاشير المسؤول:</span><b>أحمد - وردية الصباح</b></div>
+      <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);font-size:12px"><span>عدد الفواتير المحصلة:</span><b>${cashShift.orders} فاتورة</b></div>
+      <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);font-size:12px"><span>حالة الخزينة:</span><b style="color:var(--olive)">✅ مطابقة تماماً بدون أي عجز</b></div>
+    </div>`;
+}
+
+// ─────────────────────────────────────────
+// 10. DELIVERY ZONES DEMO
+// ─────────────────────────────────────────
+let zonesList=[
+  {name:'منطقة وسط البلد والمهندسين',fee:15,time:'20-30 دقيقة',active:true,minOrder:50},
+  {name:'الدقي والزمالك',fee:20,time:'25-35 دقيقة',active:true,minOrder:70},
+  {name:'منطقة الهرم وفيصل',fee:25,time:'35-45 دقيقة',active:true,minOrder:100},
+  {name:'منطقة بعيدة (أوقات الذروة)',fee:35,time:'45-60 دقيقة',active:false,minOrder:150}
+];
+function runZonesDemo(){
+  renderZonesContent();
+  activeDemoInterval=setInterval(()=>{
+    zonesList[3].active=!zonesList[3].active;
+    renderZonesContent();
+  },3800);
+}
+function renderZonesContent(){
+  const el=document.getElementById('atab-zones');if(!el)return;
+  const listHtml=zonesList.map(z=>`
+    <div class="interactive-demo-card" style="opacity:${z.active?1:0.55}">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+        <div style="font-weight:900;font-size:13px">🗺️ ${z.name}</div>
+        <span style="font-size:10px;font-weight:800;background:${z.active?'var(--olive-pale)':'#fee2e2'};color:${z.active?'var(--olive-dark)':'#b91c1c'};padding:3px 10px;border-radius:100px">${z.active?'🟢 التوصيل متاح':'🔴 إيقاف وقت الذروة'}</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--text-muted)">
+        <span>سعر التوصيل: <b style="color:var(--dark)">${z.fee} ج.م</b></span>
+        <span>الوقت المتوقع: <b>${z.time}</b></span>
+        <span>الحد الأدنى: <b>${z.minOrder} ج.م</b></span>
+      </div>
+    </div>`).join('');
+  el.innerHTML=buildNoticeHeader('atab-zones','🗺️ تخصيص مناطق التوصيل ورسومها وإيقاف المناطق البعيدة في الذروة تلقائياً','#1e3a5f')+listHtml;
+}
+
+// ─────────────────────────────────────────
+// 11. OFFERS & COUPONS DEMO
+// ─────────────────────────────────────────
+let couponsList=[
+  {code:'WELCOME20',desc:'خصم 20% للطلب الأول للعميل الجديد',used:148,active:true},
+  {code:'FREE_DELIVERY',desc:'توصيل مجاني عند الطلب بأكثر من 150 ج.م',used:89,active:true},
+  {code:'WEEKEND50',desc:'خصم 50 ج عند الطلب بـ 250 ج.م في نهاية الأسبوع',used:62,active:true}
+];
+function runOffersDemo(){
+  renderOffersContent();
+  activeDemoInterval=setInterval(()=>{
+    couponsList[0].used+=1;
+    renderOffersContent();
+  },3600);
+}
+function renderOffersContent(){
+  const el=document.getElementById('atab-offers');if(!el)return;
+  const listHtml=couponsList.map(c=>`
+    <div class="interactive-demo-card">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+        <span style="font-size:14px;font-weight:900;color:var(--olive-dark);background:var(--olive-pale);padding:4px 12px;border-radius:8px;border:1px dashed var(--olive)">🎁 ${c.code}</span>
+        <span style="font-size:11px;font-weight:800;color:var(--olive)">استُخدم ${c.used} مرة</span>
+      </div>
+      <div style="font-size:12px;color:var(--text);margin-top:6px">${c.desc}</div>
+    </div>`).join('');
+  el.innerHTML=buildNoticeHeader('atab-offers','🎁 العروض والكوبونات تنعش المبيعات وتجلب عملاء جدد تلقائياً','#c8973a')+listHtml;
+}
+
+// ─────────────────────────────────────────
+// 12. MARKETING & PUSH DEMO
+// ─────────────────────────────────────────
+function runMarketingDemo(){
+  renderMarketingContent();
+  let step=0;
+  activeDemoInterval=setInterval(()=>{
+    step=(step+1)%2;
+    renderMarketingContent(step===1);
+  },3800);
+}
+function renderMarketingContent(justSent=false){
+  const el=document.getElementById('atab-marketing');if(!el)return;
+  el.innerHTML=buildNoticeHeader('atab-marketing',justSent?'🚀 تم إرسال إشعار العرض الآن لـ 310 عميل — تم فتح الإشعار بواسطة 94 عميل فورياً!':'📱 إرسال إشعارات Push الترويجية وحملات الواتساب بضغطة واحدة','#7c3aed')+`
+    <div class="interactive-demo-card">
+      <div style="font-weight:900;font-size:13px;margin-bottom:8px">📢 تجربة إرسال إشعار Push مباشر للعملاء</div>
+      <div style="background:var(--cream);border-radius:12px;padding:12px;border:1.5px solid var(--border);margin-bottom:10px">
+        <div style="font-size:12px;font-weight:900;color:var(--dark)">🍔 خصم 25% على كل وجبات البرجر اليوم فقط!</div>
+        <div style="font-size:11px;color:var(--text-muted);margin-top:4px">اطلب الآن واستمتع بالتوصيل السريع لباب بيتك 🚀</div>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:11px;font-weight:800;color:var(--olive-dark)">
+        <span>المستلمون: 310 عميل</span>
+        <span>معدل التفاعل: 38% 🔥</span>
+      </div>
+    </div>`;
+}
+
+// ─────────────────────────────────────────
+// 13. BOOKINGS DEMO
+// ─────────────────────────────────────────
+let bookingsList=[
+  {name:'أحمد محمود',people:'4 أفراد',time:'08:30 م',table:'طاولة 4',status:'مؤكد واتساب ✅'},
+  {name:'سارة إبراهيم',people:'2 أفراد',time:'09:00 م',table:'طاولة 2 (رومانسية)',status:'مؤكد واتساب ✅'},
+  {name:'كريم عبد الله',people:'6 أفراد',time:'07:30 م',table:'طاولة عائلية VIP',status:'وصل المطعم 🟢'}
+];
+function runBookingsDemo(){
+  renderBookingsContent();
+  activeDemoInterval=setInterval(()=>{
+    renderBookingsContent();
+  },4000);
+}
+function renderBookingsContent(){
+  const el=document.getElementById('atab-bookings');if(!el)return;
+  const listHtml=bookingsList.map(b=>`
+    <div class="interactive-demo-card">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+        <div style="font-weight:900;font-size:13px">📅 ${b.name} (${b.people})</div>
+        <span style="font-size:10px;font-weight:800;background:var(--olive-pale);color:var(--olive-dark);padding:3px 10px;border-radius:100px">${b.status}</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--text-muted)">
+        <span>الموعد: <b>${b.time}</b></span>
+        <span>المكان: <b style="color:var(--dark)">${b.table}</b></span>
+      </div>
+    </div>`).join('');
+  el.innerHTML=buildNoticeHeader('atab-bookings','📅 نظام حجز الطاولات والمناسبات أونلاين مع تأكيد واتساب فوري','#1e3a5f')+listHtml;
+}
+
+// ─────────────────────────────────────────
+// 14. VIP LOYALTY DEMO
+// ─────────────────────────────────────────
+let vipCustomer={name:'محمود علي',points:480,tier:'🥈 الفئة الذهبية',reward:'وجبة مجانية عند 500 نقطة'};
+function runVipDemo(){
+  renderVipContent();
+  activeDemoInterval=setInterval(()=>{
+    vipCustomer.points+=10;
+    if(vipCustomer.points>=500) vipCustomer.tier='💎 الفئة البلاتينية (VIP)';
+    renderVipContent();
+  },3200);
+}
+function renderVipContent(){
+  const el=document.getElementById('atab-vip');if(!el)return;
+  el.innerHTML=buildNoticeHeader('atab-vip',`👑 العميل كسب +10 نقاط مع الطلب الأخير — رصيده الحالي: ${vipCustomer.points} نقطة`,'#b45309')+`
+    <div class="interactive-demo-card" style="background:linear-gradient(135deg,#fef3c7,#fde68a);border:1.5px solid #f59e0b;text-align:center;padding:18px">
+      <div style="font-size:36px;margin-bottom:4px">👑</div>
+      <div style="font-size:17px;font-weight:900;color:#92400e">${vipCustomer.name}</div>
+      <div style="font-size:12px;font-weight:800;color:#b45309;margin-top:2px">${vipCustomer.tier}</div>
+      <div style="font-size:24px;font-weight:900;color:var(--dark);margin:10px 0">${vipCustomer.points} <span style="font-size:12px">نقطة ولاء</span></div>
+      <div class="demo-progress-bar"><div class="demo-progress-fill" style="width:${Math.min(100,(vipCustomer.points/500)*100)}%;background:#b45309"></div></div>
+      <div style="font-size:10px;color:#92400e;margin-top:6px;font-weight:700">${vipCustomer.reward}</div>
+    </div>`;
+}
+
+// ─────────────────────────────────────────
+// 15. SETTINGS DEMO
+// ─────────────────────────────────────────
+function runSettingsDemo(){
+  renderSettingsContent();
+  activeDemoInterval=setInterval(()=>{
+    renderSettingsContent();
+  },4000);
+}
+function renderSettingsContent(){
+  const el=document.getElementById('atab-settings');if(!el)return;
+  el.innerHTML=buildNoticeHeader('atab-settings','⚙️ تخصيص وإدارة شاملة لجميع إعدادات المطعم والفروع وطرق الدفع','#1e3a5f')+`
+    <div class="interactive-demo-card">
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border)">
+        <div><div style="font-weight:900;font-size:13px">استقبال الطلبات أونلاين</div><div style="font-size:10px;color:var(--text-muted)">متاح للعملاء على مدار الساعة</div></div>
+        <div class="toggle-switch on"></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border)">
+        <div><div style="font-weight:900;font-size:13px">إشعارات الواتساب التلقائية</div><div style="font-size:10px;color:var(--text-muted)">إرسال فواتير وروابط التتبع للزبائن</div></div>
+        <div class="toggle-switch on"></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0">
+        <div><div style="font-weight:900;font-size:13px">طباعة الفاتورة التلقائية للمطبخ</div><div style="font-size:10px;color:var(--text-muted)">طباعة فورية عند قبول الأوردر</div></div>
+        <div class="toggle-switch on"></div>
+      </div>
+    </div>`;
+}
+
+// ─────────────────────────────────────────
+// 16. BACKUP DEMO
+// ─────────────────────────────────────────
+let backupSec=2;
+function runBackupDemo(){
+  renderBackupContent();
+  activeDemoInterval=setInterval(()=>{
+    renderBackupContent(true);
+  },3800);
+}
+function renderBackupContent(isLive=false){
+  const el=document.getElementById('atab-backup');if(!el)return;
+  el.innerHTML=buildNoticeHeader('atab-backup',isLive?'💾 تم إنشاء وحفظ نسخة احتياطية سحابية مشفرة لجميع الطلبات والعملاء الآن بنجاح!':'💾 نسخ احتياطي سحابي تلقائي يضمن عدم ضياع أي بيانات','#16a34a')+`
+    <div class="interactive-demo-card">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+        <div>
+          <div style="font-weight:900;font-size:13px">السحابة الآمنة: متصلة ونشطة 🟢</div>
+          <div style="font-size:10px;color:var(--text-muted)">آخر حفظ: منذ دقيقة واحدة</div>
+        </div>
+        <span style="font-size:11px;font-weight:800;background:var(--olive-pale);color:var(--olive-dark);padding:4px 10px;border-radius:100px">مشفر 256-bit</span>
+      </div>
+      <div style="display:flex;gap:8px;margin-top:10px">
+        <button style="flex:1;background:var(--cream);border:1.5px solid var(--border);border-radius:10px;padding:8px;font-size:11px;font-weight:800;cursor:pointer">📊 تصدير Excel</button>
+        <button style="flex:1;background:var(--cream);border:1.5px solid var(--border);border-radius:10px;padding:8px;font-size:11px;font-weight:800;cursor:pointer">📄 تصدير PDF</button>
+      </div>
+    </div>`;
+}
+
+// ================================================================
+// TABS & INIT
 // ================================================================
 function openTab(id){
   document.querySelectorAll('.tab-content[id^="tab-"]').forEach(t=>t.classList.remove('active'));
@@ -1529,247 +1909,37 @@ function openTab(id){
   const key=id.replace('tab-','');
   const nb=document.getElementById('nav-'+key)||document.getElementById(nm[key]);
   if(nb)nb.classList.add('active');
-  if(id==='tab-admin'){renderAdminOrders();renderTodayStats();}
-  if(id==='tab-my-orders')renderMyOrders();
+  if(id==='tab-admin'){ renderAdminOrders(); renderTodayStats(); }
+  if(id==='tab-my-orders') renderMyOrders();
   if(id==='tab-track' && window._activeTrackId) renderTrackOrder(window._activeTrackId);
-  // اللوجو يظهر في كل التابات ما عدا المنيو
-  const logoCorner = document.getElementById('mgLogoCorner');
-  if(logoCorner){
-    if(id === 'tab-menu') logoCorner.classList.remove('show');
-    else logoCorner.classList.add('show');
-  }
+  if(id!=='tab-admin'){ stopAllDemos(); hideRobotBtn(); }
+  const logoCorner=document.getElementById('mgLogoCorner');
+  if(logoCorner){ if(id==='tab-menu')logoCorner.classList.remove('show'); else logoCorner.classList.add('show'); }
 }
 
-function openAdminTab(id,btn){
-  document.querySelectorAll('#app .tab-content[id^="atab-"]').forEach(t=>{t.classList.remove('active');t.style.display='none';});
-  const el=document.getElementById(id);if(el){el.classList.add('active');el.style.display='block';}
-  document.querySelectorAll('.admin-tabs .tab-btn').forEach(b=>b.classList.remove('active'));
-  if(btn)btn.classList.add('active');
-  if(id==='atab-stats')renderTodayStats();
-}
-
-// بيانات كل تاب مقفول
-const LOCKED_TABS_DATA = {
-  'atab-cashier': {
-    icon:'🧾', title:'شاشة الكاشير',
-    desc:'شاشة متخصصة للكاشير — استلم الطلبات، غيّر حالاتها، وأدر المدفوعات في ثوانٍ.',
-    usp:'⚡ مطعمك يخسر طلبات كل يوم لأن الكاشير بيتأخر في التأكيد — دي الحل.',
-    features:['عرض جميع الطلبات فور وصولها مع صوت تنبيه','قبول وتغيير حالة الطلب بضغطة واحدة','فلترة الطلبات حسب النوع: توصيل / استلام / داخل','طباعة الفاتورة مباشرة من الشاشة','إشعارات صوتية وبصرية للطلبات الجديدة','ملخص مالي فوري لكل وردية']
-  },
-  'atab-menu-mgmt': {
-    icon:'🍽️', title:'إدارة المنيو',
-    desc:'غيّر أسعارك، أضف صنف جديد، أو أخفِ صنف نفذ — كل ده في ثوانٍ بدون مبرمج.',
-    usp:'💡 أصحاب المطاعم بيخسروا لما العميل يطلب صنف ناقص — هنا تتحكم لحظياً.',
-    features:['إضافة وتعديل وحذف الأصناف بسهولة تامة','رفع وتغيير صور الأصناف مباشرة','إدارة الأقسام والتصنيفات','تفعيل وإيقاف الأصناف لحظياً','إضافة إكسترا وخيارات تخصيص','ربط الأصناف بأوقات محددة (إفطار / غداء / عشاء)']
-  },
-  'atab-customers': {
-    icon:'👥', title:'إدارة العملاء',
-    desc:'اعرف عملاءك الحقيقيين — مين بيطلب كتير، مين انقطع، ومين يستاهل عرض خاص.',
-    usp:'📈 العملاء المنتظمون هم 80% من إيراداتك — لازم تعرف مين هم.',
-    features:['قاعدة بيانات كاملة لكل العملاء','سجل الطلبات والمبالغ لكل عميل','تصنيف تلقائي: عميل جديد / منتظم / VIP','حظر العملاء المشكلة بضغطة واحدة','إرسال عروض مخصصة للعملاء','تقرير أفضل العملاء شهرياً']
-  },
-  'atab-agents': {
-    icon:'🛵', title:'إدارة المندوبين',
-    desc:'تتبع مندوبيك لحظياً وعرف مين بيوصّل بسرعة ومين بيأخر العملاء.',
-    usp:'⏱️ التوصيل المتأخر هو السبب الأول لفقدان العملاء — ده الحل.',
-    features:['تتبع موقع المندوب على الخريطة لحظياً','تعيين الطلبات للمندوبين بسهولة','تقييم أداء كل مندوب','سجل كامل للتوصيلات والأرباح','إشعار العميل بموقع المندوب','تقارير أداء أسبوعية']
-  },
-  'atab-lastorder': {
-    icon:'⚡', title:'Last Order',
-    desc:'مطعمك بيقفل الساعة 2 بس العملاء بيطلبوا الساعة 1:55 — Last Order بيحميك.',
-    usp:'🔑 ميزة حصرية مش موجودة في أي نظام تاني في السوق.',
-    features:['تحديد وقت آخر طلب قبل الإغلاق بدقيقة','إشعار تلقائي للعملاء "آخر فرصة للطلب"','إيقاف الطلبات تلقائياً عند الوقت المحدد','يومي أو حسب الجدول الأسبوعي','يظهر للعملاء عداد تنازلي للإغلاق','يمنع الطلبات اللي مش هتتنفذ']
-  },
-  'atab-prayer': {
-    icon:'🕌', title:'أوقات الصلاة',
-    desc:'إيقاف الطلبات تلقائياً في أوقات الصلاة واستئنافها تلقائياً — بدون أي تدخل منك.',
-    usp:'🌙 مصممة خصيصاً للسوق العربي والإسلامي — مش موجودة في الأنظمة الأجنبية.',
-    features:['إيقاف تلقائي للطلبات وقت الصلاة','استئناف تلقائي بعد انتهاء وقت الصلاة','حسب موقع المطعم الجغرافي','إشعار للعملاء برسالة احترامية','خيار تفعيل/تعطيل لكل صلاة منفردة','يعمل بدون أي تدخل يدوي']
-  },
-  'atab-block': {
-    icon:'🚫', title:'نظام الحظر',
-    desc:'حظر العملاء المشكلة أو الأرقام الوهمية — ووقف الخسائر من الطلبات الوهمية.',
-    usp:'💸 الطلبات الوهمية من أكبر مصادر الخسارة في المطاعم — هنا تقدر توقفها.',
-    features:['حظر رقم هاتف بضغطة واحدة','حظر منطقة جغرافية كاملة','رسالة مخصصة للمحظورين','قائمة سوداء مع سجل الأسباب','إلغاء الحظر وقت ما تريد','تقرير الطلبات المحظورة']
-  },
-  'atab-stats': {
-    icon:'📊', title:'الإحصائيات المتقدمة',
-    desc:'اعرف مطعمك من الأرقام — أفضل الأوقات، أكثر الأصناف مبيعاً، وأسباب الخسارة.',
-    usp:'📉 مطعم بيشتغل بدون إحصائيات زي سيارة بدون عداد — ممكن تتفاجأ بأي حاجة.',
-    features:['أفضل الأوقات مبيعاً خلال اليوم والأسبوع','أكثر الأصناف طلباً وأقلها','تحليل مصادر الطلبات: توصيل / استلام / داخل','مقارنة الأداء أسبوع بأسبوع وشهر بشهر','تقرير الأرباح والخسائر','تصدير كل التقارير PDF أو Excel']
-  },
-  'atab-payments': {
-    icon:'💰', title:'جرد المدفوعات',
-    desc:'عارف فلوسك فين؟ جرد المدفوعات بيديك صورة كاملة عن كل جنيه في مطعمك.',
-    usp:'🔍 أغلب المطاعم بتكتشف فروقات مالية بعد فوات الأوان — هنا تعرف لحظياً.',
-    features:['جرد شامل لكل المدفوعات يومياً','فصل المدفوعات: كاش / فيزا / محفظة','تقرير فروقات الصندوق','ملخص مالي لكل وردية','مقارنة الطلبات بالمبالغ المحصلة','تقرير شهري كامل للمحاسب']
-  },
-  'atab-zones': {
-    icon:'🗺️', title:'مناطق التوصيل الذكية',
-    desc:'حدد مناطق التوصيل وأسعارها، وأوقف التوصيل لمناطق معينة في أوقات الذروة تلقائياً.',
-    usp:'🛵 التوصيل لمناطق بعيدة في الذروة = خسارة — النظام بيمنع ده تلقائياً.',
-    features:['تحديد مناطق التوصيل على الخريطة','سعر توصيل مختلف لكل منطقة','إيقاف التوصيل لمناطق معينة يدوياً أو تلقائياً','جدولة إيقاف مناطق في أوقات محددة','حد أدنى للطلب لكل منطقة','تقرير أكثر مناطق الطلب']
-  },
-  'atab-offers': {
-    icon:'🎁', title:'العروض والخصومات',
-    desc:'أنشئ عروض تجذب العملاء وتزيد متوسط الطلب — بدون ما تاخد من أرباحك.',
-    usp:'🎯 عرض صح في الوقت الصح ممكن يضاعف مبيعاتك في يوم واحد.',
-    features:['كوبونات خصم بنسبة أو مبلغ ثابت','عروض محدودة الوقت والكمية','خصم أول طلب للعميل الجديد','توصيل مجاني عند حد معين','تتبع استخدام كل كوبون','ربط العروض بأصناف محددة']
-  },
-  'atab-marketing': {
-    icon:'📣', title:'التسويق والإعلانات',
-    desc:'تواصل مع عملاءك في الوقت الصح بالرسالة الصح — وشوف الفرق في المبيعات.',
-    usp:'📱 إشعار Push واحد في الوقت الصح يمكن يجيب طلبات تساوي وردية كاملة.',
-    features:['إشعارات Push للعملاء المسجلين','إعلانات بانر داخل التطبيق','حملات واتساب لقوائم العملاء','استهداف عملاء بفئات محددة','تتبع نتائج كل حملة بالأرقام','جدولة الحملات مسبقاً']
-  },
-  'atab-bookings': {
-    icon:'📅', title:'الحجوزات',
-    desc:'نظام حجز طاولات أونلاين مع تأكيد واتساب تلقائي — زيّد إيرادات المطعم.',
-    usp:'🪑 الحجز المسبق = إيراد مضمون قبل ما المطعم يفتح.',
-    features:['حجز الطاولات أونلاين 24/7','تأكيد تلقائي على واتساب','إدارة الطاولات والسعة','تذكير العميل قبل الموعد','قائمة انتظار تلقائية','تقرير الحجوزات اليومية']
-  },
-  'atab-vip': {
-    icon:'👑', title:'نظام VIP والولاء',
-    desc:'العميل اللي بيكسب نقاط عندك مش هيروح لمنافسك — برنامج الولاء بيخليه معاك.',
-    usp:'🔄 زيادة تكرار الشراء بـ 30% من نفس العملاء الحاليين بدون مصاريف تسويق.',
-    features:['نقاط مكافآت مع كل طلب','مستويات: فضي / ذهبي / بلاتيني','هدايا تلقائية عند حد النقاط','كارت VIP مخصص لكل عميل','مزايا حصرية لعملاء البلاتيني','تقرير أداء برنامج الولاء']
-  },
-  'atab-settings': {
-    icon:'⚙️', title:'الإعدادات',
-    desc:'تحكم كامل في مطعمك — مواعيد العمل، التوصيل، الدفع، والهوية البصرية.',
-    usp:'🎛️ مطعمك يتغير كل يوم — الإعدادات لازم تواكب التغيير في ثوانٍ.',
-    features:['مواعيد العمل لكل يوم منفرداً','إعدادات التوصيل والأسعار','طرق الدفع: كاش / فيزا / محفظة','رسائل واتساب التلقائية','الضرائب والرسوم الإضافية','شعار المطعم والهوية البصرية']
-  },
-  'atab-backup': {
-    icon:'💾', title:'النسخ الاحتياطي',
-    desc:'بياناتك هي أغلى أصل في مطعمك — النسخ الاحتياطي التلقائي بيحميها 24/7.',
-    usp:'⚠️ مطعم واحد خسر بيانات 3 سنين بسبب عطل — دي مش مبالغة، دي حقيقة.',
-    features:['نسخ احتياطي تلقائي يومي','تصدير Excel و PDF في أي وقت','استرجاع البيانات في ثوانٍ','حفظ سجل الطلبات لسنوات','نقل البيانات بين الأجهزة','تقارير جاهزة للمحاسب']
-  }
-};
-
-function openLockedTab(id, btn) {
-  // إخفاء كل التابات
-  document.querySelectorAll('#app .tab-content[id^="atab-"]').forEach(t=>{t.classList.remove('active');t.style.display='none';});
-  document.querySelectorAll('.admin-tabs .tab-btn').forEach(b=>b.classList.remove('active'));
-  if(btn) btn.classList.add('active');
-
-  const el = document.getElementById(id);
-  if(!el) return;
-  el.style.display = 'block';
-  el.classList.add('active');
-
-  // بناء محتوى الـ Preview لو لم يُبنَ قبل كده
-  if(el.dataset.built) return;
-  el.dataset.built = '1';
-
-  const data = LOCKED_TABS_DATA[id];
-  if(!data) return;
-
-  const featuresHtml = data.features.map(f => `<div class="lp-feature">${f}</div>`).join('');
-
-  // محتوى خلفية Preview (بيانات وهمية تبدو حقيقية)
-  const previewContent = getPreviewContent(id);
-
-  el.innerHTML = `
-    <div class="locked-preview-wrap">
-      <div class="locked-preview-content">${previewContent}</div>
-      <div class="locked-preview-overlay" id="overlay_${id}" onscroll="handleOverlayScroll(this)">
-        <div class="locked-preview-card">
-          <div class="lp-icon">${data.icon}</div>
-          <div class="lp-title">🔒 ${data.title}</div>
-          <div class="lp-desc">${data.desc}</div>
-          ${data.usp ? `<div style="background:linear-gradient(135deg,#fef3c7,#fde68a);border:1.5px solid #f59e0b;border-radius:12px;padding:10px 14px;margin:8px 0;font-size:12px;font-weight:800;color:#92400e;text-align:right">${data.usp}</div>` : ''}
-          <div class="lp-features">${featuresHtml}</div>
-          <button class="lp-cta" onclick="contactWA()">🚀 احصل على النسخة الكاملة الآن</button>
-          <button class="lp-wa" onclick="contactWA()"><span>💬</span> تواصل معنا على واتساب</button>
-        </div>
-        <div class="scroll-hint" id="hint_${id}">
-          <div class="scroll-hint-text">مزيد من المميزات ↓</div>
-          <div class="scroll-hint-arrow">↓</div>
-        </div>
-      </div>
-    </div>`;
-}
-
-function getPreviewContent(id) {
-  // محتوى وهمي يبدو حقيقي في الخلفية (مع blur)
-  const previews = {
-    'atab-cashier': `<div style="padding:14px"><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:14px">${['🆕 12 طلب جديد','⏳ 5 قيد التجهيز','✅ 28 مكتمل'].map(t=>`<div style="background:#fff;border-radius:12px;padding:14px;text-align:center;border:1.5px solid #e0ddd5;font-size:13px;font-weight:800">${t}</div>`).join('')}</div>${Array(4).fill(0).map((_,i)=>`<div style="background:#fff;border-radius:12px;padding:14px;margin-bottom:8px;border:1.5px solid #e0ddd5;display:flex;justify-content:space-between;align-items:center"><div><div style="font-weight:900;font-size:13px">طلب #D-${1001+i}</div><div style="font-size:11px;color:#6b7280">كلاسيك برجر × 2 • كولا × 1</div></div><span style="background:#fef3c7;color:#92400e;font-size:10px;font-weight:800;padding:3px 10px;border-radius:100px">جديد</span></div>`).join('')}</div>`,
-    'atab-menu-mgmt': `<div style="padding:14px">${Array(6).fill(0).map((_,i)=>`<div style="background:#fff;border-radius:12px;padding:12px;margin-bottom:8px;border:1.5px solid #e0ddd5;display:flex;align-items:center;gap:12px"><div style="width:48px;height:48px;border-radius:10px;background:#e8f5d0;display:flex;align-items:center;justify-content:center;font-size:24px">${['🍔','🍕','🌯','🥤','🍰','🍗'][i]}</div><div style="flex:1"><div style="font-weight:900;font-size:13px">${['كلاسيك برجر','مارجريتا','شاورما','كولا','كنافة','فراخ مشوية'][i]}</div><div style="font-size:11px;color:#6b7280">${[75,80,65,15,45,100][i]} ج.م</div></div><div style="width:36px;height:20px;background:#4a7c1f;border-radius:10px"></div></div>`).join('')}</div>`,
-    'atab-inventory': `<div style="padding:14px">${[['دقيق','85%','#16a34a'],['زيت','42%','#f59e0b'],['لحم مفروم','18%','#e03030'],['دجاج','67%','#16a34a'],['جبنة','55%','#f59e0b']].map(([n,p,c])=>`<div style="background:#fff;border-radius:12px;padding:12px;margin-bottom:8px;border:1.5px solid #e0ddd5"><div style="display:flex;justify-content:space-between;margin-bottom:6px;font-size:13px;font-weight:800"><span>${n}</span><span style="color:${c}">${p}</span></div><div style="height:8px;background:#f0f0f0;border-radius:4px"><div style="height:100%;width:${p};background:${c};border-radius:4px"></div></div></div>`).join('')}</div>`,
-    'atab-customers': `<div style="padding:14px">${['أحمد محمد','سارة خالد','محمود علي','نور إبراهيم','علي حسن'].map((n,i)=>`<div style="background:#fff;border-radius:12px;padding:12px;margin-bottom:8px;border:1.5px solid #e0ddd5;display:flex;align-items:center;gap:12px"><div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#4a7c1f,#6aab2e);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:14px">${n[0]}</div><div style="flex:1"><div style="font-weight:900;font-size:13px">${n}</div><div style="font-size:11px;color:#6b7280">${[24,16,31,8,19][i]} طلب • ${[1850,1240,2100,580,1430][i]} ج.م</div></div>${i<2?'<span style="background:#fef3c7;color:#92400e;font-size:10px;font-weight:800;padding:3px 8px;border-radius:100px">👑 VIP</span>':''}</div>`).join('')}</div>`,
-    'atab-agents': `<div style="padding:14px">${['محمد السائق','أحمد التوصيل','علي الدليفري'].map((n,i)=>`<div style="background:#fff;border-radius:12px;padding:12px;margin-bottom:8px;border:1.5px solid #e0ddd5"><div style="display:flex;align-items:center;gap:12px;margin-bottom:8px"><div style="width:40px;height:40px;border-radius:50%;background:#fef3c7;display:flex;align-items:center;justify-content:center;font-size:20px">🛵</div><div style="flex:1"><div style="font-weight:900;font-size:13px">${n}</div><div style="font-size:11px;color:${['#16a34a','#f59e0b','#16a34a'][i]};font-weight:800">${['🟢 في الطريق','🟡 في انتظار طلب','🟢 في الطريق'][i]}</div></div><span style="font-size:13px;font-weight:900">⭐ ${[4.8,4.5,4.9][i]}</span></div></div>`).join('')}</div>`,
-    'atab-employees': `<div style="padding:14px">${['أحمد - كاشير','مريم - مديرة','خالد - مندوب','سلمى - كاشير'].map((n,i)=>`<div style="background:#fff;border-radius:12px;padding:12px;margin-bottom:8px;border:1.5px solid #e0ddd5;display:flex;justify-content:space-between;align-items:center"><div><div style="font-weight:900;font-size:13px">${n}</div><div style="font-size:11px;color:#6b7280">آخر دخول: منذ ${[2,0,5,1][i]} ساعة</div></div><span style="background:${['#d1fae5','#fef3c7','#d1fae5','#d1fae5'][i]};color:${['#065f46','#92400e','#065f46','#065f46'][i]};font-size:10px;font-weight:800;padding:3px 10px;border-radius:100px">${['نشط','نشط','غير متاح','نشط'][i]}</span></div>`).join('')}</div>`,
-    'atab-branches': `<div style="padding:14px">${['الفرع الرئيسي - المهندسين','فرع مدينة نصر','فرع الزمالك'].map((n,i)=>`<div style="background:#fff;border-radius:12px;padding:14px;margin-bottom:10px;border:2px solid ${['#4a7c1f','#e0ddd5','#e0ddd5'][i]}"><div style="display:flex;justify-content:space-between;margin-bottom:8px"><div style="font-weight:900;font-size:13px">🏪 ${n}</div><span style="background:#d1fae5;color:#065f46;font-size:10px;font-weight:800;padding:3px 10px;border-radius:100px">نشط</span></div><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px">${['${[42,28,35][i]} طلب','${[3200,2100,2800][i]} ج.م','${[3,2,2][i]} موظف'].map(s=>`<div style="background:#f7f4ed;border-radius:8px;padding:6px;text-align:center;font-size:11px;font-weight:800">${s}</div>`)}</div></div>`).join('')}</div>`,
-    'atab-offers': `<div style="padding:14px">${[['WELCOME20','خصم 20% للطلب الأول','🎁',true],['SUMMER50','خصم 50 ج عند 200 ج','🌞',true],['FREESHIP','توصيل مجاني عند 150 ج','🛵',false]].map(([c,d,e,a])=>`<div style="background:#fff;border-radius:12px;padding:14px;margin-bottom:8px;border:1.5px solid #e0ddd5"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px"><div style="font-size:14px;font-weight:900;color:#4a7c1f">${e} ${c}</div><span style="background:${a?'#d1fae5':'#f3f4f6'};color:${a?'#065f46':'#6b7280'};font-size:10px;font-weight:800;padding:3px 10px;border-radius:100px">${a?'نشط':'منتهي'}</span></div><div style="font-size:12px;color:#6b7280">${d}</div></div>`).join('')}</div>`,
-    'atab-marketing': `<div style="padding:14px"><div style="background:#fff;border-radius:12px;padding:14px;margin-bottom:10px;border:1.5px solid #e0ddd5"><div style="font-weight:900;margin-bottom:8px">📱 آخر إشعار Push</div><div style="background:#f7f4ed;border-radius:8px;padding:10px;font-size:12px">🔥 عرض اليوم فقط! خصم 25% على البرجر — اطلب الآن!</div><div style="font-size:11px;color:#6b7280;margin-top:6px">أُرسل لـ 248 عميل • 89 تفاعل (36%)</div></div><div style="background:#fff;border-radius:12px;padding:14px;border:1.5px solid #e0ddd5"><div style="font-weight:900;margin-bottom:8px">📊 إحصائيات الحملات</div>${['حملة رمضان','حملة الصيف','عرض نهاية الأسبوع'].map((c,i)=>`<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #f0f0f0;font-size:12px"><span>${c}</span><span style="font-weight:800;color:#4a7c1f">${[42,38,29][i]}% تفاعل</span></div>`).join('')}</div></div>`,
-    'atab-bookings': `<div style="padding:14px">${['أحمد - 4 أشخاص - 8:00 م','سارة - 2 أشخاص - 9:00 م','محمود - 6 أشخاص - 7:30 م','علي - 3 أشخاص - 8:30 م'].map((b,i)=>`<div style="background:#fff;border-radius:12px;padding:12px;margin-bottom:8px;border:1.5px solid #e0ddd5;display:flex;justify-content:space-between;align-items:center"><div><div style="font-weight:900;font-size:13px">📅 ${b}</div><div style="font-size:11px;color:#6b7280">الطاولة ${i+1} • اليوم</div></div><span style="background:${['#d1fae5','#dbeafe','#d1fae5','#fef3c7'][i]};color:${['#065f46','#1e40af','#065f46','#92400e'][i]};font-size:10px;font-weight:800;padding:3px 10px;border-radius:100px">${['مؤكد','مؤكد','وصل','قيد الانتظار'][i]}</span></div>`).join('')}</div>`,
-    'atab-vip': `<div style="padding:14px"><div style="background:linear-gradient(135deg,#fef3c7,#fde68a);border-radius:16px;padding:16px;margin-bottom:12px;border:2px solid #f59e0b;text-align:center"><div style="font-size:32px;margin-bottom:6px">👑</div><div style="font-size:15px;font-weight:900;color:#92400e">برنامج الولاء الذهبي</div><div style="font-size:12px;color:#b45309;margin-top:4px">248 عميل مميز</div></div>${['بلاتيني 💎 - 5 عملاء','ذهبي 🥇 - 42 عميل','فضي 🥈 - 201 عميل'].map((l,i)=>`<div style="background:#fff;border-radius:10px;padding:10px 14px;margin-bottom:6px;border:1.5px solid #e0ddd5;display:flex;justify-content:space-between;font-size:12px;font-weight:800"><span>${l}</span><span style="color:#4a7c1f">${['+500','200-499','50-199'][i]} نقطة</span></div>`).join('')}</div>`,
-    'atab-settings': `<div style="padding:14px">${[['🕐 مواعيد العمل','السبت - الخميس: 10ص - 2ص'],['🛵 التوصيل','نطاق 10 كم • رسوم 15-25 ج.م'],['💳 طرق الدفع','كاش • فيزا • محفظة إلكترونية'],['📞 واتساب التلقائي','مفعّل • رسائل التأكيد والتتبع'],['🏪 بيانات المطعم','الاسم • الشعار • العنوان • الخريطة']].map(([t,d])=>`<div style="background:#fff;border-radius:12px;padding:12px 14px;margin-bottom:8px;border:1.5px solid #e0ddd5"><div style="font-weight:900;font-size:13px;margin-bottom:3px">${t}</div><div style="font-size:11px;color:#6b7280">${d}</div></div>`).join('')}</div>`,
-    'atab-backup': `<div style="padding:14px"><div style="background:#fff;border-radius:12px;padding:14px;margin-bottom:10px;border:1.5px solid #e0ddd5"><div style="font-weight:900;margin-bottom:10px">💾 آخر النسخ الاحتياطية</div>${['اليوم 3:00 ص - تلقائي','أمس 3:00 ص - تلقائي','13 أغسطس - يدوي'].map((b,i)=>`<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #f0f0f0;font-size:12px"><span>📁 ${b}</span><span style="color:#4a7c1f;font-weight:800">✅ ناجح</span></div>`).join('')}</div><div style="background:#fff;border-radius:12px;padding:14px;border:1.5px solid #e0ddd5"><div style="font-weight:900;margin-bottom:8px">📤 تصدير البيانات</div>${['📊 تصدير Excel للطلبات','📄 تصدير PDF للتقارير','👥 تصدير بيانات العملاء'].map(e=>`<div style="padding:8px 0;border-bottom:1px solid #f0f0f0;font-size:12px;font-weight:700">${e}</div>`).join('')}</div></div>`
-  };
-  return previews[id] || '<div style="padding:20px;text-align:center;color:#6b7280">جاري التحميل...</div>';
-}
-
-// ================================================================
-// LOCKED
-// ================================================================
-function showLocked(title,desc){
-  document.getElementById('lockedTitle').textContent='🔒 '+title+' — في النسخة الكاملة';
-  document.getElementById('lockedDesc').textContent=desc+'\n\nاشترك الآن لتفعيل جميع المميزات.';
-  document.getElementById('lockedOverlay').classList.add('open');
-}
-function closeLocked(){document.getElementById('lockedOverlay').classList.remove('open');}
-
-// ================================================================
-// CONTACT
-// ================================================================
-function contactWA(){
-  const msg=encodeURIComponent('السلام عليكم\n\nجربت نسخة Demo من نظام إدارة المطاعم وأنا مهتم بالنسخة الكاملة.\n\nيرجى التواصل معي.');
-  window.open('https://wa.me/'+DEVELOPER_WA+'?text='+msg,'_blank');
-}
-
-function handleOverlayScroll(el) {
-  // لما يسكرول أكتر من 40px يخفي السهم
-  const hint = el.querySelector('.scroll-hint');
-  if (!hint) return;
-  if (el.scrollTop > 40) hint.classList.add('hidden');
-  else hint.classList.remove('hidden');
-}
-
-// ================================================================
-// NOTIF
-// ================================================================
 function showNotif(msg){
   const el=document.getElementById('notif');
   el.textContent=msg;el.classList.add('show');
   setTimeout(()=>el.classList.remove('show'),3000);
 }
 
-// ================================================================
-// INIT
-// ================================================================
+function contactWA(){
+  const msg=encodeURIComponent('السلام عليكم\n\nجربت نسخة Demo من نظام إدارة المطاعم وأنا مهتم بالنسخة الكاملة.\n\nيرجى التواصل معي.');
+  window.open('https://wa.me/'+DEVELOPER_WA+'?text='+msg,'_blank');
+}
+
 window.addEventListener('load',async()=>{
   await new Promise(r=>setTimeout(r,1600));
   initFB();
-
-  // كشف Admin Route (مخفي تماماً)
   if(detectAdminRoute()){
-    if(sessionStorage.getItem('zz_admin_ok')==='1'){
-      showScreen('adminPanel');loadClients();
-    } else {
-      showScreen('adminLogin');
-    }
+    if(sessionStorage.getItem('zz_admin_ok')==='1'){ showScreen('adminPanel'); loadClients(); }
+    else showScreen('adminLogin');
     return;
   }
-
-  // فحص Session موجودة
-  const hasSession = await checkExistingSession();
+  const hasSession=await checkExistingSession();
   if(!hasSession) showScreen('auth');
 });
 
-// لو غيّر الـ hash وهو داخل
 window.addEventListener('hashchange',()=>{
   if(detectAdminRoute()){
     if(sessionStorage.getItem('zz_admin_ok')==='1') showScreen('adminPanel');
