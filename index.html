@@ -422,7 +422,7 @@ input,select,textarea{font-family:inherit}
     </div>
     <div class="err-box" id="authErr">❌ اسم المستخدم أو كلمة السر غلط</div>
     <button class="btn-primary" onclick="clientLogin()">🚀 دخول</button>
-    <div style="text-align:center;margin-top:14px;font-size:12px;color:var(--text-muted)">التجربة لمدة 48 ساعة • MG AppHouse</div>
+    <div style="text-align:center;margin-top:14px;font-size:12px;color:var(--text-muted)">التجربة لمدة 48 ساعة • Urcod</div>
   </div>
 </div>
 
@@ -431,7 +431,7 @@ input,select,textarea{font-family:inherit}
   <div class="admin-login-card">
     <div class="admin-login-icon">🔐</div>
     <div class="admin-login-title">Admin Panel</div>
-    <div class="admin-login-sub">MG AppHouse — للمطور فقط</div>
+    <div class="admin-login-sub">Urcod — للمطور فقط</div>
     <div class="admin-err" id="adminErr">❌ بيانات الدخول غلط</div>
     <div class="admin-field">
       <label>كلمة السر</label>
@@ -451,7 +451,7 @@ input,select,textarea{font-family:inherit}
   <div class="admin-topbar">
     <div>
       <h1>🔐 Admin Panel</h1>
-      <div style="font-size:10px;opacity:.7;margin-top:1px">MG AppHouse — إدارة حسابات Demo</div>
+      <div style="font-size:10px;opacity:.7;margin-top:1px">Urcod — إدارة حسابات Demo</div>
     </div>
     <div style="display:flex;gap:8px;align-items:center">
       <button onclick="loadClients()" style="background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:6px 12px;font-size:11px;font-weight:800;cursor:pointer;font-family:inherit">🔄 تحديث</button>
@@ -605,9 +605,9 @@ input,select,textarea{font-family:inherit}
     <div id="tab-contact" class="tab-content">
       <div class="contact-logo-wrap">
         <div class="contact-logo-img-wrap">
-          <img class="contact-logo-img" src="https://mahmoudgamaleldeen15-bit.github.io/restaurant-demo-mg/logo.png" alt="MG AppHouse" onerror="this.parentElement.innerHTML='<div style=&quot;font-size:36px;font-weight:900;color:#60a5fa&quot;>MG</div>'"/>
+          <img class="contact-logo-img" src="https://mahmoudgamaleldeen15-bit.github.io/restaurant-demo-mg/logo.png" alt="Urcod" onerror="this.parentElement.innerHTML='<div style=&quot;font-size:36px;font-weight:900;color:#60a5fa&quot;>MG</div>'"/>
         </div>
-        <div class="contact-brand-name">MG AppHouse</div>
+        <div class="contact-brand-name">Urcod</div>
         <div class="contact-brand-sub">HOME OF SMART APPS</div>
         <div class="contact-divider"></div>
         <button class="contact-wa-big" onclick="contactWA()">
@@ -631,11 +631,11 @@ input,select,textarea{font-family:inherit}
     </div>
   </div>
 
-  <div class="mg-logo-corner" id="mgLogoCorner" onclick="openTab('tab-contact')" title="MG AppHouse">
+  <div class="mg-logo-corner" id="mgLogoCorner" onclick="openTab('tab-contact')" title="Urcod">
     <div class="mg-logo-corner-inner">
       <img src="https://mahmoudgamaleldeen15-bit.github.io/restaurant-demo-mg/logo.png" alt="MG" onerror="this.style.display='none'"/>
       <div>
-        <div class="mg-logo-corner-text">MG AppHouse</div>
+        <div class="mg-logo-corner-text">Urcod</div>
         <div class="mg-logo-corner-sub">SMART APPS</div>
       </div>
     </div>
@@ -837,7 +837,7 @@ function copyText(elId){
 }
 function copyFullMessage(){
   const c=window._lastCred;if(!c)return;
-  const msg=`مرحباً ${c.name} 🌟\n\nيسعدنا تقديم نسخة تجريبية مجانية من نظام إدارة المطاعم لمدة ${c.hours} ساعة.\n\n🔗 الرابط: ${location.origin}${location.pathname}\n\n👤 اسم المستخدم: ${c.user}\n🔑 كلمة السر: ${c.pass}\n\n⏰ تنتهي التجربة: ${c.expDate}\n\nلأي استفسار تواصل معنا 📞\nMG AppHouse`;
+  const msg=`مرحباً ${c.name} 🌟\n\nيسعدنا تقديم نسخة تجريبية مجانية من نظام إدارة المطاعم لمدة ${c.hours} ساعة.\n\n🔗 الرابط: ${location.origin}${location.pathname}\n\n👤 اسم المستخدم: ${c.user}\n🔑 كلمة السر: ${c.pass}\n\n⏰ تنتهي التجربة: ${c.expDate}\n\nلأي استفسار تواصل معنا 📞\nUrcod`;
   navigator.clipboard.writeText(msg).then(()=>showNotif('✅ تم نسخ الرسالة'));
 }
 
