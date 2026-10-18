@@ -346,15 +346,15 @@ input,select,textarea{font-family:inherit}
 @keyframes newFlash{0%,100%{box-shadow:0 0 0 0 rgba(239,68,68,0)}50%{box-shadow:0 0 0 5px rgba(239,68,68,.2)}}
 .cashier-order-inner{padding:12px 14px}
 .cashier-order-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:7px}
-.cashier-order-id{font-size:14px;font-weight:900;color:var(--dark)}
-.cashier-order-time{font-size:10px;color:var(--text-muted);font-weight:700}
+.cashier-order-id{font-size:14px;font-weight:900;color:#fff}
+.cashier-order-time{font-size:10px;color:rgba(255,255,255,.35);font-weight:700}
 .cashier-sbadge{font-size:10px;font-weight:800;padding:3px 10px;border-radius:100px}
 .cashier-sbadge.s-new{background:rgba(239,68,68,.25);color:#f87171;border:1px solid rgba(239,68,68,.4)}
 .cashier-sbadge.s-prep{background:rgba(245,158,11,.25);color:#fbbf24;border:1px solid rgba(245,158,11,.4)}
 .cashier-sbadge.s-ready{background:rgba(34,197,94,.25);color:#4ade80;border:1px solid rgba(34,197,94,.4)}
 .cashier-sbadge.s-delivered{background:rgba(107,114,128,.2);color:#9ca3af;border:1px solid rgba(107,114,128,.3)}
-.cashier-customer-name{font-size:11px;color:var(--text-muted);margin-bottom:4px;font-weight:700}
-.cashier-items-txt{font-size:11px;color:var(--text-muted);margin-bottom:9px;line-height:1.5}
+.cashier-customer-name{font-size:11px;color:rgba(255,255,255,.55);margin-bottom:4px;font-weight:700}
+.cashier-items-txt{font-size:11px;color:rgba(255,255,255,.35);margin-bottom:9px;line-height:1.5}
 .cashier-order-footer{display:flex;align-items:center;justify-content:space-between}
 .cashier-total-val{font-size:15px;font-weight:900;color:#60a5fa}
 .cashier-action{padding:7px 16px;border-radius:10px;font-size:11px;font-weight:900;border:none;font-family:inherit;cursor:default;letter-spacing:.3px}
@@ -388,7 +388,7 @@ input,select,textarea{font-family:inherit}
   <div class="exp-card">
     <div class="exp-icon">⏰</div>
     <div class="exp-title">انتهت الفترة التجريبية</div>
-    <div class="exp-sub">انتهت الـفترة التجريبية الخاصة.<br/>للحصول على النسخة الكاملة تواصل معنا الآن.</div>
+    <div class="exp-sub">انتهت الـ التجربه المجانية الخاصة بتجربتك.<br/>للحصول على النسخة الكاملة تواصل معنا الآن.</div>
     <button class="exp-wa" onclick="contactWA()"><span style="font-size:20px">💬</span>اشترك الآن عبر واتساب</button>
     <button class="exp-call" onclick="location.href='tel:+201508613866'">📞 اتصل بنا مباشرة</button>
   </div>
@@ -407,8 +407,8 @@ input,select,textarea{font-family:inherit}
       <p>جرّب النظام بشكل كامل.<br/>استطلع المنيو، أنشئ طلبات، وشاهد الداشبورد يعمل.</p>
       <div style="margin-top:10px">
         <span class="locked-badge">🔒 إدارة الطلبات</span>
-        <span class="locked-badge">🔒 تحديث الأسعار لحظيًا</span>
-        <span class="locked-badge">🔒 مراقبة لحظية</span>
+        <span class="locked-badge">🔒 الفروع</span>
+        <span class="locked-badge">🔒 الموظفين</span>
         <span class="locked-badge">🔒 التقارير المتقدمة</span>
       </div>
     </div>
@@ -618,7 +618,7 @@ input,select,textarea{font-family:inherit}
         </button>
         <div class="contact-info-grid">
           <div class="contact-info-card"><div class="contact-info-icon">🍽️</div><div class="contact-info-label">التخصص</div><div class="contact-info-val">أنظمة المطاعم</div></div>
-          <div class="contact-info-card"><div class="contact-info-icon">⚡</div><div class="contact-info-label">التسليم</div><div class="contact-info-val">خلال 7 أيام أو حسب الاتفاق</div></div>
+          <div class="contact-info-card"><div class="contact-info-icon">⚡</div><div class="contact-info-label">التسليم</div><div class="contact-info-val">خلال 48 ساعة</div></div>
           <div class="contact-info-card"><div class="contact-info-icon">🛡️</div><div class="contact-info-label">الدعم الفني</div><div class="contact-info-val">24/7</div></div>
           <div class="contact-info-card"><div class="contact-info-icon">✅</div><div class="contact-info-label">الضمان</div><div class="contact-info-val">مدى الحياة</div></div>
         </div>
@@ -854,6 +854,8 @@ async function loadClients(){
   clients.sort((a,b)=>(b.createdAt||0)-(a.createdAt||0));
   const now=Date.now();
   let totalActive=0,totalExpired=0;
+  const orderCounts={};
+  try{const ordSnap=await db.ref('demo_orders').get();if(ordSnap.exists())ordSnap.forEach(u=>{let cnt=0;u.forEach(()=>cnt++);orderCounts[u.key]=cnt;});}catch(e){}
   list.innerHTML=clients.map(c=>{
     const isExpired=now>c.expiresAt||c.status==='expired';
     if(isExpired)totalExpired++;else totalActive++;
@@ -861,7 +863,13 @@ async function loadClients(){
     const h=Math.floor(left/3600000),m=Math.floor((left%3600000)/60000);
     const timeStr=isExpired?'منتهية':`${h} ساعة ${m} دقيقة`;
     const expDate=new Date(c.expiresAt).toLocaleString('ar-EG',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'});
-    return`<div class="client-row"><div class="client-info"><div class="client-name">${c.name||c.key}</div><div class="client-meta">👤 ${c.username||c.key} | ⏰ تنتهي: ${expDate}</div><div class="time-left">${isExpired?'🔴 منتهية':'🟢 متبقي: '+timeStr}</div></div><div style="display:flex;flex-direction:column;gap:4px;align-items:flex-end"><span class="client-status ${isExpired?'status-expired':'status-active'}">${isExpired?'منتهي':'نشط'}</span><div style="display:flex;flex-direction:column;gap:4px;margin-top:4px">${!isExpired?`<button onclick="stopClient('${c.key}')" style="background:rgba(239,68,68,.25);color:#f87171;border:1px solid rgba(239,68,68,.4);border-radius:6px;padding:4px 10px;font-size:10px;font-weight:900;cursor:pointer;font-family:inherit">⛔ إيقاف فوري</button>`:''}<button onclick="deleteClient('${c.key}')" style="background:rgba(255,255,255,.06);color:rgba(255,255,255,.3);border:1px solid rgba(255,255,255,.1);border-radius:6px;padding:4px 10px;font-size:10px;font-weight:800;cursor:pointer;font-family:inherit">🗑 حذف</button></div></div></div>`;
+    const didLogin=!!c.firstLoginAt;
+    const loginInfo=didLogin?`👁️ دخل — ${new Date(c.firstLoginAt).toLocaleString('ar-EG',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})}`:'👁️ لم يفتح بعد';
+    const loginColor=didLogin?'rgba(34,197,94,.9)':'rgba(255,200,0,.7)';
+    const ordCount=orderCounts[c.key]||0;
+    const ordInfo=ordCount>0?`🛒 عمل ${ordCount} طلب`:'🛒 لم يطلب بعد';
+    const ordColor=ordCount>0?'rgba(251,191,36,.9)':'rgba(255,255,255,.3)';
+    return`<div class="client-row"><div class="client-info"><div class="client-name">${c.name||c.key}</div><div class="client-meta">👤 ${c.username||c.key} | ⏰ تنتهي: ${expDate}</div><div class="time-left">${isExpired?'🔴 منتهية':'🟢 متبقي: '+timeStr}</div><div style="display:flex;gap:10px;margin-top:5px;flex-wrap:wrap"><span style="font-size:10px;font-weight:800;color:${loginColor}">${loginInfo}</span><span style="font-size:10px;font-weight:800;color:${ordColor}">${ordInfo}</span></div></div><div style="display:flex;flex-direction:column;gap:4px;align-items:flex-end"><span class="client-status ${isExpired?'status-expired':'status-active'}">${isExpired?'منتهي':'نشط'}</span><div style="display:flex;flex-direction:column;gap:4px;margin-top:4px">${!isExpired?`<button onclick="stopClient('${c.key}')" style="background:rgba(239,68,68,.25);color:#f87171;border:1px solid rgba(239,68,68,.4);border-radius:6px;padding:4px 10px;font-size:10px;font-weight:900;cursor:pointer;font-family:inherit">⛔ إيقاف فوري</button>`:''}<button onclick="deleteClient('${c.key}')" style="background:rgba(255,255,255,.06);color:rgba(255,255,255,.3);border:1px solid rgba(255,255,255,.1);border-radius:6px;padding:4px 10px;font-size:10px;font-weight:800;cursor:pointer;font-family:inherit">🗑 حذف</button></div></div></div>`;
   }).join('');
   document.getElementById('stat-total').textContent=clients.length;
   document.getElementById('stat-active').textContent=totalActive;
